@@ -1,0 +1,58 @@
+propel:
+#relay diary
+ blog:
+   user_id:
+   title: varchar(50)
+   image: longvarchar
+   body: longvarchar
+   created_at:
+   updated_at:
+#relay diaryのcomment
+ blog_comment:
+   blog_id:
+   user_id:
+   body: longvarchar
+   created_at:
+   updated_at:
+#user情報
+ user:
+   nickname: varchar(50)
+   first_name: varchar(100)
+   last_name: varchar(100)
+   sex: varchar(20)
+   user_type: varchar(30)
+   occupation: longvarchar
+   birth_country: varchar(100)
+   country: varchar(100)
+   email: varchar(100)
+   facebook_url: longvarchar
+   sha1_password: varchar(40)
+   salt: varchar(32)
+   created_at:
+   updated_at:
+#relay daiaryに対するいいね情報
+ blog_interested:
+   blog_id:
+   user_id:
+   created_at:
+#alumni紹介の記事情報
+ friend:
+   user_id:
+   image: longvarchar
+   body: longvarchar
+   created_at:
+   updated_at:
+#alumni紹介記事に対するコメント情報
+ friend_comment:
+   friend_id:
+   user_id:
+   body: longvarchar
+   created_at:
+   updated_at:
+#conference reportに関する情報
+ report:
+   image: longvarchar
+   year: integer
+   host_country: varchar(100)
+   body: longvarchar
+   reportfile: longvarchar
