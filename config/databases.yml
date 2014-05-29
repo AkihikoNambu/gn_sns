@@ -1,6 +1,0 @@
-all:
-  propel:
-    class:          sfPropelDatabase
-    param:
-      dsn:          mysql://root:root@localhost/gn_sns
-      encode:       utf8
