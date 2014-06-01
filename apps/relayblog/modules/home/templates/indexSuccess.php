@@ -24,6 +24,7 @@
   </head>
   <body>
     <!-- NAVIGATION -->
+    <!-- NAVIGATION -->
     <nav class="fixed-top" id="navigation">
         <div class="container">
             <div class="row-fluid">
@@ -50,7 +51,12 @@
                         <li><a href="#page-work">Reports</a></li>
                         <!-- <li><a href="#page-clients">Sponsors</a></li>
                         <li><a href="#page-contact">Contact</a></li> -->
-                        <li><a href="#page-login">Login</a></li>
+                        <?php if ($sf_user->isAuthenticated()): ?>
+                          <li><?php echo link_to('Logout', 'user/logout') ?></li>
+                          <li><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber').' profile', 'user/profile') ?></li>
+                        <?php else: ?>
+                          <li><?php echo link_to('Login', 'user/login') ?></li>
+                        <?php endif ?>
 
                     </ul>
                     <!-- END MAIN MENU -->
@@ -125,6 +131,13 @@
             <header>
                 <h4 class="line-divider">Friends</h4>
                 <h1>Meet Friends</h1>
+                <?php if ($sf_user->isAuthenticated()): ?>
+                          <li><?php echo link_to('Logout', 'user/logout') ?></li>
+                          <li><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber').' profile', 'user/profile') ?></li>
+                        <?php else: ?>
+                          <li><?php echo link_to('Login', 'user/login') ?></li>
+                        <?php endif ?>
+
                 <div class="row">
                     <div class="span8 offset2">
                         <p>
