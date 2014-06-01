@@ -47,7 +47,7 @@ class userActions extends sfActions
         $this->getUser()->setAttribute('nickname', $user->getNickname(), 'subscriber');
  
         // 最後のページにリダイレクトする
-        return $this->redirect($this->getRequestParameter('referer', '@homepage'));
+        return $this->redirect($this->getRequestParameter('referer','@homepage'));
       }
     }
   }

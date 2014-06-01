@@ -133,7 +133,7 @@
                 <h1>Meet Friends</h1>
                 <?php if ($sf_user->isAuthenticated()): ?>
                           <li><?php echo link_to('Logout', 'user/logout') ?></li>
-                          <li><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber').' profile', 'user/profile') ?></li>
+                          <li><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber'))?></li>
                         <?php else: ?>
                           <li><?php echo link_to('Login', 'user/login') ?></li>
                         <?php endif ?>
