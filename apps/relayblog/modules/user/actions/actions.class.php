@@ -52,7 +52,7 @@ class userActions extends sfActions
     }
   }
 }
-public function executeLogout()
+  public function executeLogout()
 {
   $this->getUser()->setAuthenticated(false);
   $this->getUser()->clearCredentials();

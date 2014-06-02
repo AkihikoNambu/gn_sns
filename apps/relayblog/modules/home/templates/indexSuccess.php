@@ -49,15 +49,8 @@
                         <li><a href="#page-about">Friends</a></li>
                         <li><a href="#page-blog">Blog</a></li>
                         <li><a href="#page-work">Reports</a></li>
-                        <!-- <li><a href="#page-clients">Sponsors</a></li>
-                        <li><a href="#page-contact">Contact</a></li> -->
-                        <?php if ($sf_user->isAuthenticated()): ?>
-                          <li><?php echo link_to('Logout', 'user/logout') ?></li>
-                          <li><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber').' profile', 'user/profile') ?></li>
-                        <?php else: ?>
-                          <li><?php echo link_to('Login', 'user/login') ?></li>
-                        <?php endif ?>
-
+                        <!-- <li><a href="#page-clients">Sponsors</a></li>-->
+                        <li><a href="#page-contact">Login</a></li> 
                     </ul>
                     <!-- END MAIN MENU -->
                     
@@ -132,11 +125,11 @@
                 <h4 class="line-divider">Friends</h4>
                 <h1>Meet Friends</h1>
                 <?php if ($sf_user->isAuthenticated()): ?>
-                          <li><?php echo link_to('Logout', 'user/logout') ?></li>
-                          <li><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber'))?></li>
-                        <?php else: ?>
-                          <li><?php echo link_to('Login', 'user/login') ?></li>
-                        <?php endif ?>
+                  <li><?php echo link_to('Logout', 'user/logout') ?></li>
+                  <li><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber'))?></li>
+                <?php else: ?>
+                  <li><?php echo link_to('Login', 'user/login') ?></li>
+                <?php endif ?>
 
                 <div class="row">
                     <div class="span8 offset2">
@@ -664,14 +657,12 @@
             <!-- Header -->
             <header>
                 <h4 class="line-divider">information</h4>
-                <!-- <h1>Say hello!</h1> -->
-                <!-- <div class="row">
-                    <div class="span8 offset2">
-                        <p>
-                            We like to create things with fun, open-minded people. Feel free to say hello! We'll respond as soon as possible.
-                        </p>
-                    </div>
-                </div> -->
+                <?php if ($sf_user->isAuthenticated()): ?>
+                  <h1><?php echo link_to('Logout', 'user/logout') ?></h1>
+                  <h1><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber'))?></h1>
+                <?php else: ?>
+                  <h1><?php echo link_to('Login', 'user/login') ?></h1>
+                <?php endif ?>
             </header>
             <!-- End Header -->
             

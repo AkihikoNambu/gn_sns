@@ -15,6 +15,6 @@
   </fieldset>
  
   <?php echo input_hidden_tag('referer', $sf_request->getAttribute('referer')) ?>
-  <?php echo submit_tag('sign in') ?>
+  <?php echo submit_tag('Login') ?>
  
 </form>
