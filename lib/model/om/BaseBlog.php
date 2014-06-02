@@ -25,6 +25,10 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 
 
 	
+	protected $parent_id;
+
+
+	
 	protected $created_at;
 
 
@@ -82,6 +86,13 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 	{
 
 		return $this->body;
+	}
+
+	
+	public function getParentId()
+	{
+
+		return $this->parent_id;
 	}
 
 	
@@ -196,6 +207,20 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setParentId($v)
+	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
+		if ($this->parent_id !== $v) {
+			$this->parent_id = $v;
+			$this->modifiedColumns[] = BlogPeer::PARENT_ID;
+		}
+
+	} 
+	
 	public function setCreatedAt($v)
 	{
 
@@ -256,17 +281,19 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 
 			$this->body = $rs->getString($startcol + 3);
 
-			$this->created_at = $rs->getTimestamp($startcol + 4, null);
+			$this->parent_id = $rs->getInt($startcol + 4);
 
-			$this->updated_at = $rs->getTimestamp($startcol + 5, null);
+			$this->created_at = $rs->getTimestamp($startcol + 5, null);
 
-			$this->id = $rs->getInt($startcol + 6);
+			$this->updated_at = $rs->getTimestamp($startcol + 6, null);
+
+			$this->id = $rs->getInt($startcol + 7);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 7; 
+						return $startcol + 8; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Blog object", $e);
 		}
@@ -465,12 +492,15 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 				return $this->getBody();
 				break;
 			case 4:
-				return $this->getCreatedAt();
+				return $this->getParentId();
 				break;
 			case 5:
-				return $this->getUpdatedAt();
+				return $this->getCreatedAt();
 				break;
 			case 6:
+				return $this->getUpdatedAt();
+				break;
+			case 7:
 				return $this->getId();
 				break;
 			default:
@@ -487,9 +517,10 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 			$keys[1] => $this->getTitle(),
 			$keys[2] => $this->getImage(),
 			$keys[3] => $this->getBody(),
-			$keys[4] => $this->getCreatedAt(),
-			$keys[5] => $this->getUpdatedAt(),
-			$keys[6] => $this->getId(),
+			$keys[4] => $this->getParentId(),
+			$keys[5] => $this->getCreatedAt(),
+			$keys[6] => $this->getUpdatedAt(),
+			$keys[7] => $this->getId(),
 		);
 		return $result;
 	}
@@ -518,12 +549,15 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 				$this->setBody($value);
 				break;
 			case 4:
-				$this->setCreatedAt($value);
+				$this->setParentId($value);
 				break;
 			case 5:
-				$this->setUpdatedAt($value);
+				$this->setCreatedAt($value);
 				break;
 			case 6:
+				$this->setUpdatedAt($value);
+				break;
+			case 7:
 				$this->setId($value);
 				break;
 		} 	}
@@ -537,9 +571,10 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[1], $arr)) $this->setTitle($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setImage($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setBody($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setCreatedAt($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setUpdatedAt($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setId($arr[$keys[6]]);
+		if (array_key_exists($keys[4], $arr)) $this->setParentId($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setCreatedAt($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setUpdatedAt($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setId($arr[$keys[7]]);
 	}
 
 	
@@ -551,6 +586,7 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(BlogPeer::TITLE)) $criteria->add(BlogPeer::TITLE, $this->title);
 		if ($this->isColumnModified(BlogPeer::IMAGE)) $criteria->add(BlogPeer::IMAGE, $this->image);
 		if ($this->isColumnModified(BlogPeer::BODY)) $criteria->add(BlogPeer::BODY, $this->body);
+		if ($this->isColumnModified(BlogPeer::PARENT_ID)) $criteria->add(BlogPeer::PARENT_ID, $this->parent_id);
 		if ($this->isColumnModified(BlogPeer::CREATED_AT)) $criteria->add(BlogPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(BlogPeer::UPDATED_AT)) $criteria->add(BlogPeer::UPDATED_AT, $this->updated_at);
 		if ($this->isColumnModified(BlogPeer::ID)) $criteria->add(BlogPeer::ID, $this->id);
@@ -591,6 +627,8 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 		$copyObj->setImage($this->image);
 
 		$copyObj->setBody($this->body);
+
+		$copyObj->setParentId($this->parent_id);
 
 		$copyObj->setCreatedAt($this->created_at);
 

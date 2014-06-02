@@ -119,14 +119,16 @@
                             </div> 
                             <div class="media-body">
                                 <div class="comments-post-info">
-                                    <small><a href="#">Team member</a>, April 10, 2013, <a href="#write-replay">Replay</a></small>
+                                    <small><a href="#">team member</a>, April 10, 2013, <a href="#write-replay">Reply</a></small>
                                 </div>
-                                <p>
-                                    Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
-                                </p>
+                                   <p>
+                                    かわいいですね。
+                                   </p> 
+                                
+                                
                             </div>
                         </div>
-                        <div class="media">
+                       <!--  <div class="media">
                             <div class="pull-left">
                                 <img src="http://placehold.it/60x60" width="60"/>
                             </div> 
@@ -163,7 +165,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- End Blog comments -->
                     
@@ -176,10 +178,14 @@
                         <div class="row-fluid">
                             <div class="span8">
                                 <form>
+                                    <?php use_helper('Object') ?>
                                     <!-- <input type="text" class="span12" placeholder="Title">
                                     <input type="text" class="span12" placeholder="Email"> -->
-                                    <textarea rows="5" class="span12"></textarea>
-                                    <button type="submit" class="btn btn-primary">Post a comment</button>
+                                    <!-- <textarea rows="5" class="span12"></textarea> -->
+                                    <?php echo object_textarea_tag($blog_comment, 'getBody', array (
+                                      'size' => '30x3',)) ?>
+                                    <!-- <button type="submit" class="btn btn-primary">Post a comment</button> -->
+                                    <?php echo submit_tag('Send') ?>
                                 </form>
                             </div>
                         </div>

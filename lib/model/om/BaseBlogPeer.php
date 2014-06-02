@@ -13,7 +13,7 @@ abstract class BaseBlogPeer {
 	const CLASS_DEFAULT = 'lib.model.Blog';
 
 	
-	const NUM_COLUMNS = 7;
+	const NUM_COLUMNS = 8;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -32,6 +32,9 @@ abstract class BaseBlogPeer {
 	const BODY = 'blog.BODY';
 
 	
+	const PARENT_ID = 'blog.PARENT_ID';
+
+	
 	const CREATED_AT = 'blog.CREATED_AT';
 
 	
@@ -46,18 +49,18 @@ abstract class BaseBlogPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('UserId', 'Title', 'Image', 'Body', 'CreatedAt', 'UpdatedAt', 'Id', ),
-		BasePeer::TYPE_COLNAME => array (BlogPeer::USER_ID, BlogPeer::TITLE, BlogPeer::IMAGE, BlogPeer::BODY, BlogPeer::CREATED_AT, BlogPeer::UPDATED_AT, BlogPeer::ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('user_id', 'title', 'image', 'body', 'created_at', 'updated_at', 'id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
+		BasePeer::TYPE_PHPNAME => array ('UserId', 'Title', 'Image', 'Body', 'ParentId', 'CreatedAt', 'UpdatedAt', 'Id', ),
+		BasePeer::TYPE_COLNAME => array (BlogPeer::USER_ID, BlogPeer::TITLE, BlogPeer::IMAGE, BlogPeer::BODY, BlogPeer::PARENT_ID, BlogPeer::CREATED_AT, BlogPeer::UPDATED_AT, BlogPeer::ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('user_id', 'title', 'image', 'body', 'parent_id', 'created_at', 'updated_at', 'id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('UserId' => 0, 'Title' => 1, 'Image' => 2, 'Body' => 3, 'CreatedAt' => 4, 'UpdatedAt' => 5, 'Id' => 6, ),
-		BasePeer::TYPE_COLNAME => array (BlogPeer::USER_ID => 0, BlogPeer::TITLE => 1, BlogPeer::IMAGE => 2, BlogPeer::BODY => 3, BlogPeer::CREATED_AT => 4, BlogPeer::UPDATED_AT => 5, BlogPeer::ID => 6, ),
-		BasePeer::TYPE_FIELDNAME => array ('user_id' => 0, 'title' => 1, 'image' => 2, 'body' => 3, 'created_at' => 4, 'updated_at' => 5, 'id' => 6, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
+		BasePeer::TYPE_PHPNAME => array ('UserId' => 0, 'Title' => 1, 'Image' => 2, 'Body' => 3, 'ParentId' => 4, 'CreatedAt' => 5, 'UpdatedAt' => 6, 'Id' => 7, ),
+		BasePeer::TYPE_COLNAME => array (BlogPeer::USER_ID => 0, BlogPeer::TITLE => 1, BlogPeer::IMAGE => 2, BlogPeer::BODY => 3, BlogPeer::PARENT_ID => 4, BlogPeer::CREATED_AT => 5, BlogPeer::UPDATED_AT => 6, BlogPeer::ID => 7, ),
+		BasePeer::TYPE_FIELDNAME => array ('user_id' => 0, 'title' => 1, 'image' => 2, 'body' => 3, 'parent_id' => 4, 'created_at' => 5, 'updated_at' => 6, 'id' => 7, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
 	);
 
 	
@@ -118,6 +121,8 @@ abstract class BaseBlogPeer {
 		$criteria->addSelectColumn(BlogPeer::IMAGE);
 
 		$criteria->addSelectColumn(BlogPeer::BODY);
+
+		$criteria->addSelectColumn(BlogPeer::PARENT_ID);
 
 		$criteria->addSelectColumn(BlogPeer::CREATED_AT);
 
