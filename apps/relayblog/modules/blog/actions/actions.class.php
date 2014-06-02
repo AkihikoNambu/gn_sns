@@ -70,6 +70,11 @@ class blogActions extends sfActions
     return $this->redirect('blog/show?id='.$blog->getId());
   }
 
+  /*public function executeComment()
+  {
+
+  }*/
+
   public function executeDelete()
   {
     $blog = BlogPeer::retrieveByPk($this->getRequestParameter('id'));
