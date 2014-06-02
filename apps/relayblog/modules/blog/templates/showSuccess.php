@@ -16,8 +16,6 @@
     <link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="assets/images/ico/favicon.png">
                                    
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="../../../web/css/main.css" type="text/css" />
     
     <!-- GOOGLE WEB FONTS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css'>
@@ -121,14 +119,16 @@
                             </div> 
                             <div class="media-body">
                                 <div class="comments-post-info">
-                                    <small><a href="#">Team member</a>, April 10, 2013, <a href="#write-replay">Replay</a></small>
+                                    <small><a href="#">team member</a>, April 10, 2013, <a href="#write-replay">Reply</a></small>
                                 </div>
-                                <p>
-                                    Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
-                                </p>
+                                   <p>
+                                    かわいいですね。
+                                   </p> 
+                                
+                                
                             </div>
                         </div>
-                        <div class="media">
+                       <!--  <div class="media">
                             <div class="pull-left">
                                 <img src="http://placehold.it/60x60" width="60"/>
                             </div> 
@@ -165,23 +165,27 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- End Blog comments -->
                     
                     <!-- Blog Write comment -->
                     <div class="write-comment" id="write-replay">
                         <h6>Drop a comment</h6>
-                        <p>
+                        <!-- <p>
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
-                        </p>
+                        </p> -->
                         <div class="row-fluid">
                             <div class="span8">
                                 <form>
-                                    <input type="text" class="span12" placeholder="Title">
-                                    <input type="text" class="span12" placeholder="Email">
-                                    <textarea rows="5" class="span12"></textarea>
-                                    <button type="submit" class="btn btn-primary">Post a comment</button>
+                                    <?php use_helper('Object') ?>
+                                    <!-- <input type="text" class="span12" placeholder="Title">
+                                    <input type="text" class="span12" placeholder="Email"> -->
+                                    <!-- <textarea rows="5" class="span12"></textarea> -->
+                                    <?php echo object_textarea_tag($blog_comment, 'getBody', array (
+                                      'size' => '30x3',)) ?>
+                                    <!-- <button type="submit" class="btn btn-primary">Post a comment</button> -->
+                                    <?php echo submit_tag('Send') ?>
                                 </form>
                             </div>
                         </div>

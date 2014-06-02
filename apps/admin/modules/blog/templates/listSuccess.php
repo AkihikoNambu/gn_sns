@@ -32,4 +32,13 @@
 </tbody>
 </table>
 
+<div align="right">
+<?php echo form_tag('blog/create') ?>
+<?php echo input_hidden_tag('oya_id', $blog->getId()) ?>
+<?php echo input_hidden_tag('oya_title', $blog->getTitle()) ?>
+<?php echo input_hidden_tag('oya_body', $blog->getBody()) ?>
+<?php echo submit_tag('返信') ?>
+</form>
+</div>
+
 <?php echo link_to ('create', 'blog/create') ?>

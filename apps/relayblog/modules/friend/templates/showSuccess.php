@@ -16,9 +16,7 @@
     <link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="assets/images/ico/favicon.png">
                                    
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="../../../web/css/main.css" type="text/css" />
-    
+
     <!-- GOOGLE WEB FONTS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css'>
   </head>
