@@ -40,6 +40,8 @@ class UserMapBuilder {
 
 		$tMap->addColumn('SEX', 'Sex', 'string', CreoleTypes::VARCHAR, false, 20);
 
+		$tMap->addColumn('IMAGE', 'Image', 'string', CreoleTypes::LONGVARCHAR, false, null);
+
 		$tMap->addColumn('USER_TYPE', 'UserType', 'string', CreoleTypes::VARCHAR, false, 30);
 
 		$tMap->addColumn('OCCUPATION', 'Occupation', 'string', CreoleTypes::LONGVARCHAR, false, null);
