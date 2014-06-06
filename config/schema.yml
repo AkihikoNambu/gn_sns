@@ -21,6 +21,7 @@ propel:
    first_name: varchar(100)
    last_name: varchar(100)
    sex: varchar(20)
+   image: longvarchar
    user_type: varchar(30)
    occupation: longvarchar
    birth_country: varchar(100)
@@ -57,3 +58,6 @@ propel:
    host_country: varchar(100)
    body: longvarchar
    reportfile: longvarchar
+#mypage情報
+ mypage:
+
