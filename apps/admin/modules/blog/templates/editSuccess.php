@@ -7,6 +7,7 @@
 <?php echo form_tag('blog/update', 'multipart=true') ?>
 
 <?php echo object_input_hidden_tag($blog, 'getId') ?>
+<?php echo input_hidden_tag('oya_id', $sf_params->get('oya_id')) ?>
 
 <br/>
 <table>
