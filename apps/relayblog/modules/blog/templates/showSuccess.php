@@ -102,8 +102,8 @@
                         <!-- Blog post description -->
                         <?php echo $blog->getBody() ?>
                         <hr />
-						<?php echo link_to('edit', 'blog/edit?id='.$blog->getId()) ?>
-						&nbsp;<?php echo link_to('list', 'blog/list') ?>
+						<?php //echo link_to('edit', 'blog/edit?id='.$blog->getId()) ?>
+						&nbsp;<?php //echo link_to('list', 'blog/list') ?>
                         
                     </article>
                     <!-- End Article -->
@@ -113,59 +113,24 @@
                         <a href="#">4 comments</a>
                     </div>
                     <div class="comments-details">
-                        <div class="media">
-                            <div class="pull-left">
-                                <img src="http://placehold.it/60x60" width="60"/>
-                            </div> 
-                            <div class="media-body">
-                                <div class="comments-post-info">
-                                    <small><a href="#">team member</a>, April 10, 2013, <a href="#write-replay">Reply</a></small>
-                                </div>
-                                   <p>
-                                    かわいいですね。
-                                   </p> 
-                                
-                                
-                            </div>
-                        </div>
-                       <!--  <div class="media">
-                            <div class="pull-left">
-                                <img src="http://placehold.it/60x60" width="60"/>
-                            </div> 
-                            <div class="media-body">
-                                <div class="comments-post-info">
-                                    <small><a href="#">Team member</a>, April 10, 2013, <a href="#write-replay">Replay</a></small>
-                                </div>
-                                <p>
-                                    Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="pull-left">
-                                <img src="http://placehold.it/60x60" width="60"/>
-                            </div> 
-                            <div class="media-body">
-                                <div class="comments-post-info">
-                                    <small><a href="#">Team member</a>, April 10, 2013, <a href="#write-replay">Replay</a></small>
-                                </div>
-                                <p>
-                                    Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
-                                </p>
-                                
-                                <div class="media">
-                                    <div class="pull-left">
-                                        <img src="http://placehold.it/60x60" width="60"/>
-                                    </div> 
-                                    <div class="media-body">
-                                        <div class="comments-post-info">
-                                            <small><a href="#">Team member</a>, April 10, 2013, <a href="#write-replay">Replay</a></small>
-                                        </div>
-                                        Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. 
+                        <?php foreach ($blog_comments as $blog_comment): ?>
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img src="http://placehold.it/60x60" width="60"/>
+                                </div> 
+                                <div class="media-body">
+                                    <div class="comments-post-info">
+                                        <small><a href="#">
+                                            <?php //echo $blog_comment->getUserId() ?>
+                                            AkihikoNambu
+                                        </a> <?php echo $blog_comment->getCreatedAt() ?></small>
                                     </div>
+                                       <p>
+                                        <?php echo $blog_comment->getBody() ?>
+                                       </p>    
                                 </div>
                             </div>
-                        </div> -->
+                        <?php endforeach; ?>
                     </div>
                     <!-- End Blog comments -->
                     
@@ -177,15 +142,13 @@
                         </p> -->
                         <div class="row-fluid">
                             <div class="span8">
-                                <form>
-                                    <?php use_helper('Object') ?>
-                                    <!-- <input type="text" class="span12" placeholder="Title">
-                                    <input type="text" class="span12" placeholder="Email"> -->
-                                    <!-- <textarea rows="5" class="span12"></textarea> -->
-                                    <?php echo object_textarea_tag($blog_comment, 'getBody', array (
-                                      'size' => '30x3',)) ?>
-                                    <!-- <button type="submit" class="btn btn-primary">Post a comment</button> -->
-                                    <?php echo submit_tag('Send') ?>
+                                <?php use_helper('Object') ?>
+                                <!-- blogのcommentアクションに渡す -->
+                                <?php echo form_tag('blog/comment') ?>
+                                <!-- コメントと同時にそのブログのidを取得し一緒に保存する -->
+                                <?php echo object_input_hidden_tag($blog, 'getId') ?>
+                                <?php echo textarea_tag('body', '', array('size' => '30x3',)) ?>
+                                <?php echo submit_tag('Send') ?>
                                 </form>
                             </div>
                         </div>
@@ -246,10 +209,9 @@
                     </div>
                     
                     <!-- Twitter -->
-                    <!-- <div class="block">
-                        <h6>Twitter</h6>
-                        <div class="twitterfeed"></div>
-                    </div> -->
+                    <div class="block">
+                    　
+                    </div>
                 </div>
             </div>
         </div>

@@ -21,13 +21,25 @@ class friendActions extends sfActions
 
   public function executeList()
   {
-    $this->friends = FriendPeer::doSelect(new Criteria());
+    $c = new Criteria;
+    $c->addDescendingOrderByColumn(FriendPeer::ID);
+    $this->friends = FriendPeer::doSelect($c);
   }
 
   public function executeShow()
   {
     $this->friend = FriendPeer::retrieveByPk($this->getRequestParameter('id'));
     $this->forward404Unless($this->friend);
+
+  //friendに対するcommentをテンプレートに渡す
+    //friend_commentのレコードを取ってくる
+    $c_comment = new Criteria();
+    //取ってくる条件を指定する。friend_idに沿って取ってくる
+    $c_comment->add(FriendCommentPeer::FRIEND_ID, $this->friend->getId());
+    //friend_commentのレコードを昇順で取ってくる
+    $c_comment->addAscendingOrderByColumn(FriendCommentPeer::ID);
+    //blog_commentsとしてテンプレートに渡す
+    $this->friend_comments = FriendCommentPeer::doSelect($c_comment);
   }
 
   public function executeUpdate()
@@ -55,5 +67,21 @@ class friendActions extends sfActions
     $friend->save();
 
     return $this->redirect('friend/show?id='.$friend->getId());
+  }
+
+  public function executeComment()
+  {
+    $friend_id = $this->getRequestParameter('id');
+    $friend_comment = new FriendComment();
+
+    //useridを取得しfriend_commentのパラメーターに持たせる。
+    //(今は省略)
+    $friend_comment->setFriendId($friend_id);
+    $friend_comment->setBody($this->getRequestParameter('body'));
+    
+    $friend_comment->save();
+
+    //投稿後のリダイレクト
+    return $this->redirect('friend/show?id='.$friend_id);
   }
 }

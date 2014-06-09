@@ -1,7 +1,7 @@
 <?php use_helper('Text') ?>
 
 <h1>blog</h1>
-<?php foreach ($parent_blogs as $blog): ?>
+<?php foreach ($blogs as $blog): ?>
 <table>
   <thead>
     <tr>
@@ -29,17 +29,12 @@
 </table>
 
 <div align="right">
-  <?php echo form_tag('blog/create') ?>
-  <?php echo input_hidden_tag('oya_id', $blog->getId()) ?>
-  <?php echo input_hidden_tag('oya_title', $blog->getTitle()) ?>
-  <?php echo input_hidden_tag('oya_body', $blog->getBody()) ?>
-  <?php echo submit_tag('返信') ?>
-  </form>
+  
 </div>
 
-<?php $th = 'threads'.$blog->getId() ?>
+<?php //$th = 'threads'.$blog->getId() ?>
 
-<div style='margin-left: 20px'>
+<!-- <div style='margin-left: 20px'>
   <table>
     <thead>
       <tr>
@@ -53,22 +48,22 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($$th as $reply): ?>
+      <?php //foreach ($$th as $reply): ?>
       <tr>
-          <td><?php echo $reply->getUserId() ?></td>
-          <td><?php echo $reply->getTitle() ?></td>
-          <td><?php echo $reply->getImage() ?></td>
-          <td><?php echo simple_format_text($reply->getBody()) ?></td>
-          <td><?php echo $reply->getCreatedAt() ?></td>
-          <td><?php echo $reply->getUpdatedAt() ?></td>
-          <td><?php echo link_to($reply->getId(), 'blog/show?id='.$reply->getId()) ?></td>
+          <td><?php //echo $reply->getUserId() ?></td>
+          <td><?php //echo $reply->getTitle() ?></td>
+          <td><?php //echo $reply->getImage() ?></td>
+          <td><?php //echo simple_format_text($reply->getBody()) ?></td>
+          <td><?php //echo $reply->getCreatedAt() ?></td>
+          <td><?php //echo $reply->getUpdatedAt() ?></td>
+          <td><?php //echo link_to($reply->getId(), 'blog/show?id='.$reply->getId()) ?></td>
       </tr>
       <br /><br />
-      <?php endforeach; ?>
+      <?php //endforeach; ?>
     </tbody>
   </table>
  
-</div>
+</div> -->
 
 <hr>
 <?php endforeach; ?>
