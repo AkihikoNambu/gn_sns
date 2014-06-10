@@ -117,6 +117,7 @@
                         <!-- friend comments -->
                         <div class="comments">
                             <!-- comment数のカウントを入れること！今は便宜上4 commentsになっている -->
+                            <?php //echo $comment_number ?>
                             <?php echo link_to('4 comments', 'friend/show?id='.$friend->getId()) ?>
                         </div>
                         <br>

@@ -20,6 +20,8 @@ class blogActions extends sfActions
     $c = new Criteria();
     $c->addDescendingOrderByColumn(BlogPeer::ID);
     $this->blogs = BlogPeer::doSelect($c);
+
+    $this->blog_comments = BlogCommentPeer::doSelect(new Criteria());
   }
 
   public function executeShow()
@@ -39,6 +41,14 @@ class blogActions extends sfActions
     $c_comment->addAscendingOrderByColumn(BlogCommentPeer::ID);
     //blog_commentsとしてテンプレートに渡す
     $this->blog_comments = BlogCommentPeer::doSelect($c_comment);
+
+  //commentの数をカウントする
+    //基準設定
+    $c_count = new Criteria();
+    //基準としてブログのidを設定。これでブログごとのコメント数がわかる
+    $c_count->add(BlogCommentPeer::BLOG_ID, $this->blog->getId());
+    //doCountメソッドでカウントし、テンプレートに渡す
+    $this->comment_number = BlogCommentPeer::doCount($c_count);
   }
 
   public function executeCreate()

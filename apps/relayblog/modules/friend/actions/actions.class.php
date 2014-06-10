@@ -40,6 +40,14 @@ class friendActions extends sfActions
     $c_comment->addAscendingOrderByColumn(FriendCommentPeer::ID);
     //blog_commentsとしてテンプレートに渡す
     $this->friend_comments = FriendCommentPeer::doSelect($c_comment);
+
+  //commentの数をカウントする
+    //基準設定
+    $c_count = new Criteria();
+    //基準としてフレンドのidを設定。これでフレンドごとのコメント数がわかる
+    $c_count->add(FriendCommentPeer::FRIEND_ID, $this->friend->getId());
+    //doCountメソッドでカウントし、テンプレートに渡す
+    $this->comment_number = FriendCommentPeer::doCount($c_count);
   }
 
   public function executeUpdate()

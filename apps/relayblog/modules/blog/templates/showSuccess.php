@@ -110,7 +110,7 @@
                     
                     <!-- Blog comments -->
                     <div class="comments">
-                        <a href="#">4 comments</a>
+                        <a href="#"><?php echo $comment_number ?> comments</a>
                     </div>
                     <div class="comments-details">
                         <?php foreach ($blog_comments as $blog_comment): ?>
