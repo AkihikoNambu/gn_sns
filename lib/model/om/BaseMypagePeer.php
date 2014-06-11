@@ -1,71 +1,26 @@
 <?php
 
 
-abstract class BaseUserPeer {
+abstract class BaseMypagePeer {
 
 	
 	const DATABASE_NAME = 'propel';
 
 	
-	const TABLE_NAME = 'user';
+	const TABLE_NAME = 'mypage';
 
 	
-	const CLASS_DEFAULT = 'lib.model.User';
+	const CLASS_DEFAULT = 'lib.model.Mypage';
 
 	
-	const NUM_COLUMNS = 16;
+	const NUM_COLUMNS = 1;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 
 	
-	const NICKNAME = 'user.NICKNAME';
-
-	
-	const FIRST_NAME = 'user.FIRST_NAME';
-
-	
-	const LAST_NAME = 'user.LAST_NAME';
-
-	
-	const SEX = 'user.SEX';
-
-	
-	const IMAGE = 'user.IMAGE';
-
-	
-	const USER_TYPE = 'user.USER_TYPE';
-
-	
-	const OCCUPATION = 'user.OCCUPATION';
-
-	
-	const BIRTH_COUNTRY = 'user.BIRTH_COUNTRY';
-
-	
-	const COUNTRY = 'user.COUNTRY';
-
-	
-	const EMAIL = 'user.EMAIL';
-
-	
-	const FACEBOOK_URL = 'user.FACEBOOK_URL';
-
-	
-	const SHA1_PASSWORD = 'user.SHA1_PASSWORD';
-
-	
-	const SALT = 'user.SALT';
-
-	
-	const CREATED_AT = 'user.CREATED_AT';
-
-	
-	const UPDATED_AT = 'user.UPDATED_AT';
-
-	
-	const ID = 'user.ID';
+	const ID = 'mypage.ID';
 
 	
 	private static $phpNameMap = null;
@@ -73,31 +28,31 @@ abstract class BaseUserPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Nickname', 'FirstName', 'LastName', 'Sex', 'Image', 'UserType', 'Occupation', 'BirthCountry', 'Country', 'Email', 'FacebookUrl', 'Sha1Password', 'Salt', 'CreatedAt', 'UpdatedAt', 'Id', ),
-		BasePeer::TYPE_COLNAME => array (UserPeer::NICKNAME, UserPeer::FIRST_NAME, UserPeer::LAST_NAME, UserPeer::SEX, UserPeer::IMAGE, UserPeer::USER_TYPE, UserPeer::OCCUPATION, UserPeer::BIRTH_COUNTRY, UserPeer::COUNTRY, UserPeer::EMAIL, UserPeer::FACEBOOK_URL, UserPeer::SHA1_PASSWORD, UserPeer::SALT, UserPeer::CREATED_AT, UserPeer::UPDATED_AT, UserPeer::ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('nickname', 'first_name', 'last_name', 'sex', 'image', 'user_type', 'occupation', 'birth_country', 'country', 'email', 'facebook_url', 'sha1_password', 'salt', 'created_at', 'updated_at', 'id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
+		BasePeer::TYPE_PHPNAME => array ('Id', ),
+		BasePeer::TYPE_COLNAME => array (MypagePeer::ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', ),
+		BasePeer::TYPE_NUM => array (0, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Nickname' => 0, 'FirstName' => 1, 'LastName' => 2, 'Sex' => 3, 'Image' => 4, 'UserType' => 5, 'Occupation' => 6, 'BirthCountry' => 7, 'Country' => 8, 'Email' => 9, 'FacebookUrl' => 10, 'Sha1Password' => 11, 'Salt' => 12, 'CreatedAt' => 13, 'UpdatedAt' => 14, 'Id' => 15, ),
-		BasePeer::TYPE_COLNAME => array (UserPeer::NICKNAME => 0, UserPeer::FIRST_NAME => 1, UserPeer::LAST_NAME => 2, UserPeer::SEX => 3, UserPeer::IMAGE => 4, UserPeer::USER_TYPE => 5, UserPeer::OCCUPATION => 6, UserPeer::BIRTH_COUNTRY => 7, UserPeer::COUNTRY => 8, UserPeer::EMAIL => 9, UserPeer::FACEBOOK_URL => 10, UserPeer::SHA1_PASSWORD => 11, UserPeer::SALT => 12, UserPeer::CREATED_AT => 13, UserPeer::UPDATED_AT => 14, UserPeer::ID => 15, ),
-		BasePeer::TYPE_FIELDNAME => array ('nickname' => 0, 'first_name' => 1, 'last_name' => 2, 'sex' => 3, 'image' => 4, 'user_type' => 5, 'occupation' => 6, 'birth_country' => 7, 'country' => 8, 'email' => 9, 'facebook_url' => 10, 'sha1_password' => 11, 'salt' => 12, 'created_at' => 13, 'updated_at' => 14, 'id' => 15, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, ),
+		BasePeer::TYPE_COLNAME => array (MypagePeer::ID => 0, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, ),
+		BasePeer::TYPE_NUM => array (0, )
 	);
 
 	
 	public static function getMapBuilder()
 	{
-		include_once 'lib/model/map/UserMapBuilder.php';
-		return BasePeer::getMapBuilder('lib.model.map.UserMapBuilder');
+		include_once 'lib/model/map/MypageMapBuilder.php';
+		return BasePeer::getMapBuilder('lib.model.map.MypageMapBuilder');
 	}
 	
 	public static function getPhpNameMap()
 	{
 		if (self::$phpNameMap === null) {
-			$map = UserPeer::getTableMap();
+			$map = MypagePeer::getTableMap();
 			$columns = $map->getColumns();
 			$nameMap = array();
 			foreach ($columns as $column) {
@@ -131,49 +86,19 @@ abstract class BaseUserPeer {
 	
 	public static function alias($alias, $column)
 	{
-		return str_replace(UserPeer::TABLE_NAME.'.', $alias.'.', $column);
+		return str_replace(MypagePeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
 	
 	public static function addSelectColumns(Criteria $criteria)
 	{
 
-		$criteria->addSelectColumn(UserPeer::NICKNAME);
-
-		$criteria->addSelectColumn(UserPeer::FIRST_NAME);
-
-		$criteria->addSelectColumn(UserPeer::LAST_NAME);
-
-		$criteria->addSelectColumn(UserPeer::SEX);
-
-		$criteria->addSelectColumn(UserPeer::IMAGE);
-
-		$criteria->addSelectColumn(UserPeer::USER_TYPE);
-
-		$criteria->addSelectColumn(UserPeer::OCCUPATION);
-
-		$criteria->addSelectColumn(UserPeer::BIRTH_COUNTRY);
-
-		$criteria->addSelectColumn(UserPeer::COUNTRY);
-
-		$criteria->addSelectColumn(UserPeer::EMAIL);
-
-		$criteria->addSelectColumn(UserPeer::FACEBOOK_URL);
-
-		$criteria->addSelectColumn(UserPeer::SHA1_PASSWORD);
-
-		$criteria->addSelectColumn(UserPeer::SALT);
-
-		$criteria->addSelectColumn(UserPeer::CREATED_AT);
-
-		$criteria->addSelectColumn(UserPeer::UPDATED_AT);
-
-		$criteria->addSelectColumn(UserPeer::ID);
+		$criteria->addSelectColumn(MypagePeer::ID);
 
 	}
 
-	const COUNT = 'COUNT(user.ID)';
-	const COUNT_DISTINCT = 'COUNT(DISTINCT user.ID)';
+	const COUNT = 'COUNT(mypage.ID)';
+	const COUNT_DISTINCT = 'COUNT(DISTINCT mypage.ID)';
 
 	
 	public static function doCount(Criteria $criteria, $distinct = false, $con = null)
@@ -182,9 +107,9 @@ abstract class BaseUserPeer {
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(UserPeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(MypagePeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(UserPeer::COUNT);
+			$criteria->addSelectColumn(MypagePeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -192,7 +117,7 @@ abstract class BaseUserPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$rs = UserPeer::doSelectRS($criteria, $con);
+		$rs = MypagePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -204,7 +129,7 @@ abstract class BaseUserPeer {
 	{
 		$critcopy = clone $criteria;
 		$critcopy->setLimit(1);
-		$objects = UserPeer::doSelect($critcopy, $con);
+		$objects = MypagePeer::doSelect($critcopy, $con);
 		if ($objects) {
 			return $objects[0];
 		}
@@ -213,7 +138,7 @@ abstract class BaseUserPeer {
 	
 	public static function doSelect(Criteria $criteria, $con = null)
 	{
-		return UserPeer::populateObjects(UserPeer::doSelectRS($criteria, $con));
+		return MypagePeer::populateObjects(MypagePeer::doSelectRS($criteria, $con));
 	}
 	
 	public static function doSelectRS(Criteria $criteria, $con = null)
@@ -224,7 +149,7 @@ abstract class BaseUserPeer {
 
 		if (!$criteria->getSelectColumns()) {
 			$criteria = clone $criteria;
-			UserPeer::addSelectColumns($criteria);
+			MypagePeer::addSelectColumns($criteria);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -236,7 +161,7 @@ abstract class BaseUserPeer {
 	{
 		$results = array();
 	
-				$cls = UserPeer::getOMClass();
+				$cls = MypagePeer::getOMClass();
 		$cls = Propel::import($cls);
 				while($rs->next()) {
 		
@@ -256,7 +181,7 @@ abstract class BaseUserPeer {
 	
 	public static function getOMClass()
 	{
-		return UserPeer::CLASS_DEFAULT;
+		return MypagePeer::CLASS_DEFAULT;
 	}
 
 	
@@ -270,7 +195,7 @@ abstract class BaseUserPeer {
 			$criteria = clone $values; 		} else {
 			$criteria = $values->buildCriteria(); 		}
 
-		$criteria->remove(UserPeer::ID); 
+		$criteria->remove(MypagePeer::ID); 
 
 				$criteria->setDbName(self::DATABASE_NAME);
 
@@ -297,8 +222,8 @@ abstract class BaseUserPeer {
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; 
-			$comparison = $criteria->getComparison(UserPeer::ID);
-			$selectCriteria->add(UserPeer::ID, $criteria->remove(UserPeer::ID), $comparison);
+			$comparison = $criteria->getComparison(MypagePeer::ID);
+			$selectCriteria->add(MypagePeer::ID, $criteria->remove(MypagePeer::ID), $comparison);
 
 		} else { 			$criteria = $values->buildCriteria(); 			$selectCriteria = $values->buildPkeyCriteria(); 		}
 
@@ -315,7 +240,7 @@ abstract class BaseUserPeer {
 		}
 		$affectedRows = 0; 		try {
 									$con->begin();
-			$affectedRows += BasePeer::doDeleteAll(UserPeer::TABLE_NAME, $con);
+			$affectedRows += BasePeer::doDeleteAll(MypagePeer::TABLE_NAME, $con);
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -328,16 +253,16 @@ abstract class BaseUserPeer {
 	 public static function doDelete($values, $con = null)
 	 {
 		if ($con === null) {
-			$con = Propel::getConnection(UserPeer::DATABASE_NAME);
+			$con = Propel::getConnection(MypagePeer::DATABASE_NAME);
 		}
 
 		if ($values instanceof Criteria) {
-			$criteria = clone $values; 		} elseif ($values instanceof User) {
+			$criteria = clone $values; 		} elseif ($values instanceof Mypage) {
 
 			$criteria = $values->buildPkeyCriteria();
 		} else {
 						$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(UserPeer::ID, (array) $values, Criteria::IN);
+			$criteria->add(MypagePeer::ID, (array) $values, Criteria::IN);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -356,13 +281,13 @@ abstract class BaseUserPeer {
 	}
 
 	
-	public static function doValidate(User $obj, $cols = null)
+	public static function doValidate(Mypage $obj, $cols = null)
 	{
 		$columns = array();
 
 		if ($cols) {
-			$dbMap = Propel::getDatabaseMap(UserPeer::DATABASE_NAME);
-			$tableMap = $dbMap->getTable(UserPeer::TABLE_NAME);
+			$dbMap = Propel::getDatabaseMap(MypagePeer::DATABASE_NAME);
+			$tableMap = $dbMap->getTable(MypagePeer::TABLE_NAME);
 
 			if (! is_array($cols)) {
 				$cols = array($cols);
@@ -378,11 +303,11 @@ abstract class BaseUserPeer {
 
 		}
 
-		$res =  BasePeer::doValidate(UserPeer::DATABASE_NAME, UserPeer::TABLE_NAME, $columns);
+		$res =  BasePeer::doValidate(MypagePeer::DATABASE_NAME, MypagePeer::TABLE_NAME, $columns);
     if ($res !== true) {
         $request = sfContext::getInstance()->getRequest();
         foreach ($res as $failed) {
-            $col = UserPeer::translateFieldname($failed->getColumn(), BasePeer::TYPE_COLNAME, BasePeer::TYPE_PHPNAME);
+            $col = MypagePeer::translateFieldname($failed->getColumn(), BasePeer::TYPE_COLNAME, BasePeer::TYPE_PHPNAME);
             $request->setError($col, $failed->getMessage());
         }
     }
@@ -397,12 +322,12 @@ abstract class BaseUserPeer {
 			$con = Propel::getConnection(self::DATABASE_NAME);
 		}
 
-		$criteria = new Criteria(UserPeer::DATABASE_NAME);
+		$criteria = new Criteria(MypagePeer::DATABASE_NAME);
 
-		$criteria->add(UserPeer::ID, $pk);
+		$criteria->add(MypagePeer::ID, $pk);
 
 
-		$v = UserPeer::doSelect($criteria, $con);
+		$v = MypagePeer::doSelect($criteria, $con);
 
 		return !empty($v) > 0 ? $v[0] : null;
 	}
@@ -419,8 +344,8 @@ abstract class BaseUserPeer {
 			$objs = array();
 		} else {
 			$criteria = new Criteria();
-			$criteria->add(UserPeer::ID, $pks, Criteria::IN);
-			$objs = UserPeer::doSelect($criteria, $con);
+			$criteria->add(MypagePeer::ID, $pks, Criteria::IN);
+			$objs = MypagePeer::doSelect($criteria, $con);
 		}
 		return $objs;
 	}
@@ -428,11 +353,11 @@ abstract class BaseUserPeer {
 } 
 if (Propel::isInit()) {
 			try {
-		BaseUserPeer::getMapBuilder();
+		BaseMypagePeer::getMapBuilder();
 	} catch (Exception $e) {
 		Propel::log('Could not initialize Peer: ' . $e->getMessage(), Propel::LOG_ERR);
 	}
 } else {
-			require_once 'lib/model/map/UserMapBuilder.php';
-	Propel::registerMapBuilder('lib.model.map.UserMapBuilder');
+			require_once 'lib/model/map/MypageMapBuilder.php';
+	Propel::registerMapBuilder('lib.model.map.MypageMapBuilder');
 }

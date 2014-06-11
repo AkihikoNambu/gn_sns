@@ -17,14 +17,15 @@ propel:
    updated_at:
 #user情報
  user:
-   nickname: varchar(50)
+   user_name: varchar(50)
    first_name: varchar(100)
    last_name: varchar(100)
    sex: varchar(20)
+   image: longvarchar
    user_type: varchar(30)
    occupation: longvarchar
-   birth_country: varchar(100)
-   country: varchar(100)
+   nationality: varchar(100)
+   place_of_residence: varchar(100)
    email: varchar(100)
    facebook_url: longvarchar
    sha1_password: varchar(40)
@@ -39,6 +40,8 @@ propel:
 #alumni紹介の記事情報
  friend:
    user_id:
+   friend_name: varchar(200)
+   userpage_url: longvarchar 
    image: longvarchar
    body: longvarchar
    created_at:
@@ -57,3 +60,6 @@ propel:
    host_country: varchar(100)
    body: longvarchar
    reportfile: longvarchar
+#mypage情報
+ mypage:
+

@@ -15,34 +15,34 @@ class blogActions extends sfActions
     return $this->forward('blog', 'list');
   }
 
+//Listのアクション
   public function executeList()
   {
     // $this->blogs = BlogPeer::doSelect(new Criteria());
     $c = new Criteria();
-    $c->add(BlogPeer::PARENT_ID, 0);
+    //addで$cにいれる基準を加える
+    //idの降順で$cに入れていく
     $c->addDescendingOrderByColumn(BlogPeer::ID);
-    $this->parent_blogs = BlogPeer::doSelect($c);
-
-    foreach($this->parent_blogs as $parent)
-    {
-      $c_reply = new Criteria();
-      $c_reply->add(BlogPeer::PARENT_ID, $parent->getId());
-      $c_reply->addAscendingOrderByColumn(BlogPeer::ID);
-
-      $no = 'threads'.$parent->getId();
-      $this->{$no} = BlogPeer::doSelect($c_reply);
-    }
+    //$cの条件でparent_blogsに格納しtemplateに渡す
+    $this->blogs = BlogPeer::doSelect($c);
   }
+
   public function executeShow()
   {
+    //parentブログの詳細ページ
     $this->blog = BlogPeer::retrieveByPk($this->getRequestParameter('id'));
     $this->forward404Unless($this->blog);
+
+    $c_comment = new Criteria();
+    $c_comment->add(BlogCommentPeer::BLOG_ID, $this->blog->getId());
+    $c_comment->addAscendingOrderByColumn(BlogCommentPeer::ID);
+
+    $this->blog_comments = BlogCommentPeer::doSelect($c_comment);
   }
 
   public function executeCreate()
   {
     $this->blog = new Blog();
-
     $this->setTemplate('edit');
   }
 
@@ -54,16 +54,20 @@ class blogActions extends sfActions
 
   public function executeUpdate()
   {
+    //idがnullならば
     if (!$this->getRequestParameter('id'))
     {
+      //Blogのインスタンスを作る
       $blog = new Blog();
     }
+    //idがあれば
     else
     {
+      //idに従ってblogの内容をとってくる
       $blog = BlogPeer::retrieveByPk($this->getRequestParameter('id'));
       $this->forward404Unless($blog);
     }
-    
+
     $fileName = $this->getRequest()->getFileName('file');
     $this->getRequest()->moveFile('file', sfConfig::get('sf_upload_dir').'/'.$fileName);
 
@@ -72,17 +76,26 @@ class blogActions extends sfActions
     $blog->setImage($fileName);
     $blog->setBody($this->getRequestParameter('body'));
     $oya_id = $this->getRequestParameter('oya_id');
+
     if ($oya_id) {
       $blog->setParentId($oya_id);
     }else{
       $blog->setParentId(0);
     }
     
-
     $blog->save();
 
     return $this->redirect('blog/show?id='.$blog->getId());
   }
+
+  // public function executeComment()
+  // {
+  //   $blog_comment = new BlogComment();
+  //   $blog_comment->setUserId($this->getRequestParameter('user_id') ? $this->getRequestParameter('user_id') : null);
+  //   $blog_comment->setBlogId($this->getRequestParameter('blog_id'));
+  //   $blog_comment->setBody($this->getRequestParameter('body'));
+  //   $blog_comment->save();
+  // }
 
   public function executeDelete()
   {

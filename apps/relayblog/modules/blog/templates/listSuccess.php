@@ -101,7 +101,7 @@
                             <?php echo $blog->getTitle() ?>
                             
                             <br/>
-                            <small>Posted By <a href="#"><?php echo $blog->getUserId() ?></a>, 
+                            <small>Written By <a href="#"><?php echo $blog->getUserId() ?></a>, 
                                 <?php echo $blog->getCreatedAt() ?>　<?php echo link_to($blog->getId(), 'blog/show?id='.$blog->getId()) ?> </small>
                         </h5>
                         
@@ -119,7 +119,8 @@
                         <!-- Blog comments -->
                         <div class="comments">
                             <!-- comment数のカウントを入れること！今は便宜上4 commentsになっている -->
-                            <?php echo link_to('4 comments', 'blog/show?id='.$blog->getId()) ?>
+                            <?php echo count($blog_comments) ?>
+                            <?php //echo link_to('4 comments', 'blog/show?id='.$blog->getId()) ?>
                         </div>
                         <br>
                         <br>

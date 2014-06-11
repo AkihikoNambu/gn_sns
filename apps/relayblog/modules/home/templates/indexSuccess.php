@@ -28,7 +28,13 @@
             <div class="row-fluid">
                 <div class="span12 center">
                     <!-- LOGO -->
+<<<<<<< HEAD
                     <div id="indicator" style="display: none"></div>
+=======
+                    <a class="brand pull-left" href="./">
+                        <?php echo image_tag('gnlf003.jpg', array("width"=>"90", "height"=>"30")) ?>
+                    </a>
+>>>>>>> 7ad189a19a95dc4206be57a3b023fdeacbdf047c
                     <!-- END LOGO -->
 
                     <!-- MOBILE MENU BUTTON -->
@@ -148,7 +154,7 @@
                                     <a href="#" class="sicon-facebook"><i>Facebook</i></a>
                                     <a href="#" class="sicon-twitter"><i>Twitter</i></a>
                                     <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                                    <a href="#" class="sicon-youtube"><i>Youtube</i></a>
+                                    <!-- <a href="#" class="sicon-youtube"><i>Youtube</i></a> -->
                                     <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
                                 </div>
                             </div>
@@ -171,7 +177,7 @@
                                     <a href="#" class="sicon-facebook"><i>Facebook</i></a>
                                     <a href="#" class="sicon-twitter"><i>Twitter</i></a>
                                     <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                                    <a href="#" class="sicon-youtube"><i>Youtube</i></a>
+                                    <!-- <a href="#" class="sicon-youtube"><i>Youtube</i></a> -->
                                     <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
                                 </div>
                             </div>
@@ -191,7 +197,7 @@
                                     <a href="#" class="sicon-facebook"><i>Facebook</i></a>
                                     <a href="#" class="sicon-twitter"><i>Twitter</i></a>
                                     <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                                    <a href="#" class="sicon-youtube"><i>Youtube</i></a>
+                                    <!-- <a href="#" class="sicon-youtube"><i>Youtube</i></a> -->
                                     <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
                                 </div>
                             </div>

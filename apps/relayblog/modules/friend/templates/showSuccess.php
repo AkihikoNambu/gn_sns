@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                     </div>
                     <!-- END MOBILE MENU BUTTON -->
-                    
+                
                     <!-- MAIN MENU -->
                     <ul id="main-menu" class="nav-collapse collapse">
                         <li><a href="../../#page-welcome">Home</a></li>
@@ -103,84 +103,47 @@
                         <!-- Blog post description -->
                         <?php echo $friend->getBody() ?>
                         <hr />
-						<?php echo link_to('edit', 'friend/edit?id='.$friend->getId()) ?>
-						&nbsp;<?php echo link_to('list', 'friend/list') ?>
-                        
                     </article>
                     <!-- End Article -->
                     
                     <!-- Blog comments -->
                     <div class="comments">
-                        <a href="#">4 comments</a>
+                        <a href="#"><?php echo $comment_number ?> comments</a>
                     </div>
                     <div class="comments-details">
-                        <div class="media">
-                            <div class="pull-left">
-                                <img src="http://placehold.it/60x60" width="60"/>
-                            </div> 
-                            <div class="media-body">
-                                <div class="comments-post-info">
-                                    <small><a href="#">Team member</a>, April 10, 2013, <a href="#write-replay">Replay</a></small>
-                                </div>
-                                <p>
-                                    Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="pull-left">
-                                <img src="http://placehold.it/60x60" width="60"/>
-                            </div> 
-                            <div class="media-body">
-                                <div class="comments-post-info">
-                                    <small><a href="#">Team member</a>, April 10, 2013, <a href="#write-replay">Replay</a></small>
-                                </div>
-                                <p>
-                                    Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="pull-left">
-                                <img src="http://placehold.it/60x60" width="60"/>
-                            </div> 
-                            <div class="media-body">
-                                <div class="comments-post-info">
-                                    <small><a href="#">Team member</a>, April 10, 2013, <a href="#write-replay">Replay</a></small>
-                                </div>
-                                <p>
-                                    Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
-                                </p>
-                                
-                                <div class="media">
-                                    <div class="pull-left">
-                                        <img src="http://placehold.it/60x60" width="60"/>
-                                    </div> 
-                                    <div class="media-body">
-                                        <div class="comments-post-info">
-                                            <small><a href="#">Team member</a>, April 10, 2013, <a href="#write-replay">Replay</a></small>
-                                        </div>
-                                        Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. 
+                        <?php foreach ($friend_comments as $friend_comment): ?>
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img src="http://placehold.it/60x60" width="60"/>
+                                </div> 
+                                <div class="media-body">
+                                    <div class="comments-post-info">
+                                        <small><a href="#">Akihiko Nambu</a> <?php echo $friend_comment->getCreatedAt() ?>, </small>
                                     </div>
+                                    <p>
+                                        <?php echo $friend_comment->getBody() ?>
+                                    </p>
                                 </div>
                             </div>
-                        </div>
+                        <?php endforeach ?>
                     </div>
                     <!-- End Blog comments -->
                     
                     <!-- Blog Write comment -->
                     <div class="write-comment" id="write-replay">
                         <h6>Drop a comment</h6>
-                        <p>
+                        <!-- <p>
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
-                        </p>
+                        </p> -->
                         <div class="row-fluid">
                             <div class="span8">
-                                <form>
-                                    <input type="text" class="span12" placeholder="Title">
-                                    <input type="text" class="span12" placeholder="Email">
-                                    <textarea rows="5" class="span12"></textarea>
-                                    <button type="submit" class="btn btn-primary">Post a comment</button>
+                                    <?php use_helper('Object') ?>
+                                    <!-- friendのcommentアクションに渡す -->
+                                    <?php echo form_tag('friend/comment') ?>
+                                    <!-- コメントと同時にそのブログのidを取得し一緒に保存する -->
+                                    <?php echo object_input_hidden_tag($friend, 'getId') ?>
+                                    <?php echo textarea_tag('body', '', array('size' => '30x3',)) ?>
+                                    <?php echo submit_tag('Send') ?>
                                 </form>
                             </div>
                         </div>
