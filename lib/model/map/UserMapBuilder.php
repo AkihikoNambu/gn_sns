@@ -32,13 +32,13 @@ class UserMapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->addColumn('NICKNAME', 'Nickname', 'string', CreoleTypes::VARCHAR, false, 50);
+		$tMap->addColumn('USER_NAME', 'UserName', 'string', CreoleTypes::VARCHAR, false, 50);
 
 		$tMap->addColumn('FIRST_NAME', 'FirstName', 'string', CreoleTypes::VARCHAR, false, 100);
 
-		$tMap->addColumn('LAST_NAME', 'LastName', 'string', CreoleTypes::VARCHAR, false, 100);
+		$tMap->addColumn('MIDDLE_NAME', 'MiddleName', 'string', CreoleTypes::VARCHAR, false, 100);
 
-		$tMap->addColumn('SEX', 'Sex', 'string', CreoleTypes::VARCHAR, false, 20);
+		$tMap->addColumn('LAST_NAME', 'LastName', 'string', CreoleTypes::VARCHAR, false, 100);
 
 		$tMap->addColumn('IMAGE', 'Image', 'string', CreoleTypes::LONGVARCHAR, false, null);
 
@@ -46,13 +46,15 @@ class UserMapBuilder {
 
 		$tMap->addColumn('OCCUPATION', 'Occupation', 'string', CreoleTypes::LONGVARCHAR, false, null);
 
-		$tMap->addColumn('BIRTH_COUNTRY', 'BirthCountry', 'string', CreoleTypes::VARCHAR, false, 100);
+		$tMap->addColumn('NATIONALITY', 'Nationality', 'string', CreoleTypes::VARCHAR, false, 100);
 
-		$tMap->addColumn('COUNTRY', 'Country', 'string', CreoleTypes::VARCHAR, false, 100);
+		$tMap->addColumn('PLACE_OF_RESIDENCE', 'PlaceOfResidence', 'string', CreoleTypes::VARCHAR, false, 100);
 
 		$tMap->addColumn('EMAIL', 'Email', 'string', CreoleTypes::VARCHAR, false, 100);
 
 		$tMap->addColumn('FACEBOOK_URL', 'FacebookUrl', 'string', CreoleTypes::LONGVARCHAR, false, null);
+
+		$tMap->addColumn('SELF_INTRODUCTION', 'SelfIntroduction', 'string', CreoleTypes::LONGVARCHAR, false, null);
 
 		$tMap->addColumn('SHA1_PASSWORD', 'Sha1Password', 'string', CreoleTypes::VARCHAR, false, 40);
 

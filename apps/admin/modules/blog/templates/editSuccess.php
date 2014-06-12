@@ -19,15 +19,9 @@
 <tr>
   <th>Title:</th>
   <td>
-<?php //if ($sf_params->get('oya_title')): ?>
-  <?php //echo input_tag('title', 'Re: '.$sf_params->get('oya_title'), array (
-  // 'size' => 50,
-// )) ?>
-<?php //else: ?>
   <?php echo object_input_tag($blog, 'getTitle', array (
   'size' => 50,
 )) ?>
-<?php //endif; ?>
 </td>
 </tr>
 <tr>
@@ -37,16 +31,9 @@
 <tr>
   <th>Body:</th>
   <td>
-<?php //if ($sf_params->get('oya_body')): ?>
-  <?php //echo textarea_tag('body', "> ".str_replace(
-    // "\n", "\n> ", $sf_params->get('oya_body')), array (
-  //'size' => '30x3',
-//)) ?>
-<?php //else: ?>
   <?php echo object_textarea_tag($blog, 'getBody', array (
   'size' => '30x3',
 )) ?>
-<?php //endif; ?>
 </td>
 </tr>
 </tbody>

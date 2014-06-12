@@ -13,7 +13,7 @@ abstract class BaseFriendPeer {
 	const CLASS_DEFAULT = 'lib.model.Friend';
 
 	
-	const NUM_COLUMNS = 6;
+	const NUM_COLUMNS = 7;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -24,6 +24,9 @@ abstract class BaseFriendPeer {
 
 	
 	const IMAGE = 'friend.IMAGE';
+
+	
+	const TITLE = 'friend.TITLE';
 
 	
 	const BODY = 'friend.BODY';
@@ -43,18 +46,18 @@ abstract class BaseFriendPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('UserId', 'Image', 'Body', 'CreatedAt', 'UpdatedAt', 'Id', ),
-		BasePeer::TYPE_COLNAME => array (FriendPeer::USER_ID, FriendPeer::IMAGE, FriendPeer::BODY, FriendPeer::CREATED_AT, FriendPeer::UPDATED_AT, FriendPeer::ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('user_id', 'image', 'body', 'created_at', 'updated_at', 'id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+		BasePeer::TYPE_PHPNAME => array ('UserId', 'Image', 'Title', 'Body', 'CreatedAt', 'UpdatedAt', 'Id', ),
+		BasePeer::TYPE_COLNAME => array (FriendPeer::USER_ID, FriendPeer::IMAGE, FriendPeer::TITLE, FriendPeer::BODY, FriendPeer::CREATED_AT, FriendPeer::UPDATED_AT, FriendPeer::ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('user_id', 'image', 'title', 'body', 'created_at', 'updated_at', 'id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('UserId' => 0, 'Image' => 1, 'Body' => 2, 'CreatedAt' => 3, 'UpdatedAt' => 4, 'Id' => 5, ),
-		BasePeer::TYPE_COLNAME => array (FriendPeer::USER_ID => 0, FriendPeer::IMAGE => 1, FriendPeer::BODY => 2, FriendPeer::CREATED_AT => 3, FriendPeer::UPDATED_AT => 4, FriendPeer::ID => 5, ),
-		BasePeer::TYPE_FIELDNAME => array ('user_id' => 0, 'image' => 1, 'body' => 2, 'created_at' => 3, 'updated_at' => 4, 'id' => 5, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+		BasePeer::TYPE_PHPNAME => array ('UserId' => 0, 'Image' => 1, 'Title' => 2, 'Body' => 3, 'CreatedAt' => 4, 'UpdatedAt' => 5, 'Id' => 6, ),
+		BasePeer::TYPE_COLNAME => array (FriendPeer::USER_ID => 0, FriendPeer::IMAGE => 1, FriendPeer::TITLE => 2, FriendPeer::BODY => 3, FriendPeer::CREATED_AT => 4, FriendPeer::UPDATED_AT => 5, FriendPeer::ID => 6, ),
+		BasePeer::TYPE_FIELDNAME => array ('user_id' => 0, 'image' => 1, 'title' => 2, 'body' => 3, 'created_at' => 4, 'updated_at' => 5, 'id' => 6, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
 	
@@ -111,6 +114,8 @@ abstract class BaseFriendPeer {
 		$criteria->addSelectColumn(FriendPeer::USER_ID);
 
 		$criteria->addSelectColumn(FriendPeer::IMAGE);
+
+		$criteria->addSelectColumn(FriendPeer::TITLE);
 
 		$criteria->addSelectColumn(FriendPeer::BODY);
 

@@ -17,9 +17,19 @@ class blogActions extends sfActions
 
   public function executeList()
   {
+    //PropelPagerのインスタンス生成
+    $pager = new sfPropelPager('Blog', 2);
+    //ブログのレコードの取得
     $c = new Criteria();
+    //ブログのidに従って降順で取得
     $c->addDescendingOrderByColumn(BlogPeer::ID);
-    $this->blogs = BlogPeer::doSelect($c);
+    $pager->setCriteria($c);
+    $pager->setPage($this->getRequestParameter('page', 1));
+    // $pager->setPeerMethod('doSelectJoinUser');
+    $pager->init();
+ 
+    $this->blog_pager = $pager;
+    // $this->blogs = BlogPeer::doSelect($c);
 
     $this->blog_comments = BlogCommentPeer::doSelect(new Criteria());
   }

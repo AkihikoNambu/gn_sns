@@ -17,6 +17,10 @@ abstract class BaseFriend extends BaseObject  implements Persistent {
 
 
 	
+	protected $title;
+
+
+	
 	protected $body;
 
 
@@ -58,6 +62,13 @@ abstract class BaseFriend extends BaseObject  implements Persistent {
 	{
 
 		return $this->image;
+	}
+
+	
+	public function getTitle()
+	{
+
+		return $this->title;
 	}
 
 	
@@ -151,6 +162,20 @@ abstract class BaseFriend extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setTitle($v)
+	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
+		if ($this->title !== $v) {
+			$this->title = $v;
+			$this->modifiedColumns[] = FriendPeer::TITLE;
+		}
+
+	} 
+	
 	public function setBody($v)
 	{
 
@@ -221,19 +246,21 @@ abstract class BaseFriend extends BaseObject  implements Persistent {
 
 			$this->image = $rs->getString($startcol + 1);
 
-			$this->body = $rs->getString($startcol + 2);
+			$this->title = $rs->getString($startcol + 2);
 
-			$this->created_at = $rs->getTimestamp($startcol + 3, null);
+			$this->body = $rs->getString($startcol + 3);
 
-			$this->updated_at = $rs->getTimestamp($startcol + 4, null);
+			$this->created_at = $rs->getTimestamp($startcol + 4, null);
 
-			$this->id = $rs->getInt($startcol + 5);
+			$this->updated_at = $rs->getTimestamp($startcol + 5, null);
+
+			$this->id = $rs->getInt($startcol + 6);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 6; 
+						return $startcol + 7; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Friend object", $e);
 		}
@@ -410,15 +437,18 @@ abstract class BaseFriend extends BaseObject  implements Persistent {
 				return $this->getImage();
 				break;
 			case 2:
-				return $this->getBody();
+				return $this->getTitle();
 				break;
 			case 3:
-				return $this->getCreatedAt();
+				return $this->getBody();
 				break;
 			case 4:
-				return $this->getUpdatedAt();
+				return $this->getCreatedAt();
 				break;
 			case 5:
+				return $this->getUpdatedAt();
+				break;
+			case 6:
 				return $this->getId();
 				break;
 			default:
@@ -433,10 +463,11 @@ abstract class BaseFriend extends BaseObject  implements Persistent {
 		$result = array(
 			$keys[0] => $this->getUserId(),
 			$keys[1] => $this->getImage(),
-			$keys[2] => $this->getBody(),
-			$keys[3] => $this->getCreatedAt(),
-			$keys[4] => $this->getUpdatedAt(),
-			$keys[5] => $this->getId(),
+			$keys[2] => $this->getTitle(),
+			$keys[3] => $this->getBody(),
+			$keys[4] => $this->getCreatedAt(),
+			$keys[5] => $this->getUpdatedAt(),
+			$keys[6] => $this->getId(),
 		);
 		return $result;
 	}
@@ -459,15 +490,18 @@ abstract class BaseFriend extends BaseObject  implements Persistent {
 				$this->setImage($value);
 				break;
 			case 2:
-				$this->setBody($value);
+				$this->setTitle($value);
 				break;
 			case 3:
-				$this->setCreatedAt($value);
+				$this->setBody($value);
 				break;
 			case 4:
-				$this->setUpdatedAt($value);
+				$this->setCreatedAt($value);
 				break;
 			case 5:
+				$this->setUpdatedAt($value);
+				break;
+			case 6:
 				$this->setId($value);
 				break;
 		} 	}
@@ -479,10 +513,11 @@ abstract class BaseFriend extends BaseObject  implements Persistent {
 
 		if (array_key_exists($keys[0], $arr)) $this->setUserId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setImage($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setBody($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setCreatedAt($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setUpdatedAt($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setId($arr[$keys[5]]);
+		if (array_key_exists($keys[2], $arr)) $this->setTitle($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setBody($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setCreatedAt($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setUpdatedAt($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setId($arr[$keys[6]]);
 	}
 
 	
@@ -492,6 +527,7 @@ abstract class BaseFriend extends BaseObject  implements Persistent {
 
 		if ($this->isColumnModified(FriendPeer::USER_ID)) $criteria->add(FriendPeer::USER_ID, $this->user_id);
 		if ($this->isColumnModified(FriendPeer::IMAGE)) $criteria->add(FriendPeer::IMAGE, $this->image);
+		if ($this->isColumnModified(FriendPeer::TITLE)) $criteria->add(FriendPeer::TITLE, $this->title);
 		if ($this->isColumnModified(FriendPeer::BODY)) $criteria->add(FriendPeer::BODY, $this->body);
 		if ($this->isColumnModified(FriendPeer::CREATED_AT)) $criteria->add(FriendPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(FriendPeer::UPDATED_AT)) $criteria->add(FriendPeer::UPDATED_AT, $this->updated_at);
@@ -529,6 +565,8 @@ abstract class BaseFriend extends BaseObject  implements Persistent {
 		$copyObj->setUserId($this->user_id);
 
 		$copyObj->setImage($this->image);
+
+		$copyObj->setTitle($this->title);
 
 		$copyObj->setBody($this->body);
 

@@ -12,9 +12,15 @@
 <tbody>
 <tr>
   <th>User:</th>
-  <td><?php echo object_select_tag($friend, 'getUserId', array (
+  <td><?php echo object_input_tag($friend, 'getUserId', array (
   'related_class' => 'User',
   'include_blank' => true,
+)) ?></td>
+</tr>
+<tr>
+  <th>Title:</th>
+  <td><?php echo object_input_tag($friend, 'getTitle', array (
+  'size' => '50',
 )) ?></td>
 </tr>
 <tr>
