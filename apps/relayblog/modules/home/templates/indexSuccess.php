@@ -28,13 +28,10 @@
             <div class="row-fluid">
                 <div class="span12 center">
                     <!-- LOGO -->
-<<<<<<< HEAD
-                    <div id="indicator" style="display: none"></div>
-=======
+
                     <a class="brand pull-left" href="./">
                         <?php echo image_tag('gnlf003.jpg', array("width"=>"90", "height"=>"30")) ?>
                     </a>
->>>>>>> 7ad189a19a95dc4206be57a3b023fdeacbdf047c
                     <!-- END LOGO -->
 
                     <!-- MOBILE MENU BUTTON -->
@@ -661,8 +658,6 @@
                     <?php use_helper('Javascript') ?>
  
                     <div id="login" style="display: none">
-                      <h2>Please sign-in first</h2>
-                     
                       <?php echo link_to_function('cancel', visual_effect('blind_up', 'login', array('duration' => 0.5))) ?>
                      
                       <?php echo form_tag('user/login', 'id=loginform') ?>
