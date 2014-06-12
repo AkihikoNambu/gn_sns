@@ -70,6 +70,7 @@ class friendActions extends sfActions
     $this->getRequest()->moveFile('file', sfConfig::get('sf_upload_dir').'/'.$friendfileName);
 
     $friend->setUserId($this->getRequestParameter('user_id') ? $this->getRequestParameter('user_id') : null);
+    $friend->setTitle($this->getRequestParameter('title'));
     $friend->setImage($friendfileName);
     $friend->setBody($this->getRequestParameter('body'));
     $friend->setId($this->getRequestParameter('id'));

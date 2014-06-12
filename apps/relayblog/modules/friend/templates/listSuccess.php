@@ -22,7 +22,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css'>
   </head>
   <body>
-        <!-- NAVIGATION -->
+    <!-- NAVIGATION -->
     <nav class="fixed-top fixed-visable" id="navigation">
         <div class="container">
             <div class="row-fluid">
@@ -66,134 +66,116 @@
         </div>
     </nav>
     <!-- END NAVIGATION -->
-    <!-- PAGE | Friend -->
-    <div class="pages page-blog-list" id="page-blog-list">
+    <!-- PAGE | ABOUT -->
+    <div class="pages page-about" id="page-about">
         <div class="container">
             <!-- Header -->
             <header>
-                <h4 class="line-divider">Friend</h4>
+                <h4 class="line-divider">Friends</h4>
                 <h1>Meet Friends</h1>
-                <!-- <div class="row">
+                <div class="row">
                     <div class="span8 offset2">
-                        <div class="input-append">
-                          <input class="span5" id="appendedInputButton" type="text" placeholder="Search Blog">
-                          <button class="btn btn-primary sicon-search sicon-white" type="button"><i>Search</i></button>
-                        </div>
+                        <p>
+                            3 yrs have passed since the GNLF conference. How are they doing?<br>Let's meet friends, and keep in touch !! 
+                        </p>
                     </div>
-                </div> -->
+                </div>
+                <!-- Sub menu -->
+                <nav class="submenu">
+                    <ul>
+                        <li>
+                            <a href="./pages/blog/blog.html">All</a>
+                        </li>
+                        <li>
+                            <a href="./pages/blog/blog.html">Participant</a>
+                        </li>
+                        <li>
+                            <a href="./pages/blog/blog.html">Lecturer</a>
+                        </li>
+                        <li>
+                            <a href="./pages/blog/blog.html">Organizer</a>
+                        </li>
+                        <li>
+                            <a href="./pages/blog/blog.html">Partner</a>
+                        </li>
+                    </ul>
+                </nav>
             </header>
             <!-- End Header -->
-              <div class="row-fluid">
-                <div class="span8 blog-details">
-                    <!-- Article -->
-                    
-                    <article>
-                      <?php foreach ($friends as $friend): ?>
-                        <!-- Blog image -->
-                        <a href="blog_1.html">
-                            <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$friend->getImage()) ?>
-                        </a>
+            
+            <!-- Article -->
+            <article>
+                <!-- List of people and description with their contact details which are visable on hover -->
+                <ul class="thumbnails about-items">
+                    <?php foreach ($friends as $friend): ?>
+                    <li class="span4 center">
+                         <div class="item">
+                            <!-- Team member image -->
+                            <!-- <img class="img-circle" src="http://placehold.it/280x280" alt="Treble"> -->
+                            <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$friend->getImage(), 
+                            array("height"=>"280", "width"=>"280", "class"=>"img-circle")) ?>
+                            <!-- Team memeber details, activated on hover -->
+                            <div class="about-overlay img-circle">
+                                <div class="social-icons sicon-white">
+                                    <a href="#" class="sicon-facebook"><i>Facebook</i></a>
+                                    <a href="#" class="sicon-twitter"><i>Twitter</i></a>
+                                    <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
+                                    <!-- <a href="#" class="sicon-youtube"><i>Youtube</i></a> -->
+                                    <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
+                                </div>
+                            </div>
+                        </div>
                         
-                        <!-- friend name -->
+                        <!-- Team member name and function -->
                         <h5>
-                            <?php echo $friend->getUserId() ?>
-                            
-                            <br/>
-                            <small>Posted By <a href="#"><?php echo $friend->getUserId() ?></a>, 
-                                <?php echo $friend->getCreatedAt() ?>　<?php echo link_to($friend->getId(), 'friend/show?id='.$friend->getId()) ?> </small>
+                            <?php echo $friend->getTitle() ?><br/>
+                            <small>
+                                <?php echo $friend->getCreatedAt() ?>
+                                <?php //echo link_to($friend->getCreatedAt(), 'friend/show?id='.$friend->getId()) ?>
+                                <?php //echo $friend->getUserId() ?>
+                            </small>
                         </h5>
-                        
-                        <!-- friend post description -->
-                        <?php echo $friend->getBody() ?>
-                        
-                        <!-- friend read more -->
-                        <div class="read-more">
-                            <?php echo link_to(
-                                  'Read More...',
-                                  'friend/show?id='.$friend->getId()) ?>
-                            <!-- <a href="blog_1.html">Read More...</a> -->
+                        <!-- Team member short info -->
+                        <p class="smallFontBy08">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.
+                            <?php //echo $friend->getBody() ?>
+                        </p>
+                        <div class="page-blog">
+                            <div class="read-more">
+                                <?php echo link_to(
+                                       'Read More...',
+                                       'friend/show?id='.$friend->getId()) ?>
+                            </div>
                         </div>
-                        
-                        <!-- friend comments -->
-                        <div class="comments">
-                            <!-- comment数のカウントを入れること！今は便宜上4 commentsになっている -->
-                            <?php //echo $comment_number ?>
-                            <?php echo link_to('4 comments', 'friend/show?id='.$friend->getId()) ?>
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                        <?php endforeach; ?>
-                    </article>
+                    </li>
+                <?php endforeach; ?>
+                </ul>
+            </article>
+            <!-- End Article -->
+            <!-- Footer -->
+            <!-- <footer>
+                <div class="show-more-cube">
 
-                <!-- ページャ -->
-                    <div class="pagination center">
-                        <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">Next</a></li>
-                        </ul>
-                    </div>
+                     <a href="friend/list" data-destination="plugin-filter-elements" data-insert="appendTo" data-action="remove">
+                        <span>Meet<br/>More</span>
+                    </a>
                 </div>
-                <div class="span4 blog-list-right">
-                    <!-- Latest blog posts block -->
-                    <div class="block">
-                        <h6>Lates Friends List</h6>
-                        <ul class="simple-link-list">
-                            <li>
-                                <a href="blog_1.html" class="active">Friend name 1</a>
-                            </li>
-                            <li>
-                                <a href="blog_2.html">Friend name 2</a>
-                            </li>
-                            <li>
-                                <a href="blog_3.html">Blog post title 3</a>
-                            </li>
-                            <li>
-                                <a href="blog_4.html">Blog post title 4</a>
-                            </li>
-                            <li>
-                                <a href="blog_5.html">Blog post title 5</a>
-                            </li>
-                            <li>
-                                <a href="blog_6.html">Blog post title 6</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- topicリスト -->
-                    <div class="block">
-                        <h6>Sort</h6>
-                        <nav class="submenu">
-                            <ul>
-                                <li>
-                                    <a href="./blog.html" class="active">all</a>
-                                </li>
-                                <li>
-                                    <a href="./blog.html">participants</a>
-                                </li>
-                                <li>
-                                    <a href="./blog.html">Lecturers</a>
-                                </li>
-                                <li>
-                                    <a href="./blog.html">organizers</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="./blog.html">Photography</a>
-                                </li>
-                                <li>
-                                    <a href="./blog.html">Other</a>
-                                </li> -->
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-              </div>
+            </footer> -->
+            <!-- End footer -->
         </div>
+    </div>
 
+    <!-- ページャ -->
+    <div class="pagination center">
+        <ul>
+            <li><a href="#">Prev</a></li>
+            <li class="active"><span>1</span></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">Next</a></li>
+        </ul>
     </div>
  
     <!-- JQUERY -->

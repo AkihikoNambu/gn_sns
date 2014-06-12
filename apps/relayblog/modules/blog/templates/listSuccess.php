@@ -90,7 +90,7 @@
                     <!-- Article -->
                     
                     <article>
-                      <?php foreach ($blogs as $blog): ?>
+                      <?php foreach ($blog_pager->getResults() as $blog): ?>
                         <!-- Blog image -->
                         <a href="blog_1.html">
                             <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$blog->getImage()) ?>
@@ -130,7 +130,21 @@
 
                 <!-- ページャ -->
                     <div class="pagination center">
-                        <ul>
+                        <?php if ($blog_pager->haveToPaginate()): ?>
+                            <ul>
+                                <li><?php echo link_to('&laquo;', 'blog/list?page=1') ?></li>
+                                <li><?php echo link_to('&lt;', 'blog/list?page='.$blog_pager->getPreviousPage()) ?>
+                         
+                                <?php foreach ($blog_pager->getLinks() as $page): ?>
+                                    <li><?php echo link_to_unless($page == $blog_pager->getPage(), $page, 'blog/list?page='.$page) ?></li>
+                                    <li><?php echo ($page != $blog_pager->getCurrentMaxLink()) ? '-' : '' ?></li>
+                                <?php endforeach; ?>
+                         
+                                <li><?php echo link_to('&gt;', 'blog/list?page='.$blog_pager->getNextPage()) ?></li>
+                                <li><?php echo link_to('&raquo;', 'blog/list?page='.$blog_pager->getLastPage()) ?></li>
+                            </ul>
+                        <?php endif; ?>
+                        <!-- <ul>
                             <li><a href="#">Prev</a></li>
                             <li class="active"><span>1</span></li>
                             <li><a href="#">2</a></li>
@@ -138,7 +152,7 @@
                             <li><a href="#">4</a></li>
                             <li><a href="#">5</a></li>
                             <li><a href="#">Next</a></li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
                 <div class="span4 blog-list-right">

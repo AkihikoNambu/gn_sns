@@ -9,7 +9,7 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 
 	
-	protected $nickname;
+	protected $user_name;
 
 
 	
@@ -17,11 +17,11 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 
 	
-	protected $last_name;
+	protected $middle_name;
 
 
 	
-	protected $sex;
+	protected $last_name;
 
 
 	
@@ -37,11 +37,11 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 
 	
-	protected $birth_country;
+	protected $nationality;
 
 
 	
-	protected $country;
+	protected $place_of_residence;
 
 
 	
@@ -50,6 +50,10 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 	
 	protected $facebook_url;
+
+
+	
+	protected $self_introduction;
 
 
 	
@@ -108,10 +112,10 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	protected $alreadyInValidation = false;
 
 	
-	public function getNickname()
+	public function getUserName()
 	{
 
-		return $this->nickname;
+		return $this->user_name;
 	}
 
 	
@@ -122,17 +126,17 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	}
 
 	
+	public function getMiddleName()
+	{
+
+		return $this->middle_name;
+	}
+
+	
 	public function getLastName()
 	{
 
 		return $this->last_name;
-	}
-
-	
-	public function getSex()
-	{
-
-		return $this->sex;
 	}
 
 	
@@ -157,17 +161,17 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	}
 
 	
-	public function getBirthCountry()
+	public function getNationality()
 	{
 
-		return $this->birth_country;
+		return $this->nationality;
 	}
 
 	
-	public function getCountry()
+	public function getPlaceOfResidence()
 	{
 
-		return $this->country;
+		return $this->place_of_residence;
 	}
 
 	
@@ -182,6 +186,13 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	{
 
 		return $this->facebook_url;
+	}
+
+	
+	public function getSelfIntroduction()
+	{
+
+		return $this->self_introduction;
 	}
 
 	
@@ -250,16 +261,16 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setNickname($v)
+	public function setUserName($v)
 	{
 
 						if ($v !== null && !is_string($v)) {
 			$v = (string) $v; 
 		}
 
-		if ($this->nickname !== $v) {
-			$this->nickname = $v;
-			$this->modifiedColumns[] = UserPeer::NICKNAME;
+		if ($this->user_name !== $v) {
+			$this->user_name = $v;
+			$this->modifiedColumns[] = UserPeer::USER_NAME;
 		}
 
 	} 
@@ -278,6 +289,20 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setMiddleName($v)
+	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
+		if ($this->middle_name !== $v) {
+			$this->middle_name = $v;
+			$this->modifiedColumns[] = UserPeer::MIDDLE_NAME;
+		}
+
+	} 
+	
 	public function setLastName($v)
 	{
 
@@ -288,20 +313,6 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 		if ($this->last_name !== $v) {
 			$this->last_name = $v;
 			$this->modifiedColumns[] = UserPeer::LAST_NAME;
-		}
-
-	} 
-	
-	public function setSex($v)
-	{
-
-						if ($v !== null && !is_string($v)) {
-			$v = (string) $v; 
-		}
-
-		if ($this->sex !== $v) {
-			$this->sex = $v;
-			$this->modifiedColumns[] = UserPeer::SEX;
 		}
 
 	} 
@@ -348,30 +359,30 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 	} 
 	
-	public function setBirthCountry($v)
+	public function setNationality($v)
 	{
 
 						if ($v !== null && !is_string($v)) {
 			$v = (string) $v; 
 		}
 
-		if ($this->birth_country !== $v) {
-			$this->birth_country = $v;
-			$this->modifiedColumns[] = UserPeer::BIRTH_COUNTRY;
+		if ($this->nationality !== $v) {
+			$this->nationality = $v;
+			$this->modifiedColumns[] = UserPeer::NATIONALITY;
 		}
 
 	} 
 	
-	public function setCountry($v)
+	public function setPlaceOfResidence($v)
 	{
 
 						if ($v !== null && !is_string($v)) {
 			$v = (string) $v; 
 		}
 
-		if ($this->country !== $v) {
-			$this->country = $v;
-			$this->modifiedColumns[] = UserPeer::COUNTRY;
+		if ($this->place_of_residence !== $v) {
+			$this->place_of_residence = $v;
+			$this->modifiedColumns[] = UserPeer::PLACE_OF_RESIDENCE;
 		}
 
 	} 
@@ -400,6 +411,20 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 		if ($this->facebook_url !== $v) {
 			$this->facebook_url = $v;
 			$this->modifiedColumns[] = UserPeer::FACEBOOK_URL;
+		}
+
+	} 
+	
+	public function setSelfIntroduction($v)
+	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
+		if ($this->self_introduction !== $v) {
+			$this->self_introduction = $v;
+			$this->modifiedColumns[] = UserPeer::SELF_INTRODUCTION;
 		}
 
 	} 
@@ -484,13 +509,13 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	{
 		try {
 
-			$this->nickname = $rs->getString($startcol + 0);
+			$this->user_name = $rs->getString($startcol + 0);
 
 			$this->first_name = $rs->getString($startcol + 1);
 
-			$this->last_name = $rs->getString($startcol + 2);
+			$this->middle_name = $rs->getString($startcol + 2);
 
-			$this->sex = $rs->getString($startcol + 3);
+			$this->last_name = $rs->getString($startcol + 3);
 
 			$this->image = $rs->getString($startcol + 4);
 
@@ -498,29 +523,31 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 			$this->occupation = $rs->getString($startcol + 6);
 
-			$this->birth_country = $rs->getString($startcol + 7);
+			$this->nationality = $rs->getString($startcol + 7);
 
-			$this->country = $rs->getString($startcol + 8);
+			$this->place_of_residence = $rs->getString($startcol + 8);
 
 			$this->email = $rs->getString($startcol + 9);
 
 			$this->facebook_url = $rs->getString($startcol + 10);
 
-			$this->sha1_password = $rs->getString($startcol + 11);
+			$this->self_introduction = $rs->getString($startcol + 11);
 
-			$this->salt = $rs->getString($startcol + 12);
+			$this->sha1_password = $rs->getString($startcol + 12);
 
-			$this->created_at = $rs->getTimestamp($startcol + 13, null);
+			$this->salt = $rs->getString($startcol + 13);
 
-			$this->updated_at = $rs->getTimestamp($startcol + 14, null);
+			$this->created_at = $rs->getTimestamp($startcol + 14, null);
 
-			$this->id = $rs->getInt($startcol + 15);
+			$this->updated_at = $rs->getTimestamp($startcol + 15, null);
+
+			$this->id = $rs->getInt($startcol + 16);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 16; 
+						return $startcol + 17; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating User object", $e);
 		}
@@ -738,16 +765,16 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	{
 		switch($pos) {
 			case 0:
-				return $this->getNickname();
+				return $this->getUserName();
 				break;
 			case 1:
 				return $this->getFirstName();
 				break;
 			case 2:
-				return $this->getLastName();
+				return $this->getMiddleName();
 				break;
 			case 3:
-				return $this->getSex();
+				return $this->getLastName();
 				break;
 			case 4:
 				return $this->getImage();
@@ -759,10 +786,10 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 				return $this->getOccupation();
 				break;
 			case 7:
-				return $this->getBirthCountry();
+				return $this->getNationality();
 				break;
 			case 8:
-				return $this->getCountry();
+				return $this->getPlaceOfResidence();
 				break;
 			case 9:
 				return $this->getEmail();
@@ -771,18 +798,21 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 				return $this->getFacebookUrl();
 				break;
 			case 11:
-				return $this->getSha1Password();
+				return $this->getSelfIntroduction();
 				break;
 			case 12:
-				return $this->getSalt();
+				return $this->getSha1Password();
 				break;
 			case 13:
-				return $this->getCreatedAt();
+				return $this->getSalt();
 				break;
 			case 14:
-				return $this->getUpdatedAt();
+				return $this->getCreatedAt();
 				break;
 			case 15:
+				return $this->getUpdatedAt();
+				break;
+			case 16:
 				return $this->getId();
 				break;
 			default:
@@ -795,22 +825,23 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	{
 		$keys = UserPeer::getFieldNames($keyType);
 		$result = array(
-			$keys[0] => $this->getNickname(),
+			$keys[0] => $this->getUserName(),
 			$keys[1] => $this->getFirstName(),
-			$keys[2] => $this->getLastName(),
-			$keys[3] => $this->getSex(),
+			$keys[2] => $this->getMiddleName(),
+			$keys[3] => $this->getLastName(),
 			$keys[4] => $this->getImage(),
 			$keys[5] => $this->getUserType(),
 			$keys[6] => $this->getOccupation(),
-			$keys[7] => $this->getBirthCountry(),
-			$keys[8] => $this->getCountry(),
+			$keys[7] => $this->getNationality(),
+			$keys[8] => $this->getPlaceOfResidence(),
 			$keys[9] => $this->getEmail(),
 			$keys[10] => $this->getFacebookUrl(),
-			$keys[11] => $this->getSha1Password(),
-			$keys[12] => $this->getSalt(),
-			$keys[13] => $this->getCreatedAt(),
-			$keys[14] => $this->getUpdatedAt(),
-			$keys[15] => $this->getId(),
+			$keys[11] => $this->getSelfIntroduction(),
+			$keys[12] => $this->getSha1Password(),
+			$keys[13] => $this->getSalt(),
+			$keys[14] => $this->getCreatedAt(),
+			$keys[15] => $this->getUpdatedAt(),
+			$keys[16] => $this->getId(),
 		);
 		return $result;
 	}
@@ -827,16 +858,16 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	{
 		switch($pos) {
 			case 0:
-				$this->setNickname($value);
+				$this->setUserName($value);
 				break;
 			case 1:
 				$this->setFirstName($value);
 				break;
 			case 2:
-				$this->setLastName($value);
+				$this->setMiddleName($value);
 				break;
 			case 3:
-				$this->setSex($value);
+				$this->setLastName($value);
 				break;
 			case 4:
 				$this->setImage($value);
@@ -848,10 +879,10 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 				$this->setOccupation($value);
 				break;
 			case 7:
-				$this->setBirthCountry($value);
+				$this->setNationality($value);
 				break;
 			case 8:
-				$this->setCountry($value);
+				$this->setPlaceOfResidence($value);
 				break;
 			case 9:
 				$this->setEmail($value);
@@ -860,18 +891,21 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 				$this->setFacebookUrl($value);
 				break;
 			case 11:
-				$this->setSha1Password($value);
+				$this->setSelfIntroduction($value);
 				break;
 			case 12:
-				$this->setSalt($value);
+				$this->setSha1Password($value);
 				break;
 			case 13:
-				$this->setCreatedAt($value);
+				$this->setSalt($value);
 				break;
 			case 14:
-				$this->setUpdatedAt($value);
+				$this->setCreatedAt($value);
 				break;
 			case 15:
+				$this->setUpdatedAt($value);
+				break;
+			case 16:
 				$this->setId($value);
 				break;
 		} 	}
@@ -881,22 +915,23 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	{
 		$keys = UserPeer::getFieldNames($keyType);
 
-		if (array_key_exists($keys[0], $arr)) $this->setNickname($arr[$keys[0]]);
+		if (array_key_exists($keys[0], $arr)) $this->setUserName($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setFirstName($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setLastName($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setSex($arr[$keys[3]]);
+		if (array_key_exists($keys[2], $arr)) $this->setMiddleName($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setLastName($arr[$keys[3]]);
 		if (array_key_exists($keys[4], $arr)) $this->setImage($arr[$keys[4]]);
 		if (array_key_exists($keys[5], $arr)) $this->setUserType($arr[$keys[5]]);
 		if (array_key_exists($keys[6], $arr)) $this->setOccupation($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setBirthCountry($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setCountry($arr[$keys[8]]);
+		if (array_key_exists($keys[7], $arr)) $this->setNationality($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setPlaceOfResidence($arr[$keys[8]]);
 		if (array_key_exists($keys[9], $arr)) $this->setEmail($arr[$keys[9]]);
 		if (array_key_exists($keys[10], $arr)) $this->setFacebookUrl($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setSha1Password($arr[$keys[11]]);
-		if (array_key_exists($keys[12], $arr)) $this->setSalt($arr[$keys[12]]);
-		if (array_key_exists($keys[13], $arr)) $this->setCreatedAt($arr[$keys[13]]);
-		if (array_key_exists($keys[14], $arr)) $this->setUpdatedAt($arr[$keys[14]]);
-		if (array_key_exists($keys[15], $arr)) $this->setId($arr[$keys[15]]);
+		if (array_key_exists($keys[11], $arr)) $this->setSelfIntroduction($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setSha1Password($arr[$keys[12]]);
+		if (array_key_exists($keys[13], $arr)) $this->setSalt($arr[$keys[13]]);
+		if (array_key_exists($keys[14], $arr)) $this->setCreatedAt($arr[$keys[14]]);
+		if (array_key_exists($keys[15], $arr)) $this->setUpdatedAt($arr[$keys[15]]);
+		if (array_key_exists($keys[16], $arr)) $this->setId($arr[$keys[16]]);
 	}
 
 	
@@ -904,17 +939,18 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	{
 		$criteria = new Criteria(UserPeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(UserPeer::NICKNAME)) $criteria->add(UserPeer::NICKNAME, $this->nickname);
+		if ($this->isColumnModified(UserPeer::USER_NAME)) $criteria->add(UserPeer::USER_NAME, $this->user_name);
 		if ($this->isColumnModified(UserPeer::FIRST_NAME)) $criteria->add(UserPeer::FIRST_NAME, $this->first_name);
+		if ($this->isColumnModified(UserPeer::MIDDLE_NAME)) $criteria->add(UserPeer::MIDDLE_NAME, $this->middle_name);
 		if ($this->isColumnModified(UserPeer::LAST_NAME)) $criteria->add(UserPeer::LAST_NAME, $this->last_name);
-		if ($this->isColumnModified(UserPeer::SEX)) $criteria->add(UserPeer::SEX, $this->sex);
 		if ($this->isColumnModified(UserPeer::IMAGE)) $criteria->add(UserPeer::IMAGE, $this->image);
 		if ($this->isColumnModified(UserPeer::USER_TYPE)) $criteria->add(UserPeer::USER_TYPE, $this->user_type);
 		if ($this->isColumnModified(UserPeer::OCCUPATION)) $criteria->add(UserPeer::OCCUPATION, $this->occupation);
-		if ($this->isColumnModified(UserPeer::BIRTH_COUNTRY)) $criteria->add(UserPeer::BIRTH_COUNTRY, $this->birth_country);
-		if ($this->isColumnModified(UserPeer::COUNTRY)) $criteria->add(UserPeer::COUNTRY, $this->country);
+		if ($this->isColumnModified(UserPeer::NATIONALITY)) $criteria->add(UserPeer::NATIONALITY, $this->nationality);
+		if ($this->isColumnModified(UserPeer::PLACE_OF_RESIDENCE)) $criteria->add(UserPeer::PLACE_OF_RESIDENCE, $this->place_of_residence);
 		if ($this->isColumnModified(UserPeer::EMAIL)) $criteria->add(UserPeer::EMAIL, $this->email);
 		if ($this->isColumnModified(UserPeer::FACEBOOK_URL)) $criteria->add(UserPeer::FACEBOOK_URL, $this->facebook_url);
+		if ($this->isColumnModified(UserPeer::SELF_INTRODUCTION)) $criteria->add(UserPeer::SELF_INTRODUCTION, $this->self_introduction);
 		if ($this->isColumnModified(UserPeer::SHA1_PASSWORD)) $criteria->add(UserPeer::SHA1_PASSWORD, $this->sha1_password);
 		if ($this->isColumnModified(UserPeer::SALT)) $criteria->add(UserPeer::SALT, $this->salt);
 		if ($this->isColumnModified(UserPeer::CREATED_AT)) $criteria->add(UserPeer::CREATED_AT, $this->created_at);
@@ -950,13 +986,13 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	public function copyInto($copyObj, $deepCopy = false)
 	{
 
-		$copyObj->setNickname($this->nickname);
+		$copyObj->setUserName($this->user_name);
 
 		$copyObj->setFirstName($this->first_name);
 
-		$copyObj->setLastName($this->last_name);
+		$copyObj->setMiddleName($this->middle_name);
 
-		$copyObj->setSex($this->sex);
+		$copyObj->setLastName($this->last_name);
 
 		$copyObj->setImage($this->image);
 
@@ -964,13 +1000,15 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 		$copyObj->setOccupation($this->occupation);
 
-		$copyObj->setBirthCountry($this->birth_country);
+		$copyObj->setNationality($this->nationality);
 
-		$copyObj->setCountry($this->country);
+		$copyObj->setPlaceOfResidence($this->place_of_residence);
 
 		$copyObj->setEmail($this->email);
 
 		$copyObj->setFacebookUrl($this->facebook_url);
+
+		$copyObj->setSelfIntroduction($this->self_introduction);
 
 		$copyObj->setSha1Password($this->sha1_password);
 

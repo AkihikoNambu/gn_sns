@@ -19,15 +19,17 @@ propel:
  user:
    user_name: varchar(50)
    first_name: varchar(100)
+   middle_name: varchar(100)
    last_name: varchar(100)
-   sex: varchar(20)
    image: longvarchar
+   #4種類のユーザータイプが存在
    user_type: varchar(30)
    occupation: longvarchar
    nationality: varchar(100)
    place_of_residence: varchar(100)
    email: varchar(100)
    facebook_url: longvarchar
+   self_introduction: longvarchar
    sha1_password: varchar(40)
    salt: varchar(32)
    created_at:
@@ -40,9 +42,8 @@ propel:
 #alumni紹介の記事情報
  friend:
    user_id:
-   friend_name: varchar(200)
-   userpage_url: longvarchar 
    image: longvarchar
+   title: varchar(50)
    body: longvarchar
    created_at:
    updated_at:
