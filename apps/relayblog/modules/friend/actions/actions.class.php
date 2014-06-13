@@ -48,6 +48,12 @@ class friendActions extends sfActions
     $c_count->add(FriendCommentPeer::FRIEND_ID, $this->friend->getId());
     //doCountメソッドでカウントし、テンプレートに渡す
     $this->comment_number = FriendCommentPeer::doCount($c_count);
+
+  //ブログの最新記事を取得
+    $c_lates = new Criteria();
+    $c_lates->addDescendingOrderByColumn(FriendPeer::ID);
+    $c_lates->setLimit(5);
+    $this->lates_friends = FriendPeer::doSelect($c_lates);
   }
 
   public function executeUpdate()

@@ -92,9 +92,9 @@
                     <article>
                       <?php foreach ($blog_pager->getResults() as $blog): ?>
                         <!-- Blog image -->
-                        <a href="blog_1.html">
+                        <!-- <a href="blog_1.html"> -->
                             <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$blog->getImage()) ?>
-                        </a>
+                        <!-- </a> -->
                         
                         <!-- Blog title -->
                         <h5>
@@ -160,24 +160,11 @@
                     <div class="block">
                         <h6>Lates blog posts</h6>
                         <ul class="simple-link-list">
+                            <?php foreach ($lates_blogs as $lates_blog): ?>
                             <li>
-                                <a href="blog_1.html" class="active">Blog post title 1</a>
+                                <?php echo link_to($lates_blog->getTitle(), 'blog/show?id='.$lates_blog->getId()) ?> <?php echo $lates_blog->getCreatedAt() ?>
                             </li>
-                            <li>
-                                <a href="blog_2.html">Blog post title 2</a>
-                            </li>
-                            <li>
-                                <a href="blog_3.html">Blog post title 3</a>
-                            </li>
-                            <li>
-                                <a href="blog_4.html">Blog post title 4</a>
-                            </li>
-                            <li>
-                                <a href="blog_5.html">Blog post title 5</a>
-                            </li>
-                            <li>
-                                <a href="blog_6.html">Blog post title 6</a>
-                            </li>
+                        <?php endforeach; ?>
                         </ul>
                     </div>
                     <!-- topicリスト -->

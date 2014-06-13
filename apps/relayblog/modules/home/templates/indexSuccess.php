@@ -22,14 +22,13 @@
   </head>
   <body>
     <!-- NAVIGATION -->
-    <!-- NAVIGATION -->
     <nav class="fixed-top" id="navigation">
         <div class="container">
             <div class="row-fluid">
                 <div class="span12 center">
                     <!-- LOGO -->
                     <a class="brand pull-left" href="./">
-                        <?php echo image_tag('gnlf003.jpg', array("width"=>"90", "height"=>"30")) ?>
+                        <?php echo image_tag('gnlf003.jpg', array("width"=>"81", "height"=>"27")) ?>
                     </a>
                     <!-- END LOGO -->
 
@@ -113,8 +112,6 @@
     </div>
     <!-- END PAGE | Welcome -->
     
-    
-
     <!-- PAGE | ABOUT -->
     <div class="pages page-about" id="page-about">
         <div class="container">
@@ -122,17 +119,10 @@
             <header>
                 <h4 class="line-divider">Friends</h4>
                 <h1>Meet Friends</h1>
-                <?php if ($sf_user->isAuthenticated()): ?>
-                  <li><?php echo link_to('Logout', 'user/logout') ?></li>
-                  <li><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber'))?></li>
-                <?php else: ?>
-                  <li><?php echo link_to('Login', 'user/login') ?></li>
-                <?php endif ?>
-
                 <div class="row">
                     <div class="span8 offset2">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            3 yrs have passed since the GNLF conference. How are they doing?<br>Let's meet friends, and keep in touch !!
                         </p>
                     </div>
                 </div>
@@ -143,132 +133,41 @@
             <article>
                 <!-- List of people and description with their contact details which are visable on hover -->
                 <ul class="thumbnails about-items">
-                    <li class="span4 center">
-                         <div class="item">
-                            <!-- Team member image -->
-                            <img class="img-circle" src="http://placehold.it/280x280" alt="Treble">
+                    <?php foreach($lates_friends as $lates_friend): ?>
+                        <li class="span4 center">
+                             <div class="item">
+                                <!-- Friend image -->
+                                <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$lates_friend->getImage(), 
+                                array("height"=>"280", "width"=>"280", "class"=>"img-circle")) ?>
+
+                                <!-- Friend details, activated on hover -->
+                                <div class="about-overlay img-circle">
+                                    <div class="social-icons sicon-white">
+                                        <!-- このアイコンへのリンクのはりこみが以外と難しそう -->
+                                        <a href="#" class="sicon-facebook"><i>Facebook</i></a>
+                                        <a href="#" class="sicon-twitter"><i>Twitter</i></a>
+                                        <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
+                                        <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
+                                    </div>
+                                </div>
+                            </div>
                             
-                            <!-- Team memeber details, activated on hover -->
-                            <div class="about-overlay img-circle">
-                                <div class="social-icons sicon-white">
-                                    <a href="#" class="sicon-facebook"><i>Facebook</i></a>
-                                    <a href="#" class="sicon-twitter"><i>Twitter</i></a>
-                                    <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                                    <!-- <a href="#" class="sicon-youtube"><i>Youtube</i></a> -->
-                                    <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
+                            <!-- Friend blief info -->
+                            <h5>
+                                <?php echo $lates_friend->getTitle() ?><br/>
+                                <small><?php echo $lates_friend->getCreatedAt() ?></small></a>
+                            </h5>
+                            <!-- Friend short info -->
+                            <p class="smallFontBy08">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.</p>
+                            <div class="page-blog">
+                                <div class="read-more">
+                                    <?php echo link_to(
+                                           'Read More...',
+                                           'friend/show?id='.$lates_friend->getId()) ?>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <!-- Team member name and function -->
-                        <h5>
-                            <a href="./pages/blog/blog_1.html">Yusuke Morishita<br/>
-                            <small>Creative director</small></a>
-                        </h5>
-                        
-                        <!-- Team member short info -->
-                        <!-- <p class="smallFontBy08">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.</p> -->
-                    </li>
-                    <li class="span4 center">
-                        <div class="item">
-                            <img class="img-circle" src="http://placehold.it/280x280" alt="Treble">
-                            <div class="about-overlay img-circle">
-                                <div class="social-icons sicon-white">
-                                    <a href="#" class="sicon-facebook"><i>Facebook</i></a>
-                                    <a href="#" class="sicon-twitter"><i>Twitter</i></a>
-                                    <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                                    <!-- <a href="#" class="sicon-youtube"><i>Youtube</i></a> -->
-                                    <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <h5>
-                            <a href="./pages/blog/blog_2.html">Kanjiro Tabuchi<br/>
-                            <small>Creative director</small></a>
-                        </h5>
-                        <!-- <p class="smallFontBy08">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.</p> -->
-                    </li>
-                    <li class="span4 center">
-                        <div class="item">
-                            <img class="img-circle" src="http://placehold.it/280x280" alt="Treble">
-                            <div class="about-overlay img-circle">
-                                <div class="social-icons sicon-white">
-                                    <a href="#" class="sicon-facebook"><i>Facebook</i></a>
-                                    <a href="#" class="sicon-twitter"><i>Twitter</i></a>
-                                    <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                                    <!-- <a href="#" class="sicon-youtube"><i>Youtube</i></a> -->
-                                    <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <h5>
-                            <a href="./pages/blog/blog_3.html">Naosuke Mukoyama<br/>
-                            <small>Creative director</small></a>
-                        </h5>
-                        <!-- <p class="smallFontBy08">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.</p> -->
-                    </li>
-                    <!-- <li class="span4 center">
-                        <div class="item">
-                            <img class="img-circle" src="http://placehold.it/280x280" alt="Treble">
-                            <div class="about-overlay img-circle">
-                                <div class="social-icons sicon-white">
-                                    <a href="#" class="sicon-facebook"><i>Facebook</i></a>
-                                    <a href="#" class="sicon-twitter"><i>Twitter</i></a>
-                                    <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                                    <a href="#" class="sicon-youtube"><i>Youtube</i></a>
-                                    <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <h5>
-                            Joanna doe<br/>
-                            <small>Creative director</small>
-                        </h5>
-                        <p class="smallFontBy08">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.</p>
-                    </li>
-                    <li class="span4 center">
-                         <div class="item">
-                            <img class="img-circle" src="http://placehold.it/280x280" alt="Treble">
-                            <div class="about-overlay img-circle">
-                                <div class="social-icons sicon-white">
-                                    <a href="#" class="sicon-facebook"><i>Facebook</i></a>
-                                    <a href="#" class="sicon-twitter"><i>Twitter</i></a>
-                                    <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                                    <a href="#" class="sicon-youtube"><i>Youtube</i></a>
-                                    <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <h5>
-                            Joanna doe<br/>
-                            <small>Creative director</small>
-                        </h5>
-                        <p class="smallFontBy08">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.</p>
-                    </li>
-                    <li class="span4 center">
-                         <div class="item">
-                            <img class="img-circle" src="http://placehold.it/280x280" alt="Treble">
-                            <div class="about-overlay img-circle">
-                                <div class="social-icons sicon-white">
-                                    <a href="#" class="sicon-facebook"><i>Facebook</i></a>
-                                    <a href="#" class="sicon-twitter"><i>Twitter</i></a>
-                                    <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                                    <a href="#" class="sicon-youtube"><i>Youtube</i></a>
-                                    <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <h5>
-                            Joanna doe<br/>
-                            <small>Creative director</small>
-                        </h5>
-                        <p class="smallFontBy08">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.</p>
-                    </li> -->
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </article>
             <!-- End Article -->
@@ -333,94 +232,31 @@
                 <!-- Blog articles -->
                 <ul class="thumbnails">
                     <!-- Blog post -->
-                    <li class="span4">
-                    
-                        <!-- Blog image -->
-                        <a href="./pages/blog/blog_1.html">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                        </a>
-                        
-                        <!-- Blog title -->
-                        <h5>
-                            <a href="./pages/blog/blog_1.html">Traditional Festival<br/>
-                            <small>April 10, 2013</small></a>
-                        </h5>
-                        
-                        <!-- Blog post description -->
-                        <p class="smallFontBy08">how is it performed? Who and how
-                            many people join it? When was it born? How has it taken over for a long time?</p>
-                        
-                        <!-- Blog read more -->
-                        <div class="read-more">
-                            <a href="./pages/blog/blog_1.html">Read More...</a>
-                        </div>
-                    </li>
-                    <li class="span4">
-                        <a href="./pages/blog/blog_2.html">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                        </a>
-                        <h5>
-                            <a href="./pages/blog/blog_2.html">club activities<br/>
-                            <small>April 10, 2013</small></a>
-                        </h5>
-                        <p class="smallFontBy08">What club activities do you do other than GNLF? When did you start it and why?</p>
-                        <div class="read-more">
-                            <a href="./pages/blog/blog_2.html">Read More...</a>
-                        </div>
-                    </li>
-                    <li class="span4">
-                        <a href="./pages/blog/blog_3.html">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                        </a>
-                        <h5>
-                            <a href="./pages/blog/blog_3.html">traditional food<br/>
-                            <small>April 10, 2013</small></a>
-                        </h5>
-                        <p class="smallFontBy08">What is the traditional/national food in your country? What is it and how is it cooked?
-                            Why has it become the national food in your country?</p>
-                        <div class="read-more">
-                            <a href="./pages/blog/blog_3.html">Read More...</a>
-                        </div>
-                    </li>
-                    <!-- <li class="span4">
-                        <a href="./pages/blog/blog_4.html">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                        </a>
-                        <h5>
-                            Blog Post Title<br/>
-                            <small>April 10, 2013</small>
-                        </h5>
-                        <p class="smallFontBy08">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.</p>
-                        <div class="read-more">
-                            <a href="./pages/blog/blog_4.html">Read More...</a>
-                        </div>
-                    </li>
-                    <li class="span4">
-                        <a href="./pages/blog/blog_5.html">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                        </a>
-                        <h5>
-                            Blog Post Title<br/>
-                            <small>April 10, 2013</small>
-                        </h5>
-                        <p class="smallFontBy08">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.</p>
-                        <div class="read-more">
-                            <a href="./pages/blog/blog_5.html">Read More...</a>
-                        </div>
-                    </li>
-                    <li class="span4">
-                        <a href="./pages/blog/blog_6.html">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                        </a>
-                        <h5>
-                            Blog Post Title<br/>
-                            <small>April 10, 2013</small>
-                        </h5>
-                        <p class="smallFontBy08">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.</p>
-                        <div class="read-more">
-                            <a href="./pages/blog/blog_6.html">Read More...</a>
-                        </div>
-                    </li> -->
+                    <?php foreach ($lates_blogs as $lates_blog): ?>
+                        <li class="span4">
+                            <!-- Blog image -->
+                                <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$lates_blog->getImage()) ?>
+                            
+                            <!-- Blog title -->
+                            <h5>
+                                <?php echo $lates_blog->getTitle(); ?><br/>
+                                <small><?php echo $lates_blog->getCreatedAt(); ?> Posted By Admin, 
+                                        Edited By <?php echo $lates_blog->getUserId(); ?></small></a>
+                            </h5>
+                            
+                            <!-- Blog post description -->
+                            <p class="smallFontBy08"><?php echo $lates_blog->getBody(); ?></p>
+                            
+                            <!-- Blog read more -->
+                            <div class="page-blog">
+                                <div class="read-more">
+                                    <?php echo link_to(
+                                           'Read More...',
+                                           'blog/show?id='.$lates_blog->getId()) ?>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </article>
             <!-- End Article -->
@@ -429,7 +265,7 @@
             <footer>
                 <!-- More blog posts -->
                 <div class="show-more-cube">
-                    <a href="blog/list"><span>Read<br/>More</span></a>
+                    <a href="blog/list"><span>All<br/>Posts</span></a>
                 </div>
             </footer>
             <!-- End Footer -->
@@ -437,7 +273,7 @@
     </div>
     <!-- END PAGE | BLOG -->
 
-     <!-- PAGE | WORK -->
+    <!-- PAGE | WORK -->
     <div class="pages page-work" id="page-work">
         <div class="container">
             <!-- Header -->
@@ -464,17 +300,18 @@
                             <a href="#" class="plugin-filter active" data-filter="all">All</a>
                         </li>
                         <li>
-                            <a href="#" class="plugin-filter" data-filter="typography">2013</a>
+                            <a href="#" class="plugin-filter" data-filter="2014">2014</a>
                         </li>
                         <li>
-                            <a href="#" class="plugin-filter" data-filter="illustration">2012</a>
+                            <a href="#" class="plugin-filter" data-filter="2013">2013</a>
                         </li>
                         <li>
-                            <a href="#" class="plugin-filter" data-filter="branding">2011</a>
+                            <a href="#" class="plugin-filter" data-filter="2012">2012</a>
                         </li>
-                        <!-- <li>
-                            <a href="#" class="plugin-filter" data-filter="photography">Photography</a>
-                        </li> -->
+                        <li>
+                            <a href="#" class="plugin-filter" data-filter="2011">2011</a>
+                        </li>
+                        <br/>
                     </ul>
                 </nav>
             </header>
@@ -488,7 +325,7 @@
                         portfolio-items: Customise portfolio items for hover effect.
                 -->
                 <ul class="thumbnails plugin-filter-elements portfolio-items">
-                    <li class="span4 mix illustration branding">
+                    <li class="span4 mix 2013">
                         <a href="#report/show/id/1" data-destination="portfolio-items" data-insert="before">
                             <!-- Portfolio image -->
                             <?php echo image_tag('pages/conference/2011.jpg') ?>
@@ -499,15 +336,16 @@
                             </div>
                         </a>
                     </li>
-                    <li class="span4 mix branding typography illustration">
-                        <a href="#pages/portfolio/project_2.html" data-destination="portfolio-items" data-insert="before">
+                    <li class="span4 mix 2012">
+                            <a href="#report/show/id/2" data-destination="portfolio-items" data-insert="before">
+                            <!-- Portfolio image -->
                             <?php echo image_tag('pages/conference/2011.jpg') ?>
                             <div class="portfolio-overlay">
                                 <h4>2012 TUNISIA</h4>
                             </div>
                         </a>
                     </li>
-                    <li class="span4 mix photography illustration">
+                    <li class="span4 mix 2011">
                         <a href="#pages/portfolio/project_3.html" data-destination="portfolio-items" data-insert="before">
                             <?php echo image_tag('pages/conference/2011.jpg') ?>
                             <div class="portfolio-overlay">
@@ -515,51 +353,11 @@
                             </div>
                         </a>
                     </li>
-                    <!-- <li class="span4 mix photography">
+                    <!-- <li class="span4 mix 2014">
                         <a href="#pages/portfolio/project_4.html" data-destination="portfolio-items" data-insert="before">
                             <img src="http://placehold.it/390x300" alt="Treble">
                             <div class="portfolio-overlay">
                                 <h4>Avatar</h4>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="span4 mix photography typography branding">
-                        <a href="#pages/portfolio/project_5.html" data-destination="portfolio-items" data-insert="before">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                            <div class="portfolio-overlay">
-                                <h4>A Brighter Horizon</h4>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="span4 mix photography">
-                        <a href="#pages/portfolio/project_6.html" data-destination="portfolio-items" data-insert="before">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                            <div class="portfolio-overlay">
-                                <h4>The Travelers</h4>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="span4 mix illustration branding typography">
-                        <a href="#pages/portfolio/project_7.html" data-destination="portfolio-items" data-insert="before">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                            <div class="portfolio-overlay">
-                                <h4>Tron 3</h4>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="span4 mix photography illustration">
-                        <a href="#pages/portfolio/project_8.html" data-destination="portfolio-items" data-insert="before">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                            <div class="portfolio-overlay">
-                                <h4>Vimeo Staff Picke - Rio</h4>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="span4 mix illustration branding">
-                        <a href="#pages/portfolio/project_9.html" data-destination="portfolio-items" data-insert="before">
-                            <img src="http://placehold.it/390x300" alt="Treble">
-                            <div class="portfolio-overlay">
-                                <h4>Adobe Family. 1882</h4>
                             </div>
                         </a>
                     </li> -->
@@ -570,6 +368,8 @@
             <!-- Footer -->
             <footer>
                 <div class="show-more-cube">
+                    <!-- showmore用のテンプレートを作成 -->
+                     <?php //echo link_to('Show'<br/>'More', '#report/showmore') ?>
                      <a href="#pages/portfolio/readmore.html" data-destination="plugin-filter-elements" data-insert="appendTo" data-action="remove">
                         <span>Show<br/>More</span>
                     </a>
@@ -592,9 +392,10 @@
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
                         </p>
+                        <?php echo image_tag('gnlf002.jpg', array('width'=>'274', 'height'=>'116')) ?>
                     </div>
                 </div>
-                    
+                
                 <!-- Sub menu -->
                 <!-- 
                 Params: 
