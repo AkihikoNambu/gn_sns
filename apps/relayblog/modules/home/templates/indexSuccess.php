@@ -27,6 +27,7 @@
             <div class="row-fluid">
                 <div class="span12 center">
                     <!-- LOGO -->
+
                     <a class="brand pull-left" href="./">
                         <?php echo image_tag('gnlf003.jpg', array("width"=>"81", "height"=>"27")) ?>
                     </a>
@@ -47,8 +48,10 @@
                         <li><a href="#page-blog">Blog</a></li>
                         <li><a href="#page-work">Reports</a></li>
                         <!-- <li><a href="#page-clients">Sponsors</a></li>-->
-                        <li><a href="#page-contact">Login</a></li> 
+                        <!-- <li><a href="#page-contact">Login</a></li>  -->
                     </ul>
+
+
                     <!-- END MAIN MENU -->
                     
                     <!-- SOCIAL ICONS -->
@@ -456,12 +459,28 @@
             <!-- Header -->
             <header>
                 <h4 class="line-divider">information</h4>
-                <?php if ($sf_user->isAuthenticated()): ?>
-                  <h1><?php echo link_to('Logout', 'user/logout') ?></h1>
-                  <h1><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber'))?></h1>
-                <?php else: ?>
-                  <h1><?php echo link_to('Login', 'user/login') ?></h1>
-                <?php endif ?>
+                <?php use_helper('User')?>
+                <h2><?php echo link_to_user_signedin($sf_user) ?></h2>
+                <div id="indicator" style="display: none"></div>
+                    <?php use_helper('Javascript') ?>
+ 
+                    <div id="login" style="display: none">
+                      <?php echo link_to_function('cancel', visual_effect('blind_up', 'login', array('duration' => 0.5))) ?>
+                     
+                      <?php echo form_tag('user/login', 'id=loginform') ?>
+                        nickname: <?php echo input_tag('nickname') ?><br />
+                        password: <?php echo input_password_tag('password') ?><br />
+                        <?php echo input_hidden_tag('referer', $sf_params->get('referer') ? $sf_params->get('referer') : $sf_request->getUri()) ?>
+                        <?php echo submit_tag('login') ?>
+                      </form>
+                    </div>
+                    <?php //if ($sf_user->isAuthenticated()): ?>
+                      <!-- <h1><?php //echo link_to('Logout', 'user/logout') ?></h1> -->
+                      <!-- <h1><?php //echo link_to($sf_user->getNickname().' profile', 'user/profile') ?></h1> -->
+                    <?php //else: ?>
+                      <!-- <h1><?php //echo link_to('Login', 'user/login') ?></h1> -->
+                    <?php //endif ?>
+                
             </header>
             <!-- End Header -->
             

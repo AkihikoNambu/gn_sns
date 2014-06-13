@@ -61,5 +61,19 @@ class userActions extends sfActions
  
   $this->redirect('@homepage');
 }
+public function handleErrorLogin()
+  {
+    return sfView::SUCCESS;
+  }
+
+public function executeShow()
+  {
+    $this->subscriber = UserPeer::retrieveByPk($this->getRequestParameter('id', $this->getUser()->getSubscriberId()));
+    $this->forward404Unless($this->subscriber);
+   
+    $this->interests = $this->subscriber->getInterestsJoinQuestion();
+    $this->answers   = $this->subscriber->getAnswersJoinQuestion();
+    $this->questions = $this->subscriber->getQuestions();
+  }
 
 }

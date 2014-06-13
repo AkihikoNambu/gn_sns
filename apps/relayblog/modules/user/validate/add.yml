@@ -1,0 +1,18 @@
+methods:
+ post:	[nickname, password]
+
+names:
+ nickname:	
+  required:	Yes
+  required_msg:	You must give a nickname to your register
+
+ password:
+  required: Yes
+  required_msg: You must give a nickname to your register
+  validators:	passwordValidator
+
+passwordValidator:
+  class:	sfStringValidator
+  param:
+   min:		8
+   min_error: Please give some more words
