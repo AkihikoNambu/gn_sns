@@ -17,6 +17,18 @@ class homeActions extends sfActions
   public function executeIndex()
   {
     // $this->forward('default', 'module');
+
+   //ブログの最新記事を取得
+    $c_latesfriend = new Criteria();
+    $c_latesfriend->addDescendingOrderByColumn(FriendPeer::ID);
+    $c_latesfriend->setLimit(3);
+    $this->lates_friends = FriendPeer::doSelect($c_latesfriend);
+
+   //ブログの最新記事を取得
+    $c_latesblog = new Criteria();
+    $c_latesblog->addDescendingOrderByColumn(BlogPeer::ID);
+    $c_latesblog->setLimit(3);
+    $this->lates_blogs = BlogPeer::doSelect($c_latesblog);
   }
 
 }

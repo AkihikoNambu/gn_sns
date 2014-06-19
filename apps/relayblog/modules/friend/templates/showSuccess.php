@@ -151,28 +151,15 @@
                     <!-- End Blog Write comment -->
                 </div>
                 <div class="span4 blog-list-right">
-                    <!-- Latest blog posts block -->
+                    <!-- Latest friend posts block -->
                     <div class="block">
-                        <h6>Lates blog posts</h6>
+                        <h6>Lates friend posts</h6>
                         <ul class="simple-link-list">
+                            <?php foreach ($lates_friends as $lates_friend): ?>
                             <li>
-                                <a href="blog_1.html" class="active">Blog post title 1</a>
+                                <?php echo link_to($lates_friend->getTitle(), 'friend/show?id='.$lates_friend->getId()) ?> <?php echo $lates_friend->getCreatedAt() ?>
                             </li>
-                            <li>
-                                <a href="blog_2.html">Blog post title 2</a>
-                            </li>
-                            <li>
-                                <a href="blog_3.html">Blog post title 3</a>
-                            </li>
-                            <li>
-                                <a href="blog_4.html">Blog post title 4</a>
-                            </li>
-                            <li>
-                                <a href="blog_5.html">Blog post title 5</a>
-                            </li>
-                            <li>
-                                <a href="blog_6.html">Blog post title 6</a>
-                            </li>
+                        <?php endforeach; ?>
                         </ul>
                     </div>
                     

@@ -32,6 +32,12 @@ class blogActions extends sfActions
     // $this->blogs = BlogPeer::doSelect($c);
 
     $this->blog_comments = BlogCommentPeer::doSelect(new Criteria());
+
+    //ブログの最新記事を取得
+    $c_lates = new Criteria();
+    $c_lates->addDescendingOrderByColumn(BlogPeer::ID);
+    $c_lates->setLimit(5);
+    $this->lates_blogs = BlogPeer::doSelect($c_lates);
   }
 
   public function executeShow()
