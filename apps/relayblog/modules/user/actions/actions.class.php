@@ -14,10 +14,21 @@ class userActions extends sfActions
    * Executes index action
    *
    */
-  public function executeIndex()
+  //ユーザー登録
+  public function executeAdd()
   {
-    $this->forward('default', 'module');
+    $user = new User();
+    $user->setUsername($this->getRequestParameter('user_name'));
+    $user->setPassword($this->getRequestParameter('password'));
+    $user->save();
+
+    
   }
+  public function executehandleErrorAdd()
+  {
+    return sfView::SUCCESS;
+  }
+  //ユーザーログイン
   public function executeLogin()
 {
   if ($this->getRequest()->getMethod() != sfRequest::POST)
@@ -28,13 +39,13 @@ class userActions extends sfActions
   else
   {
     // フォーム投稿を処理する
-    $nickname = $this->getRequestParameter('nickname');
+    $user_name = $this->getRequestParameter('user_name');
  
     $c = new Criteria();
-    $c->add(UserPeer::NICKNAME, $nickname);
+    $c->add(UserPeer::user_name, $user_name);
     $user = UserPeer::doSelectOne($c);
  
-    // nicknameが存在するか？
+    // user_nameが存在するか？
     if ($user)
     {
       // passwordがOKか?
@@ -44,7 +55,7 @@ class userActions extends sfActions
         $this->getUser()->addCredential('subscriber');
  
         $this->getUser()->setAttribute('subscriber_id', $user->getId(), 'subscriber');
-        $this->getUser()->setAttribute('nickname', $user->getNickname(), 'subscriber');
+        $this->getUser()->setAttribute('user_name', $user->getuser_name(), 'subscriber');
  
         // 最後のページにリダイレクトする
         return $this->redirect($this->getRequestParameter('referer','@homepage'));

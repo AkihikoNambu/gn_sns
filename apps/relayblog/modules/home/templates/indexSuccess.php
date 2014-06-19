@@ -661,15 +661,18 @@
                       <?php echo link_to_function('cancel', visual_effect('blind_up', 'login', array('duration' => 0.5))) ?>
                      
                       <?php echo form_tag('user/login', 'id=loginform') ?>
-                        nickname: <?php echo input_tag('nickname') ?><br />
+                        user_name: <?php echo input_tag('user_name') ?><br />
                         password: <?php echo input_password_tag('password') ?><br />
                         <?php echo input_hidden_tag('referer', $sf_params->get('referer') ? $sf_params->get('referer') : $sf_request->getUri()) ?>
                         <?php echo submit_tag('login') ?>
                       </form>
+                        <a href="user/add"><span>Register</span></a>
+                      </form>
+
                     </div>
                     <?php //if ($sf_user->isAuthenticated()): ?>
                       <!-- <h1><?php //echo link_to('Logout', 'user/logout') ?></h1> -->
-                      <!-- <h1><?php //echo link_to($sf_user->getNickname().' profile', 'user/profile') ?></h1> -->
+                      <!-- <h1><?php //echo link_to($sf_user->getuser_name().' profile', 'user/profile') ?></h1> -->
                     <?php //else: ?>
                       <!-- <h1><?php //echo link_to('Login', 'user/login') ?></h1> -->
                     <?php //endif ?>

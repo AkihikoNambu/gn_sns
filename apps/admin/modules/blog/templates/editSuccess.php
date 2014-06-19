@@ -8,7 +8,7 @@
 
 <br/>
 <table>
-<tbody>
+<tbody> 
 <tr>
   <th>User:</th>
   <td><?php echo object_select_tag($blog, 'getUserId', array (

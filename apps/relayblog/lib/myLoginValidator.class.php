@@ -30,7 +30,7 @@ class myLoginValidator extends sfValidator
     }
  
     $c = new Criteria();
-    $c->add(UserPeer::NICKNAME, $login);
+    $c->add(UserPeer::USER_NAME, $login);
     $user = UserPeer::doSelectOne($c);
  
     // nicknameが存在するか？

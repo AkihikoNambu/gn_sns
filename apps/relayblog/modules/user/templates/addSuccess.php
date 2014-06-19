@@ -4,13 +4,13 @@
 
 	<fieldset>
 		<div class="form-row">
-		    <?php echo form_error('nickname')?>
-		    <label for="nickname">nickname:</label>
-		    <?php echo input_tag('nickname', $sf_params->get('nickname')) ?>
+		    <?php# echo form_error('user_name')?>
+		    <label for="user_name">user_name:</label>
+		    <?php echo input_tag('user_name') ?>
 	    </div>
 	 
 	    <div class="form-row">
-		    <?php echo form_error('password')?>
+		    <?php #echo form_error('password')?>
 		    <label for="password">password:</label>
 		    <?php echo input_password_tag('password') ?>
 	    </div>
