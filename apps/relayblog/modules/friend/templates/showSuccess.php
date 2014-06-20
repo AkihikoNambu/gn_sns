@@ -27,8 +27,8 @@
             <div class="row-fluid">
                 <div class="span12 center">
                     <!-- LOGO -->
-                    <a class="brand pull-left" href="../../">
-                        <img src="../../assets/images/logo.png" alt="Treble">
+                    <a class="brand pull-left" href="./">
+                        <?php echo image_tag('gnlf003.jpg', array("width"=>"81", "height"=>"27")) ?>
                     </a>
                     <!-- END LOGO -->
 
@@ -39,25 +39,23 @@
                         <span class="icon-bar"></span>
                     </div>
                     <!-- END MOBILE MENU BUTTON -->
-                
+                    
                     <!-- MAIN MENU -->
                     <ul id="main-menu" class="nav-collapse collapse">
-                        <li><a href="../../#page-welcome">Home</a></li>
-                        <li><a href="../../#page-work">Work</a></li>
-                        <li><a href="../../#page-features">Features</a></li>
-                        <li><a href="../../#page-about">About</a></li>
-                        <li><a href="../../#page-blog">Blog</a></li>
-                        <li><a href="../../#page-contact">Contact</a></li>
+                        <li><a href="#page-welcome">Home</a></li>
+                        <li><a href="#page-about">Friends</a></li>
+                        <li><a href="#page-blog">Blog</a></li>
+                        <li><a href="#page-work">Reports</a></li>
+                        <li><a href="#page-clients">Sponsors</a></li>
+                        <li><a href="#page-contact">Login</a></li> 
                     </ul>
                     <!-- END MAIN MENU -->
                     
                     <!-- SOCIAL ICONS -->
                     <div class="social-icons hover-big pull-right">
-                        <a href="#" class="sicon-facebook"><i>Facebook</i></a>
+                        <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
                         <a href="#" class="sicon-twitter"><i>Twitter</i></a>
-                        <!-- <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                        <a href="#" class="sicon-youtube"><i>Youtube</i></a>
-                        <a href="#" class="sicon-pinterest"><i>Pinterest</i></a> -->
+                        <a href="#">Akihiko_Nambu</a>
                     </div>
                     <!-- END SOCIAL ICONS -->
                 </div>

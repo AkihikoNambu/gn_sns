@@ -28,7 +28,7 @@
                 <div class="span12 center">
                     <!-- LOGO -->
                     <a class="brand pull-left" href="./">
-                        <?php echo image_tag('gnlf003.jpg', array("width"=>"81", "height"=>"27")) ?>
+                        <?php echo image_tag('gnlf003.jpg', array("width"=>"78", "height"=>"26")) ?>
                     </a>
                     <!-- END LOGO -->
 
@@ -46,8 +46,8 @@
                         <li><a href="#page-about">Friends</a></li>
                         <li><a href="#page-blog">Blog</a></li>
                         <li><a href="#page-work">Reports</a></li>
-                        <!-- <li><a href="#page-clients">Sponsors</a></li>-->
-                        <li><a href="#page-contact">Login</a></li> 
+                        <li><a href="#page-clients">Sponsors</a></li>
+                        <!-- <li><a href="#page-contact">Login</a></li>  -->
                     </ul>
                     <!-- END MAIN MENU -->
                     
@@ -55,6 +55,7 @@
                     <div class="social-icons hover-big pull-right">
                         <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
                         <a href="#" class="sicon-twitter"><i>Twitter</i></a>
+                        <?php echo image_tag('arimura3.jpg', array('width'=>'41', 'height'=>'42')) ?>
                     </div>
                     <!-- END SOCIAL ICONS -->
                 </div>
@@ -472,14 +473,14 @@
                     <!-- Contact information -->
                     <div class="span5 offset1">
                         <h5>Meet Us</h5>
-                        <div class="media">
+                        <!-- <div class="media">
                             <div class="social-icons sicon-white pull-left">
                                 <a href="#" class="sicon-phone"><i>Phone</i></a>
                             </div> 
                             <div class="media-body smallFontBy08">
                                 (+1) 502 964-0393 | (+1) 502 964-0393 (FAX)
                             </div>
-                        </div>
+                        </div> -->
                         <div class="media">
                             <div class="social-icons sicon-white pull-left">
                                 <a href="#" class="sicon-place"><i>Location</i></a>

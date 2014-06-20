@@ -23,4 +23,8 @@ class reportActions extends sfActions
     $this->report = ReportPeer::retrieveByPk($this->getRequestParameter('id'));
     $this->forward404Unless($this->report);
   }
+  public function executeShowmore()
+  {
+    
+  }
 }
