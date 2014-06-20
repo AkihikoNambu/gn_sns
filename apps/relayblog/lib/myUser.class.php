@@ -8,7 +8,7 @@ class myUser extends sfBasicSecurityUser
 	  $this->setAuthenticated(true);
 	 
 	  $this->addCredential('subscriber');
-	  $this->setAttribute('nickname', $user->getNickname(), 'subscriber');
+	  $this->setAttribute('user_name', $user->getUserName(), 'subscriber');
 	}
 	 
 	public function signOut()
@@ -28,8 +28,8 @@ class myUser extends sfBasicSecurityUser
 	  return UserPeer::retrieveByPk($this->getSubscriberId());
 	}
 	 
-	public function getNickname()
+	public function getUserName()
 	{
-	  return $this->getAttribute('nickname', '', 'subscriber');
+	  return $this->getAttribute('user_name', '', 'subscriber');
 	}
 }

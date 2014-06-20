@@ -47,6 +47,7 @@
                         <li><a href="#page-about">Friends</a></li>
                         <li><a href="#page-blog">Blog</a></li>
                         <li><a href="#page-work">Reports</a></li>
+                        <li><?php echo link_to('login', 'user/login') ?></li>
                         <!-- <li><a href="#page-clients">Sponsors</a></li>-->
                         <!-- <li><a href="#page-contact">Login</a></li>  -->
                     </ul>
@@ -56,6 +57,8 @@
                     
                     <!-- SOCIAL ICONS -->
                     <div class="social-icons hover-big pull-right">
+                        <?php echo link_to('login', 'user/login') ?><br>
+                        <?php echo link_to('Register', 'user/add')?>
                         <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
                         <a href="#" class="sicon-twitter"><i>Twitter</i></a>
                     </div>
@@ -459,19 +462,20 @@
             <!-- Header -->
             <header>
                 <h4 class="line-divider">information</h4>
-                <?php use_helper('User')?>
-                <h2><?php echo link_to_user_signedin($sf_user) ?></h2>
-                <div id="indicator" style="display: none"></div>
-                    <?php use_helper('Javascript') ?>
+                <!-- login -->
+                <?php //use_helper('User')?>
+                <h2><?php //echo link_to_user_signedin($sf_user) ?></h2>
+                <!-- <div id="indicator" style="display: none"></div> -->
+                    <?php //use_helper('Javascript') ?>
  
-                    <div id="login" style="display: none">
-                      <?php echo link_to_function('cancel', visual_effect('blind_up', 'login', array('duration' => 0.5))) ?>
+                    <!-- <div id="login" style="display: none"> -->
+                      <?php //echo link_to_function('cancel', visual_effect('blind_up', 'login', array('duration' => 0.5))) ?>
                      
-                      <?php echo form_tag('user/login', 'id=loginform') ?>
-                        user_name: <?php echo input_tag('user_name') ?><br />
-                        password: <?php echo input_password_tag('password') ?><br />
-                        <?php echo input_hidden_tag('referer', $sf_params->get('referer') ? $sf_params->get('referer') : $sf_request->getUri()) ?>
-                        <?php echo submit_tag('login') ?>
+                      <?php //echo form_tag('user/login', 'id=loginform') ?>
+                        user_name: <?php //echo input_tag('user_name') ?><br />
+                        password: <?php //echo input_password_tag('password') ?><br />
+                        <?php //echo input_hidden_tag('referer', $sf_params->get('referer') ? $sf_params->get('referer') : $sf_request->getUri()) ?>
+                        <?php //echo submit_tag('login') ?>
                       </form>
                         <a href="user/add"><span>Register</span></a>
                       </form>

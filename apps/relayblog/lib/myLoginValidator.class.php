@@ -20,17 +20,11 @@ class myLoginValidator extends sfValidator
     $password_param = $this->getParameter('password');
     $password = $this->getContext()->getRequest()->getParameter($password_param);
  
-    $login = $value;
+    $user_name = $value;  //user_nameが入っている
  
-    // anonymousは実際のユーザーではない
-    if ($login == 'anonymous')
-    {
-      $error = $this->getParameter('login_error');
-      return false;
-    }
  
     $c = new Criteria();
-    $c->add(UserPeer::USER_NAME, $login);
+    $c->add(UserPeer::USER_NAME, $user_name);
     $user = UserPeer::doSelectOne($c);
  
     // nicknameが存在するか？

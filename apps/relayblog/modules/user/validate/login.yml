@@ -1,10 +1,10 @@
 methods:
-  post: [nickname, password]
+  post: [user_name, password]
 
 names:
-  nickname:
+  user_name:
     required:     true
-    required_msg: your nickname is required
+    required_msg: your user_name is required
     validators:   [nicknameValidator, userValidator]
 
   password:

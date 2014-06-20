@@ -17,17 +17,29 @@ class userActions extends sfActions
   //ユーザー登録
   public function executeAdd()
   {
-    $user = new User();
-    $user->setUsername($this->getRequestParameter('user_name'));
-    $user->setPassword($this->getRequestParameter('password'));
-    $user->save();
+    if($this->getRequest()->getMethod() != sfRequest::POST)
+    {
+      // フォームを表示する
+      return sfView::SUCCESS;
+    }
+    else
+    {
+      // フォーム投稿を処理する
+      $user = new User();
+      $user->setUserName($this->getRequestParameter('user_name'));
+      $user->setPassword($this->getRequestParameter('password'));
+      $user->save();
 
+    return $this->redirect('@homepage');
+    }
     
   }
-  public function executehandleErrorAdd()
+
+  public function handleErrorAdd()
   {
     return sfView::SUCCESS;
   }
+
   //ユーザーログイン
   public function executeLogin()
 {
@@ -38,31 +50,11 @@ class userActions extends sfActions
   }
   else
   {
-    // フォーム投稿を処理する
-    $user_name = $this->getRequestParameter('user_name');
- 
-    $c = new Criteria();
-    $c->add(UserPeer::user_name, $user_name);
-    $user = UserPeer::doSelectOne($c);
- 
-    // user_nameが存在するか？
-    if ($user)
-    {
-      // passwordがOKか?
-      if (true)
-      {
-        $this->getUser()->setAuthenticated(true);
-        $this->getUser()->addCredential('subscriber');
- 
-        $this->getUser()->setAttribute('subscriber_id', $user->getId(), 'subscriber');
-        $this->getUser()->setAttribute('user_name', $user->getuser_name(), 'subscriber');
- 
         // 最後のページにリダイレクトする
-        return $this->redirect($this->getRequestParameter('referer','@homepage'));
-      }
-    }
+        return $this->redirect('@homepage');
   }
 }
+
   public function executeLogout()
 {
   $this->getUser()->setAuthenticated(false);
