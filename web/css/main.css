@@ -111,7 +111,9 @@
 .page-welcome .centralized {
   z-index: 2;
 }
-
+.user_icon {
+  margin-left: 
+}
 /*
 *   PAGE | WORK
 */.portfolio-items {
