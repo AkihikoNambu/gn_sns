@@ -27,6 +27,7 @@
             <div class="row-fluid">
                 <div class="span12 center">
                     <!-- LOGO -->
+
                     <a class="brand pull-left" href="./">
                         <?php echo image_tag('gnlf003.jpg', array("width"=>"78", "height"=>"26")) ?>
                     </a>
@@ -47,15 +48,20 @@
                         <li><a href="#page-blog">Blog</a></li>
                         <li><a href="#page-work">Reports</a></li>
                         <li><a href="#page-clients">Sponsors</a></li>
+                        <!-- <li><a href="#page-clients">Sponsors</a></li>-->
                         <!-- <li><a href="#page-contact">Login</a></li>  -->
                     </ul>
+
+
                     <!-- END MAIN MENU -->
                     
                     <!-- SOCIAL ICONS -->
                     <div class="social-icons hover-big pull-right">
+                        <?php echo link_to('login', 'user/login') ?><br>
+                        <?php echo link_to('Register', 'user/add')?>
                         <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
                         <a href="#" class="sicon-twitter"><i>Twitter</i></a>
-                        <?php echo image_tag('arimura3.jpg', array('width'=>'41', 'height'=>'42')) ?>
+                        <?php echo image_tag('arimura3.jpg', array('width'=>'41', 'height'=>'42', 'class'=>'user_icon')) ?>
                     </div>
                     <!-- END SOCIAL ICONS -->
                 </div>
@@ -457,12 +463,6 @@
             <!-- Header -->
             <header>
                 <h4 class="line-divider">information</h4>
-                <?php if ($sf_user->isAuthenticated()): ?>
-                  <h1><?php echo link_to('Logout', 'user/logout') ?></h1>
-                  <h1><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber'))?></h1>
-                <?php else: ?>
-                  <h1><?php echo link_to('Login', 'user/login') ?></h1>
-                <?php endif ?>
             </header>
             <!-- End Header -->
             

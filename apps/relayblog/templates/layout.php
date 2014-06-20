@@ -23,11 +23,12 @@
                         <li><a href="#page-about">Friends</a></li>
                         <li><a href="#page-blog">Blog</a></li>
                         <li><a href="#page-work">Reports</a></li>
+                        <li><?php echo link_to('login', 'user/login') ?></li>
                         <!-- <li><a href="#page-clients">Sponsors</a></li>
                         <li><a href="#page-contact">Contact</a></li> -->
                         <?php if ($sf_user->isAuthenticated()): ?>
                           <li><?php echo link_to('Logout', 'login/logout') ?></li>
-                          <li><?php echo link_to($sf_user->getAttribute('nickname', '', 'subscriber').' profile', 'user/profile') ?></li>
+                          <li><?php echo link_to($sf_user->getAttribute('user_name', '', 'subscriber').' profile', 'user/profile') ?></li>
                         <?php else: ?>
                           <li><?php echo link_to('Login', 'login/login') ?></li>
                         <?php endif ?>

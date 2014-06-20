@@ -26,6 +26,7 @@ propel:
    user_type: varchar(30)
    occupation: longvarchar
    nationality: varchar(100)
+   partcipation_year: integer
    place_of_residence: varchar(100)
    email: varchar(100)
    facebook_url: longvarchar
@@ -61,6 +62,16 @@ propel:
    host_country: varchar(100)
    body: longvarchar
    reportfile: longvarchar
-#mypage情報
- mypage:
+#appricant情報
+ applicant:
+   app_user_name: varchar(50)
+   app_first_name: varchar(100)
+   app_middle_name: varchar(100)
+   app_last_name: varchar(100)
+   app_email: varchar(100)
+   app_facebook_url: longvarchar
+   app_participation_year: integer
+   created_at:
+   updated_at:
+　
 

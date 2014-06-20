@@ -14,10 +14,33 @@ class userActions extends sfActions
    * Executes index action
    *
    */
-  public function executeIndex()
+  //ユーザー登録
+  public function executeAdd()
   {
-    $this->forward('default', 'module');
+    if($this->getRequest()->getMethod() != sfRequest::POST)
+    {
+      // フォームを表示する
+      return sfView::SUCCESS;
+    }
+    else
+    {
+      // フォーム投稿を処理する
+      $user = new User();
+      $user->setUserName($this->getRequestParameter('user_name'));
+      $user->setPassword($this->getRequestParameter('password'));
+      $user->save();
+
+    return $this->redirect('@homepage');
+    }
+    
   }
+
+  public function handleErrorAdd()
+  {
+    return sfView::SUCCESS;
+  }
+
+  //ユーザーログイン
   public function executeLogin()
 {
   if ($this->getRequest()->getMethod() != sfRequest::POST)
@@ -27,31 +50,11 @@ class userActions extends sfActions
   }
   else
   {
-    // フォーム投稿を処理する
-    $nickname = $this->getRequestParameter('nickname');
- 
-    $c = new Criteria();
-    $c->add(UserPeer::NICKNAME, $nickname);
-    $user = UserPeer::doSelectOne($c);
- 
-    // nicknameが存在するか？
-    if ($user)
-    {
-      // passwordがOKか?
-      if (true)
-      {
-        $this->getUser()->setAuthenticated(true);
-        $this->getUser()->addCredential('subscriber');
- 
-        $this->getUser()->setAttribute('subscriber_id', $user->getId(), 'subscriber');
-        $this->getUser()->setAttribute('nickname', $user->getNickname(), 'subscriber');
- 
         // 最後のページにリダイレクトする
-        return $this->redirect($this->getRequestParameter('referer','@homepage'));
-      }
-    }
+        return $this->redirect('@homepage');
   }
 }
+
   public function executeLogout()
 {
   $this->getUser()->setAuthenticated(false);
@@ -61,5 +64,19 @@ class userActions extends sfActions
  
   $this->redirect('@homepage');
 }
+public function handleErrorLogin()
+  {
+    return sfView::SUCCESS;
+  }
+
+public function executeShow()
+  {
+    $this->subscriber = UserPeer::retrieveByPk($this->getRequestParameter('id', $this->getUser()->getSubscriberId()));
+    $this->forward404Unless($this->subscriber);
+   
+    $this->interests = $this->subscriber->getInterestsJoinQuestion();
+    $this->answers   = $this->subscriber->getAnswersJoinQuestion();
+    $this->questions = $this->subscriber->getQuestions();
+  }
 
 }

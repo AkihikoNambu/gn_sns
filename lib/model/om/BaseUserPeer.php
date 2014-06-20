@@ -13,7 +13,7 @@ abstract class BaseUserPeer {
 	const CLASS_DEFAULT = 'lib.model.User';
 
 	
-	const NUM_COLUMNS = 17;
+	const NUM_COLUMNS = 18;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -42,6 +42,9 @@ abstract class BaseUserPeer {
 
 	
 	const NATIONALITY = 'user.NATIONALITY';
+
+	
+	const PARTCIPATION_YEAR = 'user.PARTCIPATION_YEAR';
 
 	
 	const PLACE_OF_RESIDENCE = 'user.PLACE_OF_RESIDENCE';
@@ -76,18 +79,18 @@ abstract class BaseUserPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('UserName', 'FirstName', 'MiddleName', 'LastName', 'Image', 'UserType', 'Occupation', 'Nationality', 'PlaceOfResidence', 'Email', 'FacebookUrl', 'SelfIntroduction', 'Sha1Password', 'Salt', 'CreatedAt', 'UpdatedAt', 'Id', ),
-		BasePeer::TYPE_COLNAME => array (UserPeer::USER_NAME, UserPeer::FIRST_NAME, UserPeer::MIDDLE_NAME, UserPeer::LAST_NAME, UserPeer::IMAGE, UserPeer::USER_TYPE, UserPeer::OCCUPATION, UserPeer::NATIONALITY, UserPeer::PLACE_OF_RESIDENCE, UserPeer::EMAIL, UserPeer::FACEBOOK_URL, UserPeer::SELF_INTRODUCTION, UserPeer::SHA1_PASSWORD, UserPeer::SALT, UserPeer::CREATED_AT, UserPeer::UPDATED_AT, UserPeer::ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('user_name', 'first_name', 'middle_name', 'last_name', 'image', 'user_type', 'occupation', 'nationality', 'place_of_residence', 'email', 'facebook_url', 'self_introduction', 'sha1_password', 'salt', 'created_at', 'updated_at', 'id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, )
+		BasePeer::TYPE_PHPNAME => array ('UserName', 'FirstName', 'MiddleName', 'LastName', 'Image', 'UserType', 'Occupation', 'Nationality', 'PartcipationYear', 'PlaceOfResidence', 'Email', 'FacebookUrl', 'SelfIntroduction', 'Sha1Password', 'Salt', 'CreatedAt', 'UpdatedAt', 'Id', ),
+		BasePeer::TYPE_COLNAME => array (UserPeer::USER_NAME, UserPeer::FIRST_NAME, UserPeer::MIDDLE_NAME, UserPeer::LAST_NAME, UserPeer::IMAGE, UserPeer::USER_TYPE, UserPeer::OCCUPATION, UserPeer::NATIONALITY, UserPeer::PARTCIPATION_YEAR, UserPeer::PLACE_OF_RESIDENCE, UserPeer::EMAIL, UserPeer::FACEBOOK_URL, UserPeer::SELF_INTRODUCTION, UserPeer::SHA1_PASSWORD, UserPeer::SALT, UserPeer::CREATED_AT, UserPeer::UPDATED_AT, UserPeer::ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('user_name', 'first_name', 'middle_name', 'last_name', 'image', 'user_type', 'occupation', 'nationality', 'partcipation_year', 'place_of_residence', 'email', 'facebook_url', 'self_introduction', 'sha1_password', 'salt', 'created_at', 'updated_at', 'id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('UserName' => 0, 'FirstName' => 1, 'MiddleName' => 2, 'LastName' => 3, 'Image' => 4, 'UserType' => 5, 'Occupation' => 6, 'Nationality' => 7, 'PlaceOfResidence' => 8, 'Email' => 9, 'FacebookUrl' => 10, 'SelfIntroduction' => 11, 'Sha1Password' => 12, 'Salt' => 13, 'CreatedAt' => 14, 'UpdatedAt' => 15, 'Id' => 16, ),
-		BasePeer::TYPE_COLNAME => array (UserPeer::USER_NAME => 0, UserPeer::FIRST_NAME => 1, UserPeer::MIDDLE_NAME => 2, UserPeer::LAST_NAME => 3, UserPeer::IMAGE => 4, UserPeer::USER_TYPE => 5, UserPeer::OCCUPATION => 6, UserPeer::NATIONALITY => 7, UserPeer::PLACE_OF_RESIDENCE => 8, UserPeer::EMAIL => 9, UserPeer::FACEBOOK_URL => 10, UserPeer::SELF_INTRODUCTION => 11, UserPeer::SHA1_PASSWORD => 12, UserPeer::SALT => 13, UserPeer::CREATED_AT => 14, UserPeer::UPDATED_AT => 15, UserPeer::ID => 16, ),
-		BasePeer::TYPE_FIELDNAME => array ('user_name' => 0, 'first_name' => 1, 'middle_name' => 2, 'last_name' => 3, 'image' => 4, 'user_type' => 5, 'occupation' => 6, 'nationality' => 7, 'place_of_residence' => 8, 'email' => 9, 'facebook_url' => 10, 'self_introduction' => 11, 'sha1_password' => 12, 'salt' => 13, 'created_at' => 14, 'updated_at' => 15, 'id' => 16, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, )
+		BasePeer::TYPE_PHPNAME => array ('UserName' => 0, 'FirstName' => 1, 'MiddleName' => 2, 'LastName' => 3, 'Image' => 4, 'UserType' => 5, 'Occupation' => 6, 'Nationality' => 7, 'PartcipationYear' => 8, 'PlaceOfResidence' => 9, 'Email' => 10, 'FacebookUrl' => 11, 'SelfIntroduction' => 12, 'Sha1Password' => 13, 'Salt' => 14, 'CreatedAt' => 15, 'UpdatedAt' => 16, 'Id' => 17, ),
+		BasePeer::TYPE_COLNAME => array (UserPeer::USER_NAME => 0, UserPeer::FIRST_NAME => 1, UserPeer::MIDDLE_NAME => 2, UserPeer::LAST_NAME => 3, UserPeer::IMAGE => 4, UserPeer::USER_TYPE => 5, UserPeer::OCCUPATION => 6, UserPeer::NATIONALITY => 7, UserPeer::PARTCIPATION_YEAR => 8, UserPeer::PLACE_OF_RESIDENCE => 9, UserPeer::EMAIL => 10, UserPeer::FACEBOOK_URL => 11, UserPeer::SELF_INTRODUCTION => 12, UserPeer::SHA1_PASSWORD => 13, UserPeer::SALT => 14, UserPeer::CREATED_AT => 15, UserPeer::UPDATED_AT => 16, UserPeer::ID => 17, ),
+		BasePeer::TYPE_FIELDNAME => array ('user_name' => 0, 'first_name' => 1, 'middle_name' => 2, 'last_name' => 3, 'image' => 4, 'user_type' => 5, 'occupation' => 6, 'nationality' => 7, 'partcipation_year' => 8, 'place_of_residence' => 9, 'email' => 10, 'facebook_url' => 11, 'self_introduction' => 12, 'sha1_password' => 13, 'salt' => 14, 'created_at' => 15, 'updated_at' => 16, 'id' => 17, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, )
 	);
 
 	
@@ -156,6 +159,8 @@ abstract class BaseUserPeer {
 		$criteria->addSelectColumn(UserPeer::OCCUPATION);
 
 		$criteria->addSelectColumn(UserPeer::NATIONALITY);
+
+		$criteria->addSelectColumn(UserPeer::PARTCIPATION_YEAR);
 
 		$criteria->addSelectColumn(UserPeer::PLACE_OF_RESIDENCE);
 

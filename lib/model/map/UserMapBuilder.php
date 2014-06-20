@@ -48,6 +48,8 @@ class UserMapBuilder {
 
 		$tMap->addColumn('NATIONALITY', 'Nationality', 'string', CreoleTypes::VARCHAR, false, 100);
 
+		$tMap->addColumn('PARTCIPATION_YEAR', 'PartcipationYear', 'int', CreoleTypes::INTEGER, false, null);
+
 		$tMap->addColumn('PLACE_OF_RESIDENCE', 'PlaceOfResidence', 'string', CreoleTypes::VARCHAR, false, 100);
 
 		$tMap->addColumn('EMAIL', 'Email', 'string', CreoleTypes::VARCHAR, false, 100);
