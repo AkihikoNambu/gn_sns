@@ -29,7 +29,7 @@
                     <!-- LOGO -->
 
                     <a class="brand pull-left" href="./">
-                        <?php echo image_tag('gnlf003.jpg', array("width"=>"78", "height"=>"26")) ?>
+                        <?php echo image_tag('gnlf003.jpg', array('class'=>'logo-img')) ?>
                     </a>
                     <!-- END LOGO -->
 
@@ -45,7 +45,7 @@
                     <ul id="main-menu" class="nav-collapse collapse">
                         <li><a href="#page-welcome">Home</a></li>
                         <li><a href="#page-about">Friends</a></li>
-                        <li><a href="#page-blog">Blog</a></li>
+                        <li><a href="#page-blog">Diary</a></li>
                         <li><a href="#page-work">Reports</a></li>
                         <li><a href="#page-clients">Sponsors</a></li>
                         <!-- <li><a href="#page-clients">Sponsors</a></li>-->
@@ -59,9 +59,9 @@
                     <div class="social-icons hover-big pull-right">
                         <?php echo link_to('login', 'user/login') ?><br>
                         <?php echo link_to('Register', 'user/add')?>
-                        <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
-                        <a href="#" class="sicon-twitter"><i>Twitter</i></a>
-                        <?php echo image_tag('arimura3.jpg', array('width'=>'41', 'height'=>'42', 'class'=>'user_icon')) ?>
+                        <!-- <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
+                        <a href="#" class="sicon-twitter"><i>Twitter</i></a> -->
+                        <?php echo image_tag('arimura3.jpg', array('class'=>'user_icon')) ?>
                     </div>
                     <!-- END SOCIAL ICONS -->
                 </div>
@@ -129,7 +129,7 @@
                 <div class="row">
                     <div class="span8 offset2">
                         <p>
-                            3 yrs have passed since the GNLF conference. How are they doing?<br>Let's meet friends, and keep in touch !!
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
                         </p>
                     </div>
                 </div>
@@ -197,19 +197,22 @@
         <div class="container">
             <!-- Header -->
             <header>
-                <h4 class="line-divider">Blog</h4>
-                <h1>World Relay Blog</h1>
+                <h4 class="line-divider">Diary</h4>
+                <h1>World Relay Diary</h1>
                 <div class="row">
                     <div class="span8 offset2">
-                        <div class="input-append">
+                        <!-- <div class="input-append">
                           <input class="span5" id="appendedInputButton" type="text" placeholder="Search Blog">
                           <button class="btn btn-primary sicon-search sicon-white" type="button"><i>Search</i></button>
-                        </div>
+                        </div> -->
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                        </p>
                     </div>
                 </div>
                 
                 <!-- Sub menu -->
-                <nav class="submenu">
+                <!-- <nav class="submenu">
                     <ul>
                         <li>
                             <a href="./pages/blog/blog.html">All</a>
@@ -230,7 +233,7 @@
                             <a href="./pages/blog/blog.html">Other</a>
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
             </header>
             <!-- End Header -->
             
@@ -242,7 +245,7 @@
                     <?php foreach ($lates_blogs as $lates_blog): ?>
                         <li class="span4">
                             <!-- Blog image -->
-                                <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$lates_blog->getImage()) ?>
+                                <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$lates_blog->getImage(), array('class'=>'blog-thumnail')) ?>
                             
                             <!-- Blog title -->
                             <h5>
@@ -335,7 +338,7 @@
                     <li class="span4 mix 2013">
                         <a href="#report/show/id/1" data-destination="portfolio-items" data-insert="before">
                             <!-- Portfolio image -->
-                            <?php echo image_tag('pages/conference/2011.jpg') ?>
+                            <?php echo image_tag('pages/conference/2011.jpg', array('class'=>'conference_thumnail')) ?>
                             
                             <!-- Portfolio name, activated on hover -->
                             <div class="portfolio-overlay">
@@ -486,7 +489,7 @@
                                 <a href="#" class="sicon-place"><i>Location</i></a>
                             </div> 
                             <div class="media-body smallFontBy08">
-                                1095 Columbus Ave., San Francisco, CA 94133
+                                IBIC Hongo 6th Floor Atlas Building 4-1-6 Hongo Bunkyo-ku Tokyo, Japan 113-0033
                             </div>
                         </div>
                         <div class="media">
@@ -494,7 +497,7 @@
                                 <a href="#" class="sicon-mail"><i>email</i></a>
                             </div> 
                             <div class="media-body smallFontBy08">
-                                mail@crollify.com
+                                gnlf2013@g-nextleaders.net 
                             </div>
                         </div>
                         <div class="media">
@@ -502,12 +505,12 @@
                                 <a href="#" class="sicon-clock"><i>Time zone</i></a>
                             </div> 
                             <div class="media-body smallFontBy08">
-                                UTC / GMT -5
+                                UTC / GMT +9
                             </div>
                         </div>
                         <br/>
                         <br/>
-                        <br/>
+                        
                         <h5>Get social</h5>
                         <div class="social-icons sicon-white bordered">
                             <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
@@ -535,7 +538,10 @@
                 </div>
             </article>
             <!-- End Article -->
-            
+            <hr/>
+            <footer>
+               <p> © 2014 GLOBAL NEXTLEADERS FORUM</p>
+            </fotter>
         </div>
         
         <!-- Background map image -->

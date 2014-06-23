@@ -42,22 +42,19 @@
                     
                     <!-- MAIN MENU -->
                     <ul id="main-menu" class="nav-collapse collapse">
-                        <?php echo link_to('Home', 'home/index') ?>
-                        <!-- <li><a href="#page-welcome">Home</a></li> -->
-                        <!-- <li><a href="#page-about">Friends</a></li> -->
-                        <?php echo link_to('Friend', 'friend/list') ?>
-                        <!-- <li><a href="#page-blog">Blog</a></li> -->
-                        <?php echo link_to('Blog', 'blog/list') ?>
-                        <!-- <li><a href="#page-work">Reports</a></li>
+                        <li><a href="#page-welcome">Home</a></li>
+                        <li><a href="#page-about">Friends</a></li>
+                        <li><a href="#page-blog">Diary</a></li>
+                        <li><a href="#page-work">Reports</a></li>
                         <li><a href="#page-clients">Sponsors</a></li>
-                        <li><a href="#page-contact">Login</a></li>  -->
                     </ul>
                     <!-- END MAIN MENU -->
                     
                     <!-- SOCIAL ICONS -->
                     <div class="social-icons hover-big pull-right">
-                        <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
-                        <a href="#" class="sicon-twitter"><i>Twitter</i></a>
+                        <!-- <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
+                        <a href="#" class="sicon-twitter"><i>Twitter</i></a> -->
+                        <?php echo image_tag('arimura3.jpg', array('width'=>'41', 'height'=>'42', 'class'=>'user_icon')) ?>
                     </div>
                     <!-- END SOCIAL ICONS -->
                 </div>

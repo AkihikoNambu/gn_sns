@@ -33,13 +33,14 @@ propel:
    self_introduction: longvarchar
    sha1_password: varchar(40)
    salt: varchar(32)
+   certification: integer
    created_at:
    updated_at:
 #relay daiaryに対するいいね情報
- blog_interested:
-   blog_id:
-   user_id:
-   created_at:
+ # blog_interested:
+ #   blog_id:
+ #   user_id:
+ #   created_at:
 #alumni紹介の記事情報
  friend:
    user_id:
@@ -63,15 +64,15 @@ propel:
    body: longvarchar
    reportfile: longvarchar
 #appricant情報
- applicant:
-   app_user_name: varchar(50)
-   app_first_name: varchar(100)
-   app_middle_name: varchar(100)
-   app_last_name: varchar(100)
-   app_email: varchar(100)
-   app_facebook_url: longvarchar
-   app_participation_year: integer
-   created_at:
-   updated_at:
+ # applicant:
+ #   app_user_name: varchar(50)
+ #   app_first_name: varchar(100)
+ #   app_middle_name: varchar(100)
+ #   app_last_name: varchar(100)
+ #   app_email: varchar(100)
+ #   app_facebook_url: longvarchar
+ #   app_participation_year: integer
+ #   created_at:
+ #   updated_at:
 　
 

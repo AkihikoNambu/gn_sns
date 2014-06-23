@@ -35,6 +35,7 @@
   width: 140px;
   margin: 0 auto;
 }
+
 .page-welcome .logo .scrollNormal {
   opacity: 1;
   filter: alpha(opacity=100);
@@ -112,7 +113,8 @@
   z-index: 2;
 }
 .user_icon {
-  margin-left: 
+  height: 42px;
+  width: 41px;
 }
 /*
 *   PAGE | WORK
@@ -1443,6 +1445,8 @@ a:hover {
   -webkit-border-radius: 500px;
   -moz-border-radius: 500px;
   border-radius: 500px;
+  height: 280px;
+  width: 280px;
 }
 .white {
   color: #ffffff;
@@ -5985,6 +5989,14 @@ input[type="submit"].btn.btn-mini {
   /*width: 100%;  */
   display: -webkit-box;　/* Safari,Google Chrome用 */  
   display: -moz-box;　/* Firefox用 */
+}
+.blog-thumnail {
+  height: 300px;
+  width: 390px;
+}
+.conference-thumnail {
+  height: 300px;
+  width: 390px;
 }
 /*セレクタ「＞」の意味は、「子要素のみに適用」*/
 .thumbnails > li {
