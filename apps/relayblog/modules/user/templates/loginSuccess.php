@@ -78,3 +78,5 @@
         </div>
     </div>
     <!-- END PAGE | Welcome -->
+  </body>
+</html>

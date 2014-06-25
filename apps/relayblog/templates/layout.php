@@ -22,7 +22,7 @@
   </head>
   <body>
     <!-- NAVIGATION -->
-    <nav class="fixed-top" id="navigation">
+    <nav class="fixed-top fixed-visable" id="navigation">
         <div class="container">
             <div class="row-fluid">
                 <div class="span12 center">
@@ -43,7 +43,7 @@
                     
                     <!-- MAIN MENU -->
                     <ul id="main-menu" class="nav-collapse collapse">
-                        <li><a href="#page-welcome">Home</a></li>
+                        <li><a href="http://localhost:8888/gn_sns/relayblog_dev.php/">Home</a></li>
                         <li><a href="#page-about">Friends</a></li>
                         <li><a href="#page-blog">Diary</a></li>
                         <li><a href="#page-work">Reports</a></li>
