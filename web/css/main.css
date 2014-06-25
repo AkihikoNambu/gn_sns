@@ -78,6 +78,10 @@
   -o-transform: rotate(-360deg);
   transform: rotate(-360deg);
 }
+.logo-img {
+  width: 81px;
+  height: 27px;
+}
 .page-welcome #welcome-messages {
   margin-top: 35px;
   width: 100%;
