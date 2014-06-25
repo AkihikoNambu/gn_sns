@@ -69,6 +69,10 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 
 	
+	protected $certification;
+
+
+	
 	protected $created_at;
 
 
@@ -90,12 +94,6 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 	
 	protected $lastBlogCommentCriteria = null;
-
-	
-	protected $collBlogInteresteds;
-
-	
-	protected $lastBlogInterestedCriteria = null;
 
 	
 	protected $collFriends;
@@ -218,6 +216,13 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	{
 
 		return $this->salt;
+	}
+
+	
+	public function getCertification()
+	{
+
+		return $this->certification;
 	}
 
 	
@@ -482,6 +487,20 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setCertification($v)
+	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
+		if ($this->certification !== $v) {
+			$this->certification = $v;
+			$this->modifiedColumns[] = UserPeer::CERTIFICATION;
+		}
+
+	} 
+	
 	public function setCreatedAt($v)
 	{
 
@@ -564,17 +583,19 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 			$this->salt = $rs->getString($startcol + 14);
 
-			$this->created_at = $rs->getTimestamp($startcol + 15, null);
+			$this->certification = $rs->getInt($startcol + 15);
 
-			$this->updated_at = $rs->getTimestamp($startcol + 16, null);
+			$this->created_at = $rs->getTimestamp($startcol + 16, null);
 
-			$this->id = $rs->getInt($startcol + 17);
+			$this->updated_at = $rs->getTimestamp($startcol + 17, null);
+
+			$this->id = $rs->getInt($startcol + 18);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 18; 
+						return $startcol + 19; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating User object", $e);
 		}
@@ -668,14 +689,6 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 				}
 			}
 
-			if ($this->collBlogInteresteds !== null) {
-				foreach($this->collBlogInteresteds as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
-				}
-			}
-
 			if ($this->collFriends !== null) {
 				foreach($this->collFriends as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
@@ -743,14 +756,6 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 				if ($this->collBlogComments !== null) {
 					foreach($this->collBlogComments as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
-				if ($this->collBlogInteresteds !== null) {
-					foreach($this->collBlogInteresteds as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -837,12 +842,15 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 				return $this->getSalt();
 				break;
 			case 15:
-				return $this->getCreatedAt();
+				return $this->getCertification();
 				break;
 			case 16:
-				return $this->getUpdatedAt();
+				return $this->getCreatedAt();
 				break;
 			case 17:
+				return $this->getUpdatedAt();
+				break;
+			case 18:
 				return $this->getId();
 				break;
 			default:
@@ -870,9 +878,10 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 			$keys[12] => $this->getSelfIntroduction(),
 			$keys[13] => $this->getSha1Password(),
 			$keys[14] => $this->getSalt(),
-			$keys[15] => $this->getCreatedAt(),
-			$keys[16] => $this->getUpdatedAt(),
-			$keys[17] => $this->getId(),
+			$keys[15] => $this->getCertification(),
+			$keys[16] => $this->getCreatedAt(),
+			$keys[17] => $this->getUpdatedAt(),
+			$keys[18] => $this->getId(),
 		);
 		return $result;
 	}
@@ -934,12 +943,15 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 				$this->setSalt($value);
 				break;
 			case 15:
-				$this->setCreatedAt($value);
+				$this->setCertification($value);
 				break;
 			case 16:
-				$this->setUpdatedAt($value);
+				$this->setCreatedAt($value);
 				break;
 			case 17:
+				$this->setUpdatedAt($value);
+				break;
+			case 18:
 				$this->setId($value);
 				break;
 		} 	}
@@ -964,9 +976,10 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[12], $arr)) $this->setSelfIntroduction($arr[$keys[12]]);
 		if (array_key_exists($keys[13], $arr)) $this->setSha1Password($arr[$keys[13]]);
 		if (array_key_exists($keys[14], $arr)) $this->setSalt($arr[$keys[14]]);
-		if (array_key_exists($keys[15], $arr)) $this->setCreatedAt($arr[$keys[15]]);
-		if (array_key_exists($keys[16], $arr)) $this->setUpdatedAt($arr[$keys[16]]);
-		if (array_key_exists($keys[17], $arr)) $this->setId($arr[$keys[17]]);
+		if (array_key_exists($keys[15], $arr)) $this->setCertification($arr[$keys[15]]);
+		if (array_key_exists($keys[16], $arr)) $this->setCreatedAt($arr[$keys[16]]);
+		if (array_key_exists($keys[17], $arr)) $this->setUpdatedAt($arr[$keys[17]]);
+		if (array_key_exists($keys[18], $arr)) $this->setId($arr[$keys[18]]);
 	}
 
 	
@@ -989,6 +1002,7 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(UserPeer::SELF_INTRODUCTION)) $criteria->add(UserPeer::SELF_INTRODUCTION, $this->self_introduction);
 		if ($this->isColumnModified(UserPeer::SHA1_PASSWORD)) $criteria->add(UserPeer::SHA1_PASSWORD, $this->sha1_password);
 		if ($this->isColumnModified(UserPeer::SALT)) $criteria->add(UserPeer::SALT, $this->salt);
+		if ($this->isColumnModified(UserPeer::CERTIFICATION)) $criteria->add(UserPeer::CERTIFICATION, $this->certification);
 		if ($this->isColumnModified(UserPeer::CREATED_AT)) $criteria->add(UserPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(UserPeer::UPDATED_AT)) $criteria->add(UserPeer::UPDATED_AT, $this->updated_at);
 		if ($this->isColumnModified(UserPeer::ID)) $criteria->add(UserPeer::ID, $this->id);
@@ -1052,6 +1066,8 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 		$copyObj->setSalt($this->salt);
 
+		$copyObj->setCertification($this->certification);
+
 		$copyObj->setCreatedAt($this->created_at);
 
 		$copyObj->setUpdatedAt($this->updated_at);
@@ -1066,10 +1082,6 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 			foreach($this->getBlogComments() as $relObj) {
 				$copyObj->addBlogComment($relObj->copy($deepCopy));
-			}
-
-			foreach($this->getBlogInteresteds() as $relObj) {
-				$copyObj->addBlogInterested($relObj->copy($deepCopy));
 			}
 
 			foreach($this->getFriends() as $relObj) {
@@ -1278,111 +1290,6 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 		$this->lastBlogCommentCriteria = $criteria;
 
 		return $this->collBlogComments;
-	}
-
-	
-	public function initBlogInteresteds()
-	{
-		if ($this->collBlogInteresteds === null) {
-			$this->collBlogInteresteds = array();
-		}
-	}
-
-	
-	public function getBlogInteresteds($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseBlogInterestedPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collBlogInteresteds === null) {
-			if ($this->isNew()) {
-			   $this->collBlogInteresteds = array();
-			} else {
-
-				$criteria->add(BlogInterestedPeer::USER_ID, $this->getId());
-
-				BlogInterestedPeer::addSelectColumns($criteria);
-				$this->collBlogInteresteds = BlogInterestedPeer::doSelect($criteria, $con);
-			}
-		} else {
-						if (!$this->isNew()) {
-												
-
-				$criteria->add(BlogInterestedPeer::USER_ID, $this->getId());
-
-				BlogInterestedPeer::addSelectColumns($criteria);
-				if (!isset($this->lastBlogInterestedCriteria) || !$this->lastBlogInterestedCriteria->equals($criteria)) {
-					$this->collBlogInteresteds = BlogInterestedPeer::doSelect($criteria, $con);
-				}
-			}
-		}
-		$this->lastBlogInterestedCriteria = $criteria;
-		return $this->collBlogInteresteds;
-	}
-
-	
-	public function countBlogInteresteds($criteria = null, $distinct = false, $con = null)
-	{
-				include_once 'lib/model/om/BaseBlogInterestedPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		$criteria->add(BlogInterestedPeer::USER_ID, $this->getId());
-
-		return BlogInterestedPeer::doCount($criteria, $distinct, $con);
-	}
-
-	
-	public function addBlogInterested(BlogInterested $l)
-	{
-		$this->collBlogInteresteds[] = $l;
-		$l->setUser($this);
-	}
-
-
-	
-	public function getBlogInterestedsJoinBlog($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseBlogInterestedPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collBlogInteresteds === null) {
-			if ($this->isNew()) {
-				$this->collBlogInteresteds = array();
-			} else {
-
-				$criteria->add(BlogInterestedPeer::USER_ID, $this->getId());
-
-				$this->collBlogInteresteds = BlogInterestedPeer::doSelectJoinBlog($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(BlogInterestedPeer::USER_ID, $this->getId());
-
-			if (!isset($this->lastBlogInterestedCriteria) || !$this->lastBlogInterestedCriteria->equals($criteria)) {
-				$this->collBlogInteresteds = BlogInterestedPeer::doSelectJoinBlog($criteria, $con);
-			}
-		}
-		$this->lastBlogInterestedCriteria = $criteria;
-
-		return $this->collBlogInteresteds;
 	}
 
 	

@@ -49,12 +49,6 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 	protected $lastBlogCommentCriteria = null;
 
 	
-	protected $collBlogInteresteds;
-
-	
-	protected $lastBlogInterestedCriteria = null;
-
-	
 	protected $alreadyInSave = false;
 
 	
@@ -388,14 +382,6 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 				}
 			}
 
-			if ($this->collBlogInteresteds !== null) {
-				foreach($this->collBlogInteresteds as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
-				}
-			}
-
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -447,14 +433,6 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 
 				if ($this->collBlogComments !== null) {
 					foreach($this->collBlogComments as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
-				if ($this->collBlogInteresteds !== null) {
-					foreach($this->collBlogInteresteds as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -642,10 +620,6 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 				$copyObj->addBlogComment($relObj->copy($deepCopy));
 			}
 
-			foreach($this->getBlogInteresteds() as $relObj) {
-				$copyObj->addBlogInterested($relObj->copy($deepCopy));
-			}
-
 		} 
 
 		$copyObj->setNew(true);
@@ -803,111 +777,6 @@ abstract class BaseBlog extends BaseObject  implements Persistent {
 		$this->lastBlogCommentCriteria = $criteria;
 
 		return $this->collBlogComments;
-	}
-
-	
-	public function initBlogInteresteds()
-	{
-		if ($this->collBlogInteresteds === null) {
-			$this->collBlogInteresteds = array();
-		}
-	}
-
-	
-	public function getBlogInteresteds($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseBlogInterestedPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collBlogInteresteds === null) {
-			if ($this->isNew()) {
-			   $this->collBlogInteresteds = array();
-			} else {
-
-				$criteria->add(BlogInterestedPeer::BLOG_ID, $this->getId());
-
-				BlogInterestedPeer::addSelectColumns($criteria);
-				$this->collBlogInteresteds = BlogInterestedPeer::doSelect($criteria, $con);
-			}
-		} else {
-						if (!$this->isNew()) {
-												
-
-				$criteria->add(BlogInterestedPeer::BLOG_ID, $this->getId());
-
-				BlogInterestedPeer::addSelectColumns($criteria);
-				if (!isset($this->lastBlogInterestedCriteria) || !$this->lastBlogInterestedCriteria->equals($criteria)) {
-					$this->collBlogInteresteds = BlogInterestedPeer::doSelect($criteria, $con);
-				}
-			}
-		}
-		$this->lastBlogInterestedCriteria = $criteria;
-		return $this->collBlogInteresteds;
-	}
-
-	
-	public function countBlogInteresteds($criteria = null, $distinct = false, $con = null)
-	{
-				include_once 'lib/model/om/BaseBlogInterestedPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		$criteria->add(BlogInterestedPeer::BLOG_ID, $this->getId());
-
-		return BlogInterestedPeer::doCount($criteria, $distinct, $con);
-	}
-
-	
-	public function addBlogInterested(BlogInterested $l)
-	{
-		$this->collBlogInteresteds[] = $l;
-		$l->setBlog($this);
-	}
-
-
-	
-	public function getBlogInterestedsJoinUser($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseBlogInterestedPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collBlogInteresteds === null) {
-			if ($this->isNew()) {
-				$this->collBlogInteresteds = array();
-			} else {
-
-				$criteria->add(BlogInterestedPeer::BLOG_ID, $this->getId());
-
-				$this->collBlogInteresteds = BlogInterestedPeer::doSelectJoinUser($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(BlogInterestedPeer::BLOG_ID, $this->getId());
-
-			if (!isset($this->lastBlogInterestedCriteria) || !$this->lastBlogInterestedCriteria->equals($criteria)) {
-				$this->collBlogInteresteds = BlogInterestedPeer::doSelectJoinUser($criteria, $con);
-			}
-		}
-		$this->lastBlogInterestedCriteria = $criteria;
-
-		return $this->collBlogInteresteds;
 	}
 
 } 

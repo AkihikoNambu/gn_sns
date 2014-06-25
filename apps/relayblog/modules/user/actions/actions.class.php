@@ -28,6 +28,8 @@ class userActions extends sfActions
       $user = new User();
       $user->setUserName($this->getRequestParameter('user_name'));
       $user->setPassword($this->getRequestParameter('password'));
+      // Certificationを初期値として0に設定する
+      $user->setCertification($this->getRequestParameter('certification'));
       $user->save();
 
     return $this->redirect('@homepage');

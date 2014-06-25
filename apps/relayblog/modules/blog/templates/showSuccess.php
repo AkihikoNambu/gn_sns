@@ -131,6 +131,7 @@
                     </div>
                     <!-- End Blog comments -->
                     
+                    
                     <!-- Blog Write comment -->
                     <div class="write-comment" id="write-replay">
                         <h6>Drop a comment</h6>
@@ -151,6 +152,8 @@
                         </div>
                     </div>
                     <!-- End Blog Write comment -->
+
+
                 </div>
                 <div class="span4 blog-list-right">
                     <!-- Latest blog posts block -->

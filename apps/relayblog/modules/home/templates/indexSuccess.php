@@ -57,8 +57,9 @@
                     
                     <!-- SOCIAL ICONS -->
                     <div class="social-icons hover-big pull-right">
-                        <?php echo link_to('login', 'user/login') ?><br>
-                        <?php echo link_to('Register', 'user/add')?>
+                        
+                            <?php echo link_to('logout', 'user/logout')?>
+                        
                         <!-- <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
                         <a href="#" class="sicon-twitter"><i>Twitter</i></a> -->
                         <?php echo image_tag('arimura3.jpg', array('class'=>'user_icon')) ?>
