@@ -1,0 +1,13 @@
+User:
+  anonymous:
+    user_name:   anonymous
+    first_name: Anonymous
+    last_name:  Coward
+  fabien:
+    user_name:   fabpot
+    first_name: Fabien
+    last_name:  Potencier
+    password:   symfony
+    email:      fp@example.com
+
+

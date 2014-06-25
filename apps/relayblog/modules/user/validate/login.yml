@@ -1,0 +1,24 @@
+methods:
+  post: [user_name, password]
+
+names:
+  user_name:
+    required:     true
+    required_msg: your user_name is required
+    validators:   [nicknameValidator, userValidator]
+
+  password:
+    required:     true
+    required_msg: your password is required
+
+nicknameValidator:
+    class:          sfStringValidator
+    param:
+      min:          5
+      min_error:    nickname must be 5 or more characters
+
+userValidator:
+    class:          myLoginValidator
+    param:
+      password:     password
+      login_error:  this account does not exist or you entered a wrong password

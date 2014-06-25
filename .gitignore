@@ -1,0 +1,9 @@
+cache/*
+log/*
+config/*
+!schema.yml
+data/sql/*
+.DS_Store
+.tags
+apps/frontend/config/security.yml
+web/.htaccess

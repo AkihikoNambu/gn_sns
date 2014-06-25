@@ -1,0 +1,18 @@
+methods:
+ post:	[user_name, password]
+
+names:
+ user_name:	
+  required:	Yes
+  required_msg:	You must give a user_name  to your register
+
+ password:
+  required: Yes
+  required_msg: You must give a password to your register
+  validators:	passwordValidator
+
+passwordValidator:
+  class:	sfStringValidator
+  param:
+   min:		6
+   min_error: Please give some more words

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META DATA -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <meta name="description" content="Treble theme - One Page Responsive Theme - Gridelicious.net">
+    <title>Global Nextleaders Forum</title>
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="assets/images/ico/favicon.png">
+                                   
+
+    <!-- GOOGLE WEB FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <!-- NAVIGATION -->
+    <nav class="fixed-top fixed-visable" id="navigation">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span12 center">
+                    <!-- LOGO -->
+                    <a class="brand pull-left" href="./">
+                        <?php echo image_tag('gnlf003.jpg', array("width"=>"81", "height"=>"27")) ?>
+                    </a>
+                    <!-- END LOGO -->
+
+                    <!-- MOBILE MENU BUTTON -->
+                    <div class="mobile-menu" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </div>
+                    <!-- END MOBILE MENU BUTTON -->
+                    
+                    <!-- MAIN MENU -->
+                    <ul id="main-menu" class="nav-collapse collapse">
+                        <li><a href="#page-welcome">Home</a></li>
+                        <li><a href="#page-about">Friends</a></li>
+                        <li><a href="#page-blog">Diary</a></li>
+                        <li><a href="#page-work">Reports</a></li>
+                        <li><a href="#page-clients">Sponsors</a></li>
+                    </ul>
+                    <!-- END MAIN MENU -->
+                    
+                    <!-- SOCIAL ICONS -->
+                    <div class="social-icons hover-big pull-right">
+                        <!-- <a href="https://www.facebook.com/groups/151692711639352/" target="_blank" class="sicon-facebook"><i>Facebook</i></a>
+                        <a href="#" class="sicon-twitter"><i>Twitter</i></a> -->
+                        <?php echo image_tag('arimura3.jpg', array('width'=>'41', 'height'=>'42', 'class'=>'user_icon')) ?>
+                    </div>
+                    <!-- END SOCIAL ICONS -->
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVIGATION -->
+<!-- PAGE | BLOG -->
+    <div class="pages page-blog-list" id="page-blog-list">
+        <div class="container">
+            <!-- Header -->
+            <header>
+                <h4 class="line-divider">friend</h4>
+                <h1>Meet Friends</h1>
+                <!-- <div class="row">
+                    <div class="span8 offset2">
+                        <div class="input-append">
+                          <input class="span5" id="appendedInputButton" type="text" placeholder="Search Blog">
+                          <button class="btn btn-primary sicon-search sicon-white" type="button"><i>Search</i></button>
+                        </div>
+                    </div>
+                </div> -->
+            </header>
+            <!-- End Header -->
+
+            <div class="row-fluid">
+                <div class="span8 blog-details">
+                    <!-- Article -->
+                    <article>
+                        <!-- Blog image -->
+                        <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$friend->getImage()) ?>
+                        
+                        <!-- Blog title -->
+                        <h5>
+
+                            <!-- <br/> -->
+                            <small>Posted By <a href="#"><?php echo $friend->getUserId() ?></a>,
+                            	 <?php echo $friend->getCreatedAt() ?>　<?php echo $friend->getId() ?>
+                            	 		<!-- ここにリレータイトルを入れたい！！ -->
+                            	 	 <a href="#">Photography</a></small>
+                        </h5>
+                        
+                        <!-- Blog post description -->
+                        <?php echo $friend->getBody() ?>
+                        <hr />
+                    </article>
+                    <!-- End Article -->
+                    
+                    <!-- Blog comments -->
+                    <div class="comments">
+                        <a href="#"><?php echo $comment_number ?> comments</a>
+                    </div>
+                    <div class="comments-details">
+                        <?php foreach ($friend_comments as $friend_comment): ?>
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img src="http://placehold.it/60x60" width="60"/>
+                                </div> 
+                                <div class="media-body">
+                                    <div class="comments-post-info">
+                                        <small><a href="#">Akihiko Nambu</a> <?php echo $friend_comment->getCreatedAt() ?>, </small>
+                                    </div>
+                                    <p>
+                                        <?php echo $friend_comment->getBody() ?>
+                                    </p>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                    <!-- End Blog comments -->
+                    
+                    <!-- Blog Write comment -->
+                    <div class="write-comment" id="write-replay">
+                        <h6>Drop a comment</h6>
+                        <!-- <p>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+                        </p> -->
+                        <div class="row-fluid">
+                            <div class="span8">
+                                    <?php use_helper('Object') ?>
+                                    <!-- friendのcommentアクションに渡す -->
+                                    <?php echo form_tag('friend/comment') ?>
+                                    <!-- コメントと同時にそのブログのidを取得し一緒に保存する -->
+                                    <?php echo object_input_hidden_tag($friend, 'getId') ?>
+                                    <?php echo textarea_tag('body', '', array('size' => '30x3',)) ?>
+                                    <?php echo submit_tag('Send') ?>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Blog Write comment -->
+                </div>
+                <div class="span4 blog-list-right">
+                    <!-- Latest friend posts block -->
+                    <div class="block">
+                        <h6>Lates friend posts</h6>
+                        <ul class="simple-link-list">
+                            <?php foreach ($lates_friends as $lates_friend): ?>
+                            <li>
+                                <?php echo link_to($lates_friend->getTitle(), 'friend/show?id='.$lates_friend->getId()) ?> <?php echo $lates_friend->getCreatedAt() ?>
+                            </li>
+                        <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="block">
+                        <h6>Other Topics</h6>
+                        <nav class="submenu">
+                            <ul>
+                                <li>
+                                    <a href="./blog.html" class="active">All</a>
+                                </li>
+                                <li>
+                                    <a href="./blog.html">Participants</a>
+                                </li>
+                                <li>
+                                    <a href="./blog.html">Organaizers</a>
+                                </li>
+                                <li>
+                                    <a href="./blog.html">Lectureres</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="./blog.html">Photography</a>
+                                </li>
+                                <li>
+                                    <a href="./blog.html">Other</a>
+                                </li> -->
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <!-- Twitter -->
+                    <!-- <div class="block">
+                        <h6>Twitter</h6>
+                        <div class="twitterfeed"></div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE | BLOG -->
+
+    <!-- JQUERY -->
+    <?php use_javascript('jquery-1.10.2.min.js') ?>
+    
+    
+    <!-- TWITTER BOOTSTRAP -->
+    <?php use_javascript('bootstrap/bootstrap.min.js') ?>
+    <!--[if lt IE 9]>
+        <script src="assets/js/bootstrap/html5shiv.js"></script>
+    <![endif]-->
+    
+    
+    <!-- PLUGINS -->
+
+    <?php use_javascript('plugins/jquery.bxslider.min.js') ?>
+    <?php use_javascript('plugins/jquery.centralized.min.js') ?>
+    <?php use_javascript('plugins/jquery.fixedonlater.min.js') ?>
+    <?php use_javascript('plugins/jquery.hashloader.min.js') ?>
+    <?php use_javascript('plugins/jquery.mixitup.min.js') ?>
+    <?php use_javascript('plugins/jquery.nav.min.js') ?>
+    <?php use_javascript('plugins/jquery.parallax-1.1.3.min.js') ?>
+    <?php use_javascript('plugins/jquery.responsivevideos.min.js') ?>
+    <?php use_javascript('plugins/jquery.scrollTo.min.js') ?>
+    <?php use_javascript('plugins/jquery.tweet.min.js') ?>
+    <?php use_javascript('plugins/jquery.tweetCarousel.min.js') ?>
+    
+    <!-- INITIALIZE -->
+    <?php use_javascript('application/application.min.js') ?>
+    
+    
+    
+    <!-- GOOGLE ANALYTICS -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-44061294-1', 'gridelicious.net');
+        ga('send', 'pageview');
+    </script>
+  </body>
+</html>
