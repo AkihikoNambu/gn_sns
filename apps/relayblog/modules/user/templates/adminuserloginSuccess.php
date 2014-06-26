@@ -42,19 +42,19 @@
                                     <h1>Alumni&Alumnae<br>International<br>Community</h1>
                                 </li>
                             </ul> -->
-                            <?php echo form_tag('user/admilogin') ?>
+                            <?php echo form_tag('user/adminuserlogin') ?>
                             <?php use_helper('Validation')?> 
                             <fieldset>
-                            <p>*please login first.</p>
+                            <p>*please login by your username and password.</p>
                             <div class="form-row">
                               <?php echo form_error('user_name')?>
-                              <label for="user_name">user_name:</label>
+                              <label for="user_name">UserName:</label>
                               <?php echo input_tag('user_name', $sf_params->get('user_name')) ?>
                             </div>
                            
                             <div class="form-row">
                               <?php echo form_error('password')?>
-                              <label for="password">password:</label>
+                              <label for="password">Password:</label>
                               <?php echo input_password_tag('password') ?>
                             </div>
                            
@@ -62,10 +62,6 @@
                            
                             <?php //echo input_hidden_tag('referer', $sf_request->getAttribute('referer')) ?>
                             <?php echo submit_tag('Login') ?>
-                            <br/><br/>
-                            <p>*Don't you have an account?</p>
-                            <?php echo link_to('Sign Up', 'user/add') ?>
-                           
                           </form>
                         </div>
                         <!-- <div class="social-icons sicon-white bordered">

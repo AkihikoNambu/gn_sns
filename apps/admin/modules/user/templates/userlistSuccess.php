@@ -26,9 +26,10 @@
       <!-- <td><?php //echo $applicant->getUpdatedAt() ?></td> -->
       <td><?php echo link_to($user->getId(), 'user/show?id='.$user->getId()) ?></td>
   </tr>
-  <br /><br />
+  <?php endforeach; ?>
+  <br /><br/>
 
   
-  <?php endforeach; ?>
+  
   </tbody>
   </table>

@@ -30,12 +30,16 @@ class myLoginValidator extends sfValidator
     // nicknameが存在するか？
     if ($user)
     {
-      // passwordはOKか？
-      if (sha1($user->getSalt().$password) == $user->getSha1Password())
-      {
-        $this->getContext()->getUser()->signIn($user);
- 
-        return true;
+      if ($user->getCertification() == '1'){
+
+
+        // passwordはOKか？
+        if (sha1($user->getSalt().$password) == $user->getSha1Password())
+        {
+          $this->getContext()->getUser()->signIn($user);
+   
+          return true;
+        }
       }
     }
  

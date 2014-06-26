@@ -65,8 +65,8 @@ class userActions extends sfActions
     }
     else
     {
-      // 最後のページにリダイレクトする
-      return $this->redirect('@homepage');
+      // adminのページにリダイレクトしたい      
+      return $this->redirect('http://localhost:8888/sfprojects/gn_sns/web/admin_dev.php/home/list');
   }
   }
 
@@ -83,7 +83,9 @@ public function handleErrorLogin()
   {
     return sfView::SUCCESS;
   }
-
+public function handleErrorAdminuserlogin(){
+  return sfView::SUCCESS;
+}
 public function executeShow()
   {
     $this->subscriber = UserPeer::retrieveByPk($this->getRequestParameter('id', $this->getUser()->getSubscriberId()));
