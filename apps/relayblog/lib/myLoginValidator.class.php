@@ -15,6 +15,7 @@ class myLoginValidator extends sfValidator
     return true;
   }
  
+ 
   public function execute(&$value, &$error)
   {
     $password_param = $this->getParameter('password');
