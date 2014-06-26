@@ -163,7 +163,7 @@
 						    <div class="form-row">
 							    <!-- <label for="user_name">your facebook url:</label>  -->
 							    <?php echo form_error('facebook') ?>
-							    <?php echo input_tag('facebook', 'facebook url') ?>
+							    <?php echo input_tag('facebook_url', 'facebook url') ?>
 						    </div>
 						    <!-- <div class="form-row">
 							    <label for="user_name">participation year:</label> --> 

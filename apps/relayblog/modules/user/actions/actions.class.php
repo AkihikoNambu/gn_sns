@@ -27,7 +27,11 @@ class userActions extends sfActions
       // フォーム投稿を処理する
       $user = new User();
       $user->setUserName($this->getRequestParameter('user_name'));
-      $user->setPassword($this->getRequestParameter('password'));
+      $user->setFirstName($this->getRequestParameter('first_name'));
+      $user->setMiddleName($this->getRequestParameter('middle_name'));
+      $user->setLastName($this->getRequestParameter('last_name'));
+      $user->setEmail($this->getRequestParameter('email'));
+      $user->setFacebookUrl($this->getRequestParameter('facebook_url'));
       // Certificationを初期値として0に設定する
       $user->setCertification($this->getRequestParameter('certification'));
       $user->save();
