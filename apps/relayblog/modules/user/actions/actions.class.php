@@ -57,6 +57,19 @@ class userActions extends sfActions
   }
 }
 
+  public function executeAdminuserlogin(){
+    if ($this->getRequest()->getMethod() != sfRequest::POST)
+    {
+      // フォームを表示する
+      return sfView::SUCCESS;
+    }
+    else
+    {
+      // 最後のページにリダイレクトする
+      return $this->redirect('@homepage');
+  }
+  }
+
   public function executeLogout()
 {
   $this->getUser()->setAuthenticated(false);
