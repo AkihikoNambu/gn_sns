@@ -141,9 +141,9 @@
 							    <?php echo input_tag('user_name', 'User Name') ?>
 						    </div>
 						    <div class="form-row">
-							    <label for="user_name">first name:</label> 
+							    <!-- <label for="user_name">first name:</label>  -->
 							    <?php echo form_error('first_name') ?>
-							    <?php echo input_tag('first_name') ?>
+							    <?php echo input_tag('first_name', 'First Name') ?>
 						    </div>
 						    <div class="form-row">
 							    <label for="user_name">middle_name:</label> 
