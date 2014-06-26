@@ -133,7 +133,7 @@
                         <h5>who you are</h5>
                         <?php echo form_tag('user/add') ?>
 	
-						<fieldset>
+						<!-- <fieldset> -->
 							<?php echo input_hidden_tag('certification', '0') ?>
 							<div class="form-row">
 							    <!-- <label for="user_name">user_name:</label>  -->
@@ -146,24 +146,24 @@
 							    <?php echo input_tag('first_name', 'First Name') ?>
 						    </div>
 						    <div class="form-row">
-							    <label for="user_name">middle_name:</label> 
+							    <!-- <label for="user_name">middle_name:</label>  -->
 							    <?php echo form_error('middle_name') ?>
-							    <?php echo input_tag('middle_name') ?>
+							    <?php echo input_tag('middle_name', 'Middle Name') ?>
 						    </div>
 						    <div class="form-row">
-							    <label for="user_name">last_name:</label> 
+							    <!-- <label for="user_name">last_name:</label>  -->
 							    <?php echo form_error('last_name') ?>
-							    <?php echo input_tag('last_name') ?>
+							    <?php echo input_tag('last_name', 'Last Name') ?>
 						    </div>
 						    <div class="form-row">
-							    <label for="user_name">e-mail:</label> 
+							    <!-- <label for="user_name">e-mail:</label>  -->
 							    <?php echo form_error('e-mail') ?>
-							    <?php echo input_tag('email') ?>
+							    <?php echo input_tag('email', 'e-mail') ?>
 						    </div>
 						    <div class="form-row">
-							    <label for="user_name">your facebook url:</label> 
+							    <!-- <label for="user_name">your facebook url:</label>  -->
 							    <?php echo form_error('facebook') ?>
-							    <?php echo input_tag('facebook') ?>
+							    <?php echo input_tag('facebook', 'facebook url') ?>
 						    </div>
 						    <!-- <div class="form-row">
 							    <label for="user_name">participation year:</label> --> 
@@ -176,7 +176,7 @@
 							    <?php echo input_password_tag('password') ?>
 						    </div>
 
-						</fieldset> 
+						<!-- </fieldset>  -->
 
 
 						<div class="submit-row">
