@@ -2,7 +2,7 @@
 
 class adminUser extends sfBasicSecurityUser
 {
-	public function adsignIn($user)
+	public function signIn($user)
 	{
 	  $this->setAttribute('adminirator_id', $user->getId(), 'adminirator');
 	  $this->setAuthenticated(true);

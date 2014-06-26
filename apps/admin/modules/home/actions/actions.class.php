@@ -16,6 +16,16 @@ class homeActions extends sfActions
    */
   public function executeIndex()
   {
-    $this->forward('default', 'module');
+    $this->forward('home', 'list');
+  }
+
+  public function executeList()
+  {
+  	// $blog = new Blog();
+  	// $blog->setTitle($this->getRequestParameter('title'));
+  	// $blog->setBody($this->getRequestParameter('body'));
+  	// $blog->save();
+
+
   }
 }

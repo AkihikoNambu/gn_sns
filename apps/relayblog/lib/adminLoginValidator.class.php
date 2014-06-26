@@ -33,7 +33,7 @@ class adminLoginValidator extends sfValidator
       // passwordはOKか？
       if (sha1($user->getSalt().$password) == $user->getSha1Password())
       {
-        $this->getContext()->getUser()->adsignIn($user);
+        $this->getContext()->getUser()->signIn($user);
  
         return true;
       }
