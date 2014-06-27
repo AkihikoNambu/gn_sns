@@ -95,10 +95,14 @@ public function executeShow()
   {
     $this->subscriber = UserPeer::retrieveByPk($this->getRequestParameter('id', $this->getUser()->getSubscriberId()));
     $this->forward404Unless($this->subscriber);
-   
-    $this->interests = $this->subscriber->getInterestsJoinQuestion();
-    $this->answers   = $this->subscriber->getAnswersJoinQuestion();
-    $this->questions = $this->subscriber->getQuestions();
+    // $this->username = $this->subscriber->getUserName();
+    // $this->password = $this->subscriber->getSha1Password();
+    // $this->firstname = $this->subscriber->getFirstName();
+    // $this->lastname = $this->subscriber->getLastName();
+
+    // $this->blog = $this->subscriber->getInterestsJoinQuestion();
+    // $this->answers   = $this->subscriber->getAnswersJoinQuestion();
+    // $this->questions = $this->subscriber->getQuestions();
   }
 
 }
