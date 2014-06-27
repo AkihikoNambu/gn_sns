@@ -64,7 +64,7 @@
                             <?php echo submit_tag('Login') ?>
                             <br/><br/>
                             <p>*Don't you have an account?</p>
-                            <?php echo link_to('Sign Up', 'user/add') ?>
+                            <?php echo button_to('Sign Up', 'user/add') ?>
                            
                           </form>
                         </div>
