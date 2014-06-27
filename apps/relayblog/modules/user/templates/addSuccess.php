@@ -171,10 +171,16 @@
 							    <?php //echo input_select_tag('year') ?>
 						    <!-- </div> -->
 						    <div class="form-row">
-							    <label for="password">password:</label>
-							    <?php echo form_error('password ') ?>
-							    <?php echo input_password_tag('password') ?>
+							    <label for="password1">password:</label>
+							    <?php echo form_error('password1') ?>
+							    <?php echo input_password_tag('password1') ?>
 						    </div>
+                             <div class="form-row">
+                                <label for="password2">enter password again:</label>
+                                <?php echo form_error('password2') ?>
+                                <?php echo input_password_tag('password2') ?>
+                            </div>
+
 
 						<!-- </fieldset>  -->
 
