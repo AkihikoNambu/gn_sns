@@ -18,4 +18,11 @@ class mypageActions extends sfActions
   {
     $this->forward('default', 'module');
   }
+
+  public function executeTop()
+  {
+  	$user = new Criteria();
+  	$user->setUserName();
+  	$user->
+  }
 }
