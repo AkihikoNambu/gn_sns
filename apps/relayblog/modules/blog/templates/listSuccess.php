@@ -4,38 +4,37 @@
             <!-- Header -->
             <header>
                 <h4 class="line-divider">Diary</h4>
-                <h1>Leaders Relay Diary</h1>
-                <div class="row">
+                <h1>World Relay Diary</h1>
+                <!-- <div class="row">
                     <div class="span8 offset2">
                         <div class="input-append">
                           <input class="span5" id="appendedInputButton" type="text" placeholder="Search Blog">
                           <button class="btn btn-primary sicon-search sicon-white" type="button"><i>Search</i></button>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </header>
             <!-- End Header -->
-              <div class="row-fluid">
+            <div class="row-fluid">
                 <div class="span8 blog-details">
                     <!-- Article -->
-                    
                     <article>
                       <?php foreach ($blog_pager->getResults() as $blog): ?>
+                      <?php $writer = $blog->getUser() ?>
                         <!-- Blog image -->
-                        <!-- <a href="blog_1.html"> -->
-                            <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$blog->getImage()) ?>
-                        <!-- </a> -->
+                        <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$blog->getImage()) ?>
                         
                         <!-- Blog title -->
                         <h5>
                             <?php echo $blog->getTitle() ?>
-                            
                             <br/>
-                            <small>Written By <a href="#"><?php echo $blog->getUserId() ?></a>, 
-                                <?php echo $blog->getCreatedAt() ?>　<?php echo link_to($blog->getId(), 'blog/show?id='.$blog->getId()) ?> </small>
+                            <!-- 本来はusernameを表示 -->
+                            <small>Edited By Admin, Written By <?php echo link_to($writer->getUserName()) ?></a>, 
+                                <?php echo $blog->getCreatedAt() ?></small>
                         </h5>
                         
-                        <!-- Blog post description -->
+                        <!-- Blog post description admin側で要約でも書くか -->
+                        <?php //echo $blog->getSummary() ?>
                         <?php echo $blog->getBody() ?>
                         
                         <!-- Blog read more -->
@@ -49,7 +48,8 @@
                         <!-- Blog comments -->
                         <div class="comments">
                             <!-- comment数のカウントを入れること！今は便宜上4 commentsになっている -->
-                            <?php echo count($blog_comments) ?>
+                            <?php $comment_number = $blog->countBlogComments() ?>
+                            <?php echo $comment_number ?>
                             <?php //echo link_to('4 comments', 'blog/show?id='.$blog->getId()) ?>
                         </div>
                         <br>
@@ -74,33 +74,25 @@
                                 <li><?php echo link_to('&raquo;', 'blog/list?page='.$blog_pager->getLastPage()) ?></li>
                             </ul>
                         <?php endif; ?>
-                        <!-- <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">Next</a></li>
-                        </ul> -->
                     </div>
                 </div>
-                <div class="span4 blog-list-right">
+                <!-- <div class="span4 blog-list-right"> -->
                     <!-- Latest blog posts block -->
-                    <div class="block">
+                    <!-- <div class="block">
                         <h6>Lates blog posts</h6>
-                        <ul class="simple-link-list">
-                            <?php foreach ($lates_blogs as $lates_blog): ?>
-                            <li>
-                                <?php echo link_to($lates_blog->getTitle(), 'blog/show?id='.$lates_blog->getId()) ?> <?php echo $lates_blog->getCreatedAt() ?>
-                            </li>
-                        <?php endforeach; ?>
-                        </ul>
-                    </div>
+                        <ul class="simple-link-list"> -->
+                            <?php //foreach ($lates_blogs as $lates_blog): ?>
+                            <!-- <li> -->
+                                <?php //echo link_to($lates_blog->getTitle(), 'blog/show?id='.$lates_blog->getId()) ?> <?php //echo $lates_blog->getCreatedAt() ?>
+                            <!-- </li> -->
+                        <?php //endforeach; ?>
+                        <!-- </ul>
+                    </div> -->
                     <!-- topicリスト -->
-                    <div class="block">
-                        <h6>Other Topics</h6>
-                        <nav class="submenu">
+                    <!-- <div class="block">
+                        <h6>Topics</h6> -->
+                        <!-- ここに連載済み、連載中のテーマをリストアップする -->
+                        <!-- <nav class="submenu">
                             <ul>
                                 <li>
                                     <a href="./blog.html" class="active">All</a>
@@ -114,20 +106,14 @@
                                 <li>
                                     <a href="./blog.html">Traditional Festival</a>
                                 </li>
-                                <!-- <li>
-                                    <a href="./blog.html">Photography</a>
-                                </li>
-                                <li>
-                                    <a href="./blog.html">Other</a>
-                                </li> -->
                             </ul>
-                        </nav>
-                    </div>
+                        </nav> -->
+                    <!-- </div> -->
                 </div>
-              </div>
+            </div>
         </div>
 
-</div>
+    </div>
  
     <!-- JQUERY -->
     <?php use_javascript('jquery-1.10.2.min.js') ?>

@@ -1,8 +1,9 @@
-.user_infomation{
-	float:left;
-	/*height:*/ 200px;
+.user_infomation {
+	
+	/*height: 200px;*/
 }
-/*#image_infomation{
-	height: 200px;
-	width: 200px;
-}*/
+#add_infomation {
+	float: right;
+	/*height: 200px;
+	width: 200px;*/
+}

@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <!-- Sub menu -->
-                <nav class="submenu">
+                <!-- <nav class="submenu">
                     <ul>
                         <li>
                             <a href="./pages/blog/blog.html">All</a>
@@ -31,7 +31,7 @@
                             <a href="./pages/blog/blog.html">Partner</a>
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
             </header>
             <!-- End Header -->
             
@@ -49,34 +49,43 @@
                             <!-- Team memeber details, activated on hover -->
                             <div class="about-overlay img-circle">
                                 <div class="social-icons sicon-white">
+                                    <!-- ユーザー情報をとってきてリンクに入れる -->
                                     <a href="#" class="sicon-facebook"><i>Facebook</i></a>
                                     <a href="#" class="sicon-twitter"><i>Twitter</i></a>
                                     <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
                                     <!-- <a href="#" class="sicon-youtube"><i>Youtube</i></a> -->
-                                    <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
+                                    <!-- <a href="#" class="sicon-pinterest"><i>Pinterest</i></a> -->
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Team member name and function -->
                         <h5>
-                            <?php echo $friend->getTitle() ?><br/>
+                            <!-- タイトルとして紹介するユーザーのfirstnameとlastnameを表示する -->
+                            <?php echo $friend->getTitle() ?>
+                            <?php //echo $friend_info->getFirstName() ?> <?php //echo $friend_info->getLastName() ?>
+                            <br/>
                             <small>
+                                <!-- 小タイトルとして紹介するユーザーのusernameを表示する。 -->
                                 <?php echo $friend->getCreatedAt() ?>
                                 <?php //echo link_to($friend->getCreatedAt(), 'friend/show?id='.$friend->getId()) ?>
-                                <?php //echo $friend->getUserId() ?>
+                                <?php //echo $friend_info->getUserName() ?>
                             </small>
                         </h5>
                         <!-- Team member short info -->
                         <p class="smallFontBy08">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit.
-                            <?php //echo $friend->getBody() ?>
+                            <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,consectetur adipisicing elit. -->
+                            <!-- 小見出しとして国籍、参加年、参加タイプを表示する -->
+                            <?php //echo $friend_info->getNationarity() ?>
+                            <?php //echo $friend_info->getParticipationYear() ?>
+                            <?php //echo $friend_info->getUserType() ?>
                         </p>
                         <div class="page-blog">
                             <div class="read-more">
                                 <?php echo link_to(
                                        'Read More...',
                                        'friend/show?id='.$friend->getId()) ?>
+                                <?php //echo link_to('User Detail...', 'friend/show?id='.$friend->getId()) ?>
                             </div>
                         </div>
                     </li>

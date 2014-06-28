@@ -1,2 +1,4 @@
 default:
   has_layout: off
+
+  stylesheets:    [main, mypage]

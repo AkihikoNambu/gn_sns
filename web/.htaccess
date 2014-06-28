@@ -22,5 +22,13 @@ Options +FollowSymLinks +ExecCGI
   RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
 
+
 # big crash from our front web controller
 ErrorDocument 500 "<h2>Application error</h2>symfony application failed to start properly"
+
+AuthType Basic
+AuthName "Input your ID and Password."
+AuthUserFile /Users/AkihikoNambu/Desktop/.htpasswd
+<Files ~”php”>
+require valid-user
+</Files>

@@ -146,7 +146,7 @@
                              <div class="item">
                                 <!-- Friend image -->
                                 <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$lates_friend->getImage(), 
-                                array("height"=>"280", "width"=>"280", "class"=>"img-circle")) ?>
+                                array("class"=>"img-circle")) ?>
 
                                 <!-- Friend details, activated on hover -->
                                 <div class="about-overlay img-circle">
@@ -155,7 +155,7 @@
                                         <a href="#" class="sicon-facebook"><i>Facebook</i></a>
                                         <a href="#" class="sicon-twitter"><i>Twitter</i></a>
                                         <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
-                                        <a href="#" class="sicon-pinterest"><i>Pinterest</i></a>
+                                        <!-- <a href="#" class="sicon-pinterest"><i>Pinterest</i></a> -->
                                     </div>
                                 </div>
                             </div>
@@ -172,6 +172,7 @@
                                     <?php echo link_to(
                                            'Read More...',
                                            'friend/show?id='.$lates_friend->getId()) ?>
+                                    <?php //echo link_to('User Detail...', 'friend/show?id='.$friend->getId()) ?>
                                 </div>
                             </div>
                         </li>
@@ -244,19 +245,25 @@
                 <ul class="thumbnails">
                     <!-- Blog post -->
                     <?php foreach ($lates_blogs as $lates_blog): ?>
+                    <?php $writer = $lates_blog->getUser() ?>
                         <li class="span4">
                             <!-- Blog image -->
                                 <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$lates_blog->getImage(), array('class'=>'blog-thumnail')) ?>
                             
                             <!-- Blog title -->
                             <h5>
+                                <!-- 連載タイトル（何回目）と記入する -->
                                 <?php echo $lates_blog->getTitle(); ?><br/>
-                                <small><?php echo $lates_blog->getCreatedAt(); ?> Posted By Admin, 
-                                        Edited By <?php echo $lates_blog->getUserId(); ?></small></a>
+                                <small>
+                                    <?php //echo $lates_blog->getCreatedAt(); ?>
+                                    <!-- ブログでもユーザーの詳細情報を引っ張ってこなければならない。本来はidではなくusername -->
+                                    Posted By Admin, Written By <?php echo link_to($writer->getUserName(), array('class'=>'writer-name')) ?></small></a>
                             </h5>
                             
                             <!-- Blog post description -->
-                            <p class="smallFontBy08"><?php echo $lates_blog->getBody(); ?></p>
+                            <!-- <p class="smallFontBy08"> -->
+                                <?php //echo $lates_blog->getBody(); ?>
+                            <!-- </p> -->
                             
                             <!-- Blog read more -->
                             <div class="page-blog">
