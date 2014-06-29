@@ -4,7 +4,10 @@
             <!-- Header -->
             <header>
                 <h4 class="line-divider">friend</h4>
-                <h1>Meet Friends</h1>
+                <h1>Meet Friends
+                    <!-- ここにタイトル、つまりユーザーのfirstnameとlastnameを挿入 -->
+                    <?php //echo $friend_info->getFirstName() ?> <?php //echo $friend_info->getLastName() ?>
+                </h1>
                 <!-- <div class="row">
                     <div class="span8 offset2">
                         <div class="input-append">
@@ -27,10 +30,10 @@
                         <h5>
 
                             <!-- <br/> -->
-                            <small>Posted By <a href="#"><?php echo $friend->getUserId() ?></a>,
-                            	 <?php echo $friend->getCreatedAt() ?>　<?php echo $friend->getId() ?>
-                            	 		<!-- ここにリレータイトルを入れたい！！ -->
-                            	 	 <a href="#">Photography</a></small>
+                            <small>Posted At <?php echo $friend->getCreatedAt() ?>
+                            	 	<!-- ここはユーザーのタイプ -->
+                                    <?php //echo $friend_info->getUserType() ?>
+                            	 	 <!-- <a href="#">Photography</a></small> -->
                         </h5>
                         
                         <!-- Blog post description -->
@@ -39,26 +42,37 @@
                     </article>
                     <!-- End Article -->
                     
-                    <!-- Blog comments -->
+                    <!-- Friend comments -->
+                    <!-- commentにもページャ的なものが必要 -->
                     <div class="comments">
-                        <a href="#"><?php echo $comment_number ?> comments</a>
+                        <?php echo $comment_number ?> comments
                     </div>
                     <div class="comments-details">
                         <?php foreach ($friend_comments as $friend_comment): ?>
+                        <?php $comment_user = $friend_comment->getUser() ?>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img src="http://placehold.it/60x60" width="60"/>
+                                    <!-- セッション情報から投稿者の情報を取得する -->
+                                    <!-- 投稿者の画像表示 -->
+
+                                    <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$comment_user->getImage(), array('class'=>'commentuser-image')) ?>
+                                    <!-- <img src="http://placehold.it/60x60" width="60"/> -->
                                 </div> 
                                 <div class="media-body">
                                     <div class="comments-post-info">
-                                        <small><a href="#">Akihiko Nambu</a> <?php echo $friend_comment->getCreatedAt() ?>, </small>
+                                        <small>
+                                            <!-- 投稿者の名前を表示 -->
+                                            <!-- <a href="#">Akihiko Nambu</a> -->
+                                            
+                                            <?php echo $comment_user->getUserName() ?>
+                                            <?php echo $friend_comment->getCreatedAt() ?>, </small>
                                     </div>
                                     <p>
                                         <?php echo $friend_comment->getBody() ?>
                                     </p>
                                 </div>
                             </div>
-                        <?php endforeach ?>
+                        <?php endforeach; ?>
                     </div>
                     <!-- End Blog comments -->
                     
@@ -75,8 +89,8 @@
                                     <?php echo form_tag('friend/comment') ?>
                                     <!-- コメントと同時にそのブログのidを取得し一緒に保存する -->
                                     <?php echo object_input_hidden_tag($friend, 'getId') ?>
-                                    <?php echo textarea_tag('body', '', array('size' => '30x3',)) ?>
-                                    <?php echo submit_tag('Send') ?>
+                                    <?php echo textarea_tag('body', '', array('size' => '100x2')) ?><br/>
+                                    <?php echo submit_tag('Post a comment', array('class'=>'btn btn-primary')) ?>
                                 </form>
                             </div>
                         </div>
@@ -90,14 +104,15 @@
                         <ul class="simple-link-list">
                             <?php foreach ($lates_friends as $lates_friend): ?>
                             <li>
-                                <?php echo link_to($lates_friend->getTitle(), 'friend/show?id='.$lates_friend->getId()) ?> <?php echo $lates_friend->getCreatedAt() ?>
+                                <!-- タイトルとしてユーザーのfirstname, lastnameを表示し、記事へのリンクを貼る -->
+                                <?php echo link_to($lates_friend->getTitle(), 'friend/show?id='.$lates_friend->getId()) ?>
                             </li>
                         <?php endforeach; ?>
                         </ul>
                     </div>
                     
                     <!-- Tags -->
-                    <div class="block">
+                    <!-- <div class="block">
                         <h6>Other Topics</h6>
                         <nav class="submenu">
                             <ul>
@@ -112,16 +127,16 @@
                                 </li>
                                 <li>
                                     <a href="./blog.html">Lectureres</a>
-                                </li>
+                                </li> -->
                                 <!-- <li>
                                     <a href="./blog.html">Photography</a>
                                 </li>
                                 <li>
                                     <a href="./blog.html">Other</a>
                                 </li> -->
-                            </ul>
+                            <!-- </ul>
                         </nav>
-                    </div>
+                    </div> -->
                     
                     <!-- Twitter -->
                     <!-- <div class="block">

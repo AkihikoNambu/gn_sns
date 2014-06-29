@@ -20,6 +20,7 @@ class myUser extends sfBasicSecurityUser
 	}
 	public function getSubscriberId()
 	{
+		// 第２引数は第１引数がセットされていないとき
 	  return $this->getAttribute('subscriber_id', '', 'subscriber');
 	}
 	 

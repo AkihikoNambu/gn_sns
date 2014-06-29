@@ -10,11 +10,8 @@
 <table>
 <tbody> 
 <tr>
-  <th>User:</th>
-  <td><?php echo object_select_tag($blog, 'getUserId', array (
-  'related_class' => 'User',
-  'include_blank' => true,
-)) ?></td>
+  <th>Written By (user_id):</th>
+  <td><?php echo input_tag('user_id', '') ?></td>
 </tr>
 <tr>
   <th>Title:</th>

@@ -49,6 +49,7 @@ propel:
    body: longvarchar
    created_at:
    updated_at:
+
 #alumni紹介記事に対するコメント情報
  friend_comment:
    friend_id:
@@ -56,6 +57,7 @@ propel:
    body: longvarchar
    created_at:
    updated_at:
+
 #conference reportに関する情報
  report:
    image: longvarchar

@@ -2,7 +2,19 @@
     <div class="pages page-blog-list" id="page-blog-list">
         <div class="container">
             <!-- Header -->
-            
+            <header>
+                <h4 class="line-divider">Diary</h4>
+                <!-- <h1>Leaders Relay Diary</h1> -->
+                <h1><?php echo $blog->getTitle() ?></h1>
+                <!-- <div class="row">
+                    <div class="span8 offset2">
+                        <div class="input-append">
+                          <input class="span5" id="appendedInputButton" type="text" placeholder="Search Blog">
+                          <button class="btn btn-primary sicon-search sicon-white" type="button"><i>Search</i></button>
+                        </div>
+                    </div>
+                </div> -->
+            </header>
             <!-- End Header -->
 
             <div class="row-fluid">
@@ -13,7 +25,14 @@
                         <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$blog->getImage()) ?>
                         
                         <!-- Blog title -->
-                        
+                        <h5>
+                            <?php echo $blog->getTitle() ?><br/>
+                            <small>Posted By Admin, Written By <a href="#"><?php echo $blog->getUserId() ?></a>,
+                            	 <?php echo $blog->getCreatedAt() ?>
+                            	 		<!-- ここにリレータイトルを入れたい！！ -->
+                            	 	 <!-- <a href="#">Photography</a> -->
+                                    </small>
+                        </h5>
                         
                         <!-- Blog post description -->
                         <?php echo $blog->getBody() ?>
@@ -23,10 +42,60 @@
                         
                     </article>
                     <!-- End Article -->
+                                        
+                    <!-- Blog comments -->
+                    <div class="comments">
+                        <?php echo $comment_number ?> comments
+                    </div>
+                    <div class="comments-details">
+                        <?php foreach ($blog_comments as $blog_comment): ?>
+                        <?php $comment_user = $blog_comment->getUser() ?>
+                            <div class="media">
+                                <div class="pull-left">
+                                    <!-- セッション情報から投稿者情報を取得 -->
+                                    <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$comment_user->getImage(), array('class'=>'commentuser-image')) ?>
+                                    <!-- <img src="http://placehold.it/60x60" width="60"/> -->
+                                </div> 
+                                <div class="media-body">
+                                    <div class="comments-post-info">
+                                        <small><a href="#">
+                                            <?php echo $comment_user->getUserName() ?>
+                                        </a> <?php echo $blog_comment->getCreatedAt() ?></small>
+                                    </div>
+                                       <p>
+                                        <?php echo $blog_comment->getBody() ?>
+                                       </p>    
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <!-- End Blog comments -->
+
                     
-                    
+                    <!-- Blog Write comment -->
+                    <div class="write-comment" id="write-replay">
+                        <h6>Drop a comment</h6>
+                        <!-- <p>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+                        </p> -->
+                        <div class="row-fluid">
+                            <div class="span8">
+                                <?php use_helper('Object') ?>
+                                <!-- blogのcommentアクションに渡す -->
+                                <?php echo form_tag('blog/comment') ?>
+                                <!-- コメントと同時にそのブログのidを取得し一緒に保存する -->
+                                <?php echo object_input_hidden_tag($blog, 'getId') ?>
+                                <?php echo textarea_tag('body', '', array('size' => '100x2')) ?><br/>
+                                <?php echo submit_tag('Post a comment', array('class'=>'btn btn-primary')) ?>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Blog Write comment -->
+
 
                 </div>
+                <!-- 最新記事を載せる５件まで -->
                 <div class="span4 blog-list-right">
                     <!-- Latest blog posts block -->
                     <div class="block">
@@ -55,7 +124,7 @@
                     
                     <!-- Tags -->
                     <div class="block">
-                        <h6>Other Topics</h6>
+                        <h6>Topics</h6>
                         <nav class="submenu">
                             <ul>
                                 <li>
@@ -70,12 +139,6 @@
                                 <li>
                                     <a href="./blog.html">Traditional Festival</a>
                                 </li>
-                                <!-- <li>
-                                    <a href="./blog.html">Photography</a>
-                                </li>
-                                <li>
-                                    <a href="./blog.html">Other</a>
-                                </li> -->
                             </ul>
                         </nav>
                     </div>

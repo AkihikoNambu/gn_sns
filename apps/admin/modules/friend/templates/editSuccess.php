@@ -12,10 +12,9 @@
 <tbody>
 <tr>
   <th>User:</th>
-  <td><?php echo object_input_tag($friend, 'getUserId', array (
-  'related_class' => 'User',
-  'include_blank' => true,
-)) ?></td>
+  <td><?php //echo object_input_tag($friend, 'getUserId', array ('related_class' => 'User', 'include_blank' => true,)) ?>
+      <?php echo input_tag('user_id') ?>
+  </td>
 </tr>
 <tr>
   <th>Title:</th>

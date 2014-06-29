@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- META DATA -->
@@ -71,5 +71,6 @@
     <!-- END NAVIGATION -->
     
     <?php echo $sf_data->getRaw('sf_content') ?>
+
   </body>
 </html>

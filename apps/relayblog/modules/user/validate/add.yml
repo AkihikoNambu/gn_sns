@@ -1,15 +1,40 @@
+fillin:
+  enabled: true
+
 methods:
- post:	[user_name, password]
+ post:	[user_name, password1, password2]
 
 names:
  user_name:	
-  required:	Yes
-  required_msg:	You must give a user_name  to your register
+  required:	true
+  required_msg:	You must give a user_name to your register
 
- password:
-  required: Yes
+# fields:
+ password1:
+  required: true
   required_msg: You must give a password to your register
-  validators:	passwordValidator
+  validators: passwordValidator
+  validators: compareValidator
+
+ password2:
+  required: true
+  required_msg: You must give a password to your register
+
+compareValidator:
+  class: sfCompareValidator
+  param:
+    check: password2
+    compare_error: not match
+
+ # password1:
+ #  required:
+ #    msg:      パスワードを入力してください
+ # password2:
+ #  required:
+ #    msg:      パスワードを再入力してください
+ #  sfCompareValidator:
+ #    check:    password1
+ #    compare_error: 2つのパスワードが一致しません
 
 passwordValidator:
   class:	sfStringValidator

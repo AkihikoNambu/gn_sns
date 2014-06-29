@@ -132,55 +132,71 @@
                     <div class="span6">
                         <h5>who you are</h5>
                         <?php echo form_tag('user/add') ?>
-	
 						<!-- <fieldset> -->
-							<?php echo input_hidden_tag('certification', '0') ?>
-							<div class="form-row">
-							    <!-- <label for="user_name">user_name:</label>  -->
-							    <?php echo form_error('user_name') ?>
-							    <?php echo input_tag('user_name', 'User Name') ?>
-						    </div>
-						    <div class="form-row">
-							    <!-- <label for="user_name">first name:</label>  -->
-							    <?php echo form_error('first_name') ?>
-							    <?php echo input_tag('first_name', 'First Name') ?>
-						    </div>
-						    <div class="form-row">
+						<?php echo input_hidden_tag('certification', '0') ?>
+                        <table>
+							<tr class="form-row">
+                                <th>user_name:  </th> 
+                                <?php echo form_error('user_name') ?>
+                                <td><?php echo input_tag('user_name') ?></td>
+						    </tr>
+						    <tr class="form-row">
+							    <!-- <label for="user_name"> -->
+                                <th>First Name:  </th>
+                                <?php echo form_error('first_name') ?>
+							    <td><?php echo input_tag('first_name') ?></td>
+						    </tr>
+						    <tr class="form-row">
 							    <!-- <label for="user_name">middle_name:</label>  -->
+                                <th>Middle Name:  </th>
 							    <?php echo form_error('middle_name') ?>
-							    <?php echo input_tag('middle_name', 'Middle Name') ?>
-						    </div>
-						    <div class="form-row">
+							    <td><?php echo input_tag('middle_name') ?></td>
+						    </tr>
+						    <tr class="form-row">
 							    <!-- <label for="user_name">last_name:</label>  -->
+                                <th>Last Name:  </th>
 							    <?php echo form_error('last_name') ?>
-							    <?php echo input_tag('last_name', 'Last Name') ?>
-						    </div>
-						    <div class="form-row">
+							    <td><?php echo input_tag('last_name') ?></td>
+						    </tr>
+						    <tr class="form-row">
 							    <!-- <label for="user_name">e-mail:</label>  -->
+                                <th>E-MAIL:  </th>
 							    <?php echo form_error('e-mail') ?>
-							    <?php echo input_tag('email', 'e-mail') ?>
-						    </div>
-						    <div class="form-row">
+							    <td><?php echo input_tag('email') ?></td>
+						    </tr>
+						    <tr class="form-row">
 							    <!-- <label for="user_name">your facebook url:</label>  -->
+                                <th>Your facebook URL:  </th>
 							    <?php echo form_error('facebook') ?>
-							    <?php echo input_tag('facebook_url', 'facebook url') ?>
-						    </div>
+							    <td><?php echo input_tag('facebook_url') ?></td>
+						    </tr>
 						    <!-- <div class="form-row">
 							    <label for="user_name">participation year:</label> --> 
 							    <?php //echo form_error('user_name') ?>
 							    <?php //echo input_select_tag('year') ?>
 						    <!-- </div> -->
-						    <div class="form-row">
-							    <label for="password">password:</label>
-							    <?php echo form_error('password ') ?>
-							    <?php echo input_password_tag('password') ?>
-						    </div>
+						    <tr class="form-row">
+							    <!-- <label for="password1">password:  </label> -->
+                                <th>password:  </th>
+							    <?php echo form_error('password1') ?>
+							    <td><?php echo input_password_tag('password1') ?></td>
+						    </tr>
+                            <tr class="form-row">
+                                <!-- <label for="password2">enter the password again:  </label> -->
+                                <th>password again:  </th>
+                                <?php echo form_error('password2') ?>
+                                <td><?php echo input_password_tag('password2') ?></td>
+                            </tr>
+                            <tr class="form-row">
+                                <th></th>
+                                <td class="submit-button"><?php echo submit_tag('SUBMIT', array('class'=>'btn btn-primary')) ?></td>
+                            </tr>
+                        </table>
+
 
 						<!-- </fieldset>  -->
-
-
 						<div class="submit-row">
-						    <?php echo submit_tag('apply') ?>
+						    <?php //echo submit_tag('SUBMIT', array('class'=>'btn', 'class'=>'btn-primary')) ?>
 						</div>
 						</form>
                         <!-- <form>

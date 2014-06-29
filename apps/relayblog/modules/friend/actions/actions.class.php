@@ -31,23 +31,26 @@ class friendActions extends sfActions
     $this->friend = FriendPeer::retrieveByPk($this->getRequestParameter('id'));
     $this->forward404Unless($this->friend);
 
+    $this->friend_comments = $this->friend->getFriendComments();
   //friendに対するcommentをテンプレートに渡す
     //friend_commentのレコードを取ってくる
-    $c_comment = new Criteria();
+    //$c_comment = new Criteria();
     //取ってくる条件を指定する。friend_idに沿って取ってくる
-    $c_comment->add(FriendCommentPeer::FRIEND_ID, $this->friend->getId());
+    //$c_comment->add(FriendCommentPeer::FRIEND_ID, $this->friend->getId());
     //friend_commentのレコードを昇順で取ってくる
-    $c_comment->addAscendingOrderByColumn(FriendCommentPeer::ID);
+    //$c_comment->addAscendingOrderByColumn(FriendCommentPeer::ID);
     //blog_commentsとしてテンプレートに渡す
-    $this->friend_comments = FriendCommentPeer::doSelect($c_comment);
+    //$this->friend_comments = FriendCommentPeer::doSelect($c_comment);
+
 
   //commentの数をカウントする
     //基準設定
-    $c_count = new Criteria();
+    $this->comment_number = $this->friend->countFriendComments();
+    //$c_count = new Criteria();
     //基準としてフレンドのidを設定。これでフレンドごとのコメント数がわかる
-    $c_count->add(FriendCommentPeer::FRIEND_ID, $this->friend->getId());
+    //$c_count->add(FriendCommentPeer::FRIEND_ID, $this->friend->getId());
     //doCountメソッドでカウントし、テンプレートに渡す
-    $this->comment_number = FriendCommentPeer::doCount($c_count);
+    //$this->comment_number = FriendCommentPeer::doCount($c_count);
 
   //ブログの最新記事を取得
     $c_lates = new Criteria();
@@ -85,12 +88,14 @@ class friendActions extends sfActions
 
   public function executeComment()
   {
+    $subscriber_id = $this->getUser()->getSubscriberId();
     $friend_id = $this->getRequestParameter('id');
-    $friend_comment = new FriendComment();
 
+    $friend_comment = new FriendComment();
     //useridを取得しfriend_commentのパラメーターに持たせる。
     //(今は省略)
     $friend_comment->setFriendId($friend_id);
+    $friend_comment->setUserId($subscriber_id);
     $friend_comment->setBody($this->getRequestParameter('body'));
     
     $friend_comment->save();

@@ -34,7 +34,7 @@ class userActions extends sfActions
       $user->setFacebookUrl($this->getRequestParameter('facebook_url'));
       // Certificationを初期値として0に設定する
       $user->setCertification($this->getRequestParameter('certification'));
-      $user->setPassword($this->getRequestParameter('password'));
+      $user->setPassword($this->getRequestParameter('password1'));
       $user->save();
 
     return $this->redirect('@homepage');

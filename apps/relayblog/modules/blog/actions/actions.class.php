@@ -49,14 +49,15 @@ class blogActions extends sfActions
     $this->forward404Unless($this->blog);
 
   //blogに対するcommentをテンプレートに渡す
+    $this->blog_comments = $this->blog->getBlogComments();
     //blog_commentのレコードを取ってくる
-    $c_comment = new Criteria();
+    // $c_comment = new Criteria();
     //取ってくる条件を指定する。blog_idに沿って取ってくる
-    $c_comment->add(BlogCommentPeer::BLOG_ID, $this->blog->getId());
+    // $c_comment->add(BlogCommentPeer::BLOG_ID, $this->blog->getId());
     //blog_commentのレコードを昇順で取ってくる
-    $c_comment->addAscendingOrderByColumn(BlogCommentPeer::ID);
+    // $c_comment->addAscendingOrderByColumn(BlogCommentPeer::ID);
     //blog_commentsとしてテンプレートに渡す
-    $this->blog_comments = BlogCommentPeer::doSelect($c_comment);
+    // $this->blog_comments = BlogCommentPeer::doSelect($c_comment);
 
   //commentの数をカウントする
     //基準設定
@@ -116,6 +117,7 @@ class blogActions extends sfActions
 
   public function executeComment()
   {
+    $subscriber_id = $this->getUser()->getSubscriberId();
     $blog_id = $this->getRequestParameter('id');
 
     $blog_comment = new BlogComment();
@@ -124,6 +126,7 @@ class blogActions extends sfActions
     // $blog_comment->setUserId($this->getRequestParameter('user_id') ? $this->getRequestParameter('user_id') : null);
     // $this->subscriber = UserPeer::retrieveByPk($this->getRequestParameter('id', $this->getUser()->getSubscriberId()));
     $user = $this->getUser()->getAttribute('user_name', $user->getUserName(), 'subscriber');
+
     //idをblogidにセット
     $blog_comment->setBlogId($blog_id);
     $blog_comment->setBody($this->getRequestParameter('body'));
