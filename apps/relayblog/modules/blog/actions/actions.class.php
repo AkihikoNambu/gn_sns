@@ -119,8 +119,11 @@ class blogActions extends sfActions
     $blog_id = $this->getRequestParameter('id');
 
     $blog_comment = new BlogComment();
+    $user = new User();
     //useidは本来セッションから取得できるので、こんな書き方をする必要はない
-    $blog_comment->setUserId($this->getRequestParameter('user_id') ? $this->getRequestParameter('user_id') : null);
+    // $blog_comment->setUserId($this->getRequestParameter('user_id') ? $this->getRequestParameter('user_id') : null);
+    // $this->subscriber = UserPeer::retrieveByPk($this->getRequestParameter('id', $this->getUser()->getSubscriberId()));
+    $user = $this->getUser()->getAttribute('user_name', $user->getUserName(), 'subscriber');
     //idをblogidにセット
     $blog_comment->setBlogId($blog_id);
     $blog_comment->setBody($this->getRequestParameter('body'));

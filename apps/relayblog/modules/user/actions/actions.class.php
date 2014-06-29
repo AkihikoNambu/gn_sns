@@ -104,5 +104,10 @@ public function executeShow()
     // $this->answers   = $this->subscriber->getAnswersJoinQuestion();
     // $this->questions = $this->subscriber->getQuestions();
   }
+public function executeMypageshow()
+{
+  $this->user = UserPeer::retrieveByPk($this->getRequestParameter('id'));
+  $this->forward404Unless($this->user);
+}
 
 }

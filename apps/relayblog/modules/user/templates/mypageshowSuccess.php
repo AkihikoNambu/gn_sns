@@ -9,14 +9,16 @@
                 <div class="span8 blog-details">
                     <!-- Article -->
                     <article>
-                        <!-- Blog image -->
-                        <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$blog->getImage()) ?>
-                        
-                        <!-- Blog title -->
-                        
+                        <!-- Profile image -->
+                        <?php if($user->getImage() != 'Null'): ?>
+                            <h3>No Image</h3>
+                        <?php else: ?>
+                            <?php echo $user->getImage() ?>
+                        <?php endif ?>
+            
                         
                         <!-- Blog post description -->
-                        <?php echo $blog->getBody() ?>
+                        <?php echo $user->getSelfIntroduction() ?>
                         <hr />
 						<?php //echo link_to('edit', 'blog/edit?id='.$blog->getId()) ?>
 						&nbsp;<?php //echo link_to('list', 'blog/list') ?>
@@ -30,10 +32,10 @@
                 <div class="span4 blog-list-right">
                     <!-- Latest blog posts block -->
                     <div class="block">
-                        <h6>Lates blog posts</h6>
+                        <h6>User imfomation</h6>
                         <ul class="simple-link-list">
                             <li>
-                                <a href="blog_1.html" class="active">Blog post title 1</a>
+                                <a><?php echo $subscriber->getUserName() ?></a>
                             </li>
                             <li>
                                 <a href="blog_2.html">Blog post title 2</a>

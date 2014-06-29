@@ -21,6 +21,10 @@
 				<th>e-mail: </th>
 				<td><?php echo $subscriber->getEmail() ?></td>
 			</tr>
+			<tr>
+				<th>Facebook: </th>
+				<td><?php echo $subscriber->getfacebookUrl() ?></td>
+			</tr>
 		</table>
 	</div>
 	<div id = 'user_image'>
@@ -32,7 +36,12 @@
 	</div>
 </div>
 
-<div id = 'contribution_infomation'>
-
-
+<div class = 'contribution_infomation'>
+	<div id = 'contribution_blog'>
+		<h4>Your contributed blog.</h4>
+		<?php echo $subscriber->getBlog() ?>
+	</div>
+	<div id = 'contribution_friend'>
+		<h4>Your contriguted infomation of Meet Friends.</h4>
+	<div>
 </div>
