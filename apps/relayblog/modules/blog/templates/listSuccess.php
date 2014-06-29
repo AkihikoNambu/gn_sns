@@ -20,7 +20,7 @@
                     <!-- Article -->
                     <article>
                       <?php foreach ($blog_pager->getResults() as $blog): ?>
-                      <?php $writer = $blog->getUser() ?>
+                      <?php //$writer = $blog->getUser() ?>
                         <!-- Blog image -->
                         <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$blog->getImage()) ?>
                         
@@ -29,7 +29,8 @@
                             <?php echo $blog->getTitle() ?>
                             <br/>
                             <!-- 本来はusernameを表示 -->
-                            <small>Edited By Admin, Written By <?php echo link_to($writer->getUserName()) ?></a>, 
+                            <small>Edited By Admin, Written By 
+                                <?php //echo link_to($writer->getUserName()) ?>, 
                                 <?php echo $blog->getCreatedAt() ?></small>
                         </h5>
                         

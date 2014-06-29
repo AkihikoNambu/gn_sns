@@ -95,6 +95,15 @@ public function executeShow()
   {
     $this->subscriber = UserPeer::retrieveByPk($this->getRequestParameter('id', $this->getUser()->getSubscriberId()));
     $this->forward404Unless($this->subscriber);
+    //変更するために新しくおく
+    $this->subscriber->setUserName($this->getRequestParameter('user_name'));
+    $this->subscriber->setFirstName($this->getRequestParameter('first_name'));
+    $this->subscriber->setMiddleName($this->getRequestParameter('middle_name'));
+    $this->subscriber->setLastName($this->getRequestParameter('last_name'));
+    $this->subscriber->setEmail($this->getRequestParameter('email'));
+    $this->subscriber->setFacebookUrl($this->getRequestParameter('facebook_url'));
+    $this->subscriber->setPassword($this->getRequestParameter('password1'));
+    $this->subscriber->save();
     // $this->username = $this->subscriber->getUserName();
     // $this->password = $this->subscriber->getSha1Password();
     // $this->firstname = $this->subscriber->getFirstName();

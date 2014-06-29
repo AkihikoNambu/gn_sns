@@ -72,30 +72,48 @@
 <div class = 'user_infomation'>	
 	<div id = 'add_infomation'>
 		<table>
-			<tr>
+            <?php echo form_tag('user/show') ?>
+            <tr class="form-row">
+                <th>Property</th>
+                <th>Your infomation</th>
+                <th>modification</th>
+            </tr>
+			<tr class="form-row">
 				<th>UserName: </th>
 				<td><?php echo $subscriber->getUserName() ?></td>
+                <td><?php echo input_tag('user_name')?></td>
 			</tr>
-			<tr>
+			<tr class="form-row">
 				<th>FirstName: </th>
 				<td><?php echo $subscriber->getFirstName() ?></td>
+                <td><?php echo input_tag('first_name')?></td>
 			</tr>
-			<tr>
+			<tr class="form-row">
 				<th>MiddleName: </th>
 				<td><?php echo $subscriber->getMiddleName() ?></td>
+                <td><?php echo input_tag('middle_name')?></td>
 			</tr>
-			<tr>
+			<tr class="form-row">
 				<th>LastName: </th>
 				<td><?php echo $subscriber->getLastName() ?></td>
+                <td><?php echo input_tag('ladt_name')?></td>
 			</tr>
-			<tr>
+			<tr class="form-row">
 				<th>e-mail: </th>
 				<td><?php echo $subscriber->getEmail() ?></td>
+                <td><?php echo input_tag('email')?></td>
 			</tr>
-			<tr>
+			<tr class="form-row">
 				<th>Facebook: </th>
 				<td><?php echo $subscriber->getfacebookUrl() ?></td>
+                <td><?php echo input_tag('facebook_url')?></td>
 			</tr>
+            <tr class="form-row">
+                <th></th>
+                <td></td>
+                <td class="submit-button"><?php echo submit_tag('SUBMIT') ?></td>
+            </tr>
+        </form>
 		</table>
 	</div>
 	<div id = 'user_image'>
@@ -107,7 +125,7 @@
 	</div>
 </div>
 
-<div class = 'contribution_infomation'>
+<!-- <div class = 'contribution_infomation'>
 	<div id = 'contribution_blog'>
 		<h4>Your contributed blog.</h4>
 		<?php echo $subscriber->getBlog() ?>
@@ -115,5 +133,7 @@
 	<div id = 'contribution_friend'>
 		<h4>Your contriguted infomation of Meet Friends.</h4>
 	<div>
-</div>
+</div> -->
+</body>
+</html>
 
