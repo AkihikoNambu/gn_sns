@@ -4,11 +4,9 @@
         <div class="container">
             <!-- Header -->
             <header>
-<<<<<<< HEAD
-                <h4 class="line-divider"><?php echo $subscriber->getUserName()?></h4>
-=======
+
                 <h4 class="line-divider"><?php echo $user->getUserName()?> Infomation</h4>
->>>>>>> bc8ab533c15e7916f2ced385beb5aed19699d9f7
+
                 <!-- <h1>Leaders Relay Diary</h1> -->
                 <!-- <h1><?php //echo $user->getUserName() ?></h1> -->
                 <!-- <div class="row">
