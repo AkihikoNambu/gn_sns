@@ -1071,6 +1071,7 @@ footer {
 *   Fixed elements, top or bottom.
 */
 .fixed-top {
+  /*position fixedは位置固定+スクロールしても位置が変わらない。*/
   position: fixed;
   top: 0px;
   opacity: 0;

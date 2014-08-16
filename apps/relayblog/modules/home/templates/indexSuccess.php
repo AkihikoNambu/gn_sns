@@ -152,9 +152,12 @@
                                 <div class="about-overlay img-circle">
                                     <div class="social-icons sicon-white">
                                         <!-- このアイコンへのリンクのはりこみが以外と難しそう -->
-                                        <a href="#" class="sicon-facebook"><i>Facebook</i></a>
-                                        <a href="#" class="sicon-twitter"><i>Twitter</i></a>
-                                        <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a>
+                                        <!-- <a href="#" class="sicon-facebook"><i>Facebook</i></a> -->
+                                        <?php echo link_to('<i>Facebook</i>', '', array('class'=>'sicon-facebook')) ?>
+                                        <?php echo link_to('<i>Twitter</i>', '', array('class'=>'sicon-twitter')) ?>
+                                        <?php echo link_to('<i>LinkedIn</i>', '', array('class'=>'sicon-linkedin')) ?>
+                                        <!-- <a href="#" class="sicon-twitter"><i>Twitter</i></a> -->
+                                        <!-- <a href="#" class="sicon-linkedin"><i>LinkedIn</i></a> -->
                                         <!-- <a href="#" class="sicon-pinterest"><i>Pinterest</i></a> -->
                                     </div>
                                 </div>
@@ -257,7 +260,7 @@
                                 <small>
                                     <?php //echo $lates_blog->getCreatedAt(); ?>
                                     <!-- ブログでもユーザーの詳細情報を引っ張ってこなければならない。本来はidではなくusername -->
-                                    Posted By Admin, Written By <?php echo link_to($writer->getUserName(), array('class'=>'writer-name')) ?></small></a>
+                                    Posted By Admin, Written By <?php echo link_to($writer->getUserName(), '', array('class'=>'writer-name')) ?></small></a>
                             </h5>
                             
                             <!-- Blog post description -->

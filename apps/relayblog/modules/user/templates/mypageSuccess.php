@@ -1,32 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- META DATA -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    
-    <meta name="description" content="Treble theme - One Page Responsive Theme - Gridelicious.net">
-    <title>Global Nextleaders Forum</title>
 
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="assets/images/ico/favicon.png">
-                                   
-    
-    <!-- GOOGLE WEB FONTS -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css'>
-  </head>
-  <body>
-<!-- PAGE | BLOG -->
+<!-- PAGE | mypage -->
     <div class="pages page-blog-list" id="page-blog-list">
         <div class="container">
             <!-- Header -->
             <header>
-                <h4 class="line-divider"><?php echo $subscriber->getUserName()?> Infomation</h4>
+                <h4 class="line-divider"><?php echo $subscriber->getUserName()?></h4>
                 <!-- <h1>Leaders Relay Diary</h1> -->
                 <!-- <h1><?php //echo $subscriber->getUserName() ?></h1> -->
                 <!-- <div class="row">
@@ -41,7 +19,7 @@
             <!-- End Header -->
 
             <div class="row-fluid">
-                <div class="span8 blog-details">
+                <div class="span4 blog-details">
                     <!-- Article -->
                     <article>
                         <!-- Blog image -->
@@ -75,7 +53,36 @@
                 <div class="span4 blog-list-right">
                     <!-- Latest blog posts block -->
                     <div class="block">
-                        <h6>Basic Information </h6>
+                        <h6>Basic Information</h6>
+                        <ul class="simple-link-list">
+                            <li>
+                                <?php echo $subscriber->getFirstName() ?> <?php echo $subscriber->getMiddleName() ?> <?php echo $subscriber->getLastName() ?>
+                            </li>
+                            <li>
+                               <?php echo $subscriber->getNationality() ?>
+                            </li>
+                            <li>
+                                <?php //echo $subscriber->getPlaceOfResidence() ?>
+                            </li>
+                            <li>
+                                <?php echo $subscriber->getEmail() ?>
+                            </li>
+                            <li><?php echo link_to('EDIT', 'user/edit') ?></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tags -->
+                    
+                    
+                    <!-- Twitter -->
+                    <div class="block">
+                    　
+                    </div>
+                </div>
+                <div class="span4 blog-list-right">
+                    <!-- Latest blog posts block -->
+                    <div class="block">
+                        <h6>SELF INTRODUCTION</h6>
                         <ul class="simple-link-list">
                             <li>
                                 <?php echo $subscriber->getFirstName() ?> <?php echo $subscriber->getMiddleName() ?> <?php echo $subscriber->getLastName() ?>
@@ -146,5 +153,4 @@
         ga('create', 'UA-44061294-1', 'gridelicious.net');
         ga('send', 'pageview');
     </script>
-  </body>
-</html>
+  
