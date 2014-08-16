@@ -26,9 +26,9 @@
         <div class="container">
             <!-- Header -->
             <header>
-                <h4 class="line-divider"><?php echo $subscriber->getUserName()?> Infomation</h4>
+                <h4 class="line-divider"><?php echo $user->getUserName()?> Infomation</h4>
                 <!-- <h1>Leaders Relay Diary</h1> -->
-                <!-- <h1><?php //echo $subscriber->getUserName() ?></h1> -->
+                <!-- <h1><?php //echo $user->getUserName() ?></h1> -->
                 <!-- <div class="row">
                     <div class="span8 offset2">
                         <div class="input-append">
@@ -45,7 +45,7 @@
                     <!-- Article -->
                     <article>
                         <!-- Blog image -->
-                        <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$subscriber->getImage(),'alt=foo size=200x100') ?>
+                        <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$user->getImage(),'alt=foo size=200x100') ?>
                         
                         <!-- Blog title -->
                         <h6>
@@ -54,7 +54,7 @@
                         </h6>
                         
                         <!-- Blog post description -->
-                        <?php echo $subscriber->getSelfIntroduction() ?>
+                        <?php echo $user->getSelfIntroduction() ?>
                         <hr />
 						<?php //echo link_to('edit', 'blog/edit?id='.$blog->getId()) ?>
 						&nbsp;<?php //echo link_to('list', 'blog/list') ?>
@@ -78,18 +78,24 @@
                         <h6>Basic Information </h6>
                         <ul class="simple-link-list">
                             <li>
-                                <?php echo $subscriber->getFirstName() ?> <?php echo $subscriber->getMiddleName() ?> <?php echo $subscriber->getLastName() ?>
+                                <?php echo $user->getFirstName() ?> <?php echo $user->getMiddleName() ?> <?php echo $user->getLastName() ?>
                             </li>
                             <li>
-                               <?php echo $subscriber->getNationality() ?>
+                               <?php echo $user->getNationality() ?>
                             </li>
                             <li>
-                                <?php //echo $subscriber->getPlaceOfResidence() ?>
+                                <?php //echo $user->getPlaceOfResidence() ?>
                             </li>
                             <li>
-                                <?php echo $subscriber->getEmail() ?>
+                                <?php echo $user->getEmail() ?>
                             </li>
-                            <li><?php echo link_to('EDIT', 'user/edit') ?></li>
+                            <div id ="edit">
+                                <!-- sf_userはsession情報にいるuser情報を引張ってくる時の。 -->
+                                <?php if($user->getUserName() == $sf_user->getSubscriber()->getUserName()): ?>
+                                    <?php echo link_to('EDIT', 'user/edit') ?>
+                                <?php endif ?>
+                            </div>
+                            
                         </ul>
                     </div>
                     

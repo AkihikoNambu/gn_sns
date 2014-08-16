@@ -135,13 +135,10 @@ public function executeEdit()
   }
 public function executeMypage()
 {
+  // loginuser情報を送信
    $this->subscriber = UserPeer::retrieveByPk($this->getRequestParameter('id', $this->getUser()->getSubscriberId()));
-   $this->forward404Unless($this->subscriber);
+   // 見たいuserの情報をとってくる
+   $this->user = UserPeer::retrieveByPk($this->getRequestParameter('id'));
+   $this->forward404Unless($this->user);
 }
-public function executeMypageshow()
-{
-  $this->user = UserPeer::retrieveByPk($this->getRequestParameter('id'));
-  $this->forward404Unless($this->user);
-}
-
 }
