@@ -105,7 +105,8 @@
                             <?php foreach ($lates_friends as $lates_friend): ?>
                             <li>
                                 <!-- タイトルとしてユーザーのfirstname, lastnameを表示し、記事へのリンクを貼る -->
-                                <?php echo link_to($lates_friend->getTitle(), 'friend/show?id='.$lates_friend->getId()) ?>
+                                <?php //echo link_to($lates_friend->getTitle(), 'friend/show?id='.$lates_friend->getId()) ?>
+                                <?php echo $lates_friend->getTitle() ?>
                             </li>
                         <?php endforeach; ?>
                         </ul>

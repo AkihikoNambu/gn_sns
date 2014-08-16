@@ -21,39 +21,6 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <!-- NAVIGATION -->
-    <nav class="fixed-top fixed-visable" id="navigation">
-        <div class="container">
-            <div class="row-fluid">
-                <div class="span12 center">
-                    <!-- LOGO -->
-
-                    <a class="brand pull-left" href="./">
-                        <?php echo image_tag('gnlf003.jpg', array("width"=>"78", "height"=>"26")) ?>
-                    </a>
-                    <!-- END LOGO -->
-
-                    <!-- MOBILE MENU BUTTON -->
-                    <div class="mobile-menu" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </div>
-                    <!-- END MOBILE MENU BUTTON -->
-                    
-                    <!-- MAIN MENU -->
-                    <ul id="main-menu" class="nav-collapse collapse">
-                        <li><a href="http://localhost:8888/gn_sns/relayblog_dev.php/">Home</a></li>
-                        <li><a href="#page-about">Friends</a></li>
-                        <li><a href="#page-blog">Diary</a></li>
-                        <li><a href="#page-work">Reports</a></li>
-                        <li><a href="#page-clients">Sponsors</a></li>
-                        <!-- <li><a href="#page-clients">Sponsors</a></li>-->
-                        <!-- <li><a href="#page-contact">Login</a></li>  -->
-                    </ul>
-
-
-                    <!-- END MAIN MENU -->
                     
                     <!-- SOCIAL ICONS -->
                     <div class="social-icons hover-big pull-right">
@@ -72,68 +39,90 @@
 <div class = 'user_infomation'>	
 	<div id = 'add_infomation'>
 		<table>
-            <?php echo form_tag('user/show') ?>
-            <tr class="form-row">
+            <?php echo form_tag('user/edit', 'multipart=true') ?>
+            <tr class="form-row0">
                 <th>Property</th>
                 <th>Your infomation</th>
                 <th>modification</th>
             </tr>
-			<tr class="form-row">
+			<tr class="form-row1">
 				<th>UserName: </th>
 				<td><?php echo $subscriber->getUserName() ?></td>
-                <td><?php echo input_tag('user_name')?></td>
+                <td><?php echo input_tag('user_name',$subscriber->getUserName())?></td>
 			</tr>
-			<tr class="form-row">
+			<tr class="form-row2">
 				<th>FirstName: </th>
 				<td><?php echo $subscriber->getFirstName() ?></td>
-                <td><?php echo input_tag('first_name')?></td>
+                <td><?php echo input_tag('first_name',$subscriber->getFirstName())?></td>
 			</tr>
-			<tr class="form-row">
+			<tr class="form-row1">
 				<th>MiddleName: </th>
 				<td><?php echo $subscriber->getMiddleName() ?></td>
-                <td><?php echo input_tag('middle_name')?></td>
+                <td><?php echo input_tag('middle_name',$subscriber->getMiddleName())?></td>
 			</tr>
-			<tr class="form-row">
+			<tr class="form-row2">
 				<th>LastName: </th>
 				<td><?php echo $subscriber->getLastName() ?></td>
-                <td><?php echo input_tag('ladt_name')?></td>
+                <td><?php echo input_tag('last_name',$subscriber->getLastName())?></td>
 			</tr>
-			<tr class="form-row">
+            <tr class="form-row1">
+                <th>Nationality: </th>
+                <td><?php echo $subscriber->getNationality() ?></td>
+                <td><?php echo input_tag('nationality',$subscriber->getNationality())?></td>
+            </tr>
+            <tr class="form-row2">
+                <th>Place of residence: </th>
+                <td><?php //echo $subscriber->getPlaceOfResidence() ?></td>
+                <td><?php //echo input_tag('place_of_residence',$subscriber->getPlaceOfResidence())?></td>
+            </tr>
+			<tr class="form-row1">
 				<th>e-mail: </th>
 				<td><?php echo $subscriber->getEmail() ?></td>
-                <td><?php echo input_tag('email')?></td>
+                <td><?php echo input_tag('email',$subscriber->getEmail())?></td>
 			</tr>
-			<tr class="form-row">
+			<tr class="form-row2">
 				<th>Facebook: </th>
 				<td><?php echo $subscriber->getfacebookUrl() ?></td>
-                <td><?php echo input_tag('facebook_url')?></td>
-			</tr>
+                <td><?php echo input_tag('facebook_url',$subscriber->getFacebookUrl())?></td>
+            </tr>
+			<tr class="form-row1">
+                <th>Image</th>
+                <td><?php if(!$subscriber->getImage()): ?>
+                 <!-- // == 'Null'): ?> -->
+                        No Image
+                    <?php else: ?>
+                        <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$subscriber->getImage(),'alt=foo size=200x100') ?>
+                    <?php endif ?>
+                </td>
+                <td>
+                    <?php echo input_file_tag('file') ?>   
+                </td>
+            </tr>
+            <tr class = "form-row2">
+                <th>Self Introduction</th>
+                <td><?php echo $subscriber->getSelfIntroduction() ?></td>
+                <td><?php echo textarea_tag('self_introduction', $subscriber->getSelfIntroduction())?></td>
+            </tr>
             <tr class="form-row">
                 <th></th>
                 <td></td>
                 <td class="submit-button"><?php echo submit_tag('SUBMIT') ?></td>
             </tr>
+
         </form>
 		</table>
 	</div>
-	<div id = 'user_image'>
-		<?php if($subscriber->getImage() != 'Null'): ?>
-			<h3>No Image</h3>
-		<?php else: ?>
-			<?php echo $subscriber->getImage() ?>
-		<?php endif ?>
-	</div>
 </div>
 
-<!-- <div class = 'contribution_infomation'>
+<div class = 'contribution_infomation'>
 	<div id = 'contribution_blog'>
-		<h4>Your contributed blog.</h4>
-		<?php echo $subscriber->getBlog() ?>
+		
 	</div>
 	<div id = 'contribution_friend'>
-		<h4>Your contriguted infomation of Meet Friends.</h4>
-	<div>
-</div> -->
+		
+	</div>
+</div>
 </body>
 </html>
+
 

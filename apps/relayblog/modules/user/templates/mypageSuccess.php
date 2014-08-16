@@ -21,138 +21,80 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css'>
   </head>
   <body>
-
-<div class = 'user_infomation'>	
-	<div id = 'add_infomation'>
-		<table>
-			<tr>
-				<th>UserName: </th>
-				<td><?php echo $user->getUserName() ?></td>
-			</tr>
-			<tr>
-				<th>FirstName: </th>
-				<td><?php echo $user->getFirstName() ?></td>
-			</tr>
-			<tr>
-				<th>MiddleName: </th>
-				<td><?php echo $user->getMiddleName() ?></td>
-			</tr>
-			<tr>
-				<th>LastName: </th>
-				<td><?php echo $user->getLastName() ?></td>
-			</tr>
-			<tr>
-				<th>e-mail: </th>
-				<td><?php echo $user->getEmail() ?></td>
-			</tr>
-		</table>
-	</div>
-	<div id = 'user_image'>
-		<?php if($user->getImage() != 'Null'): ?>
-			<h3>No Image</h3>
-		<?php else: ?>
-			<?php echo $user->getImage() ?>
-		<?php endif ?>
-	</div>
-</div>
-
-<div class = 'contribution_infomation'>
-	<div id = 'contribution_blog'>
-		<h4>Your contributed blog.</h4>
-		<?php echo $user->getBlog() ?>
-	</div>
-	<div id = 'contribution_friend'>
-		<h4>Your contriguted infomation of Meet Friends.</h4>
-	<div>
-</div>
-
-
 <!-- PAGE | BLOG -->
     <div class="pages page-blog-list" id="page-blog-list">
         <div class="container">
+            <!-- Header -->
+            <header>
+                <h4 class="line-divider"><?php echo $subscriber->getUserName()?> Infomation</h4>
+                <!-- <h1>Leaders Relay Diary</h1> -->
+                <!-- <h1><?php //echo $subscriber->getUserName() ?></h1> -->
+                <!-- <div class="row">
+                    <div class="span8 offset2">
+                        <div class="input-append">
+                          <input class="span5" id="appendedInputButton" type="text" placeholder="Search Blog">
+                          <button class="btn btn-primary sicon-search sicon-white" type="button"><i>Search</i></button>
+                        </div>
+                    </div>
+                </div> -->
+            </header>
+            <!-- End Header -->
+
             <div class="row-fluid">
                 <div class="span8 blog-details">
                     <!-- Article -->
                     <article>
-                        <!-- Profile image -->
-                        <?php if($user->getImage() != 'Null'): ?>
-							<h3>No Image</h3>
-						<?php else: ?>
-							<?php echo $user->getImage() ?>
-						<?php endif ?>
-                        <!-- self introduction -->
-                        <?php echo $user->getSelfintroduction() ?>
+                        <!-- Blog image -->
+                        <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$subscriber->getImage(),'alt=foo size=200x100') ?>
+                        
+                        <!-- Blog title -->
+                        <h6>
+                            <u>self introduction</u>
+                                    
+                        </h6>
+                        
+                        <!-- Blog post description -->
+                        <?php echo $subscriber->getSelfIntroduction() ?>
                         <hr />
 						<?php //echo link_to('edit', 'blog/edit?id='.$blog->getId()) ?>
 						&nbsp;<?php //echo link_to('list', 'blog/list') ?>
                         
                     </article>
                     <!-- End Article -->
-                    
-                    <!-- Mypage comments -->
-                    <!-- <div class="comments">
-                    
+                                        
+                    <!-- Blog comments -->
                     <!-- End Blog comments -->
 
                     
-                    
+                    <!-- Blog Write comment -->
+                    <!-- End Blog Write comment -->
+
 
                 </div>
+                <!-- 最新記事を載せる５件まで -->
                 <div class="span4 blog-list-right">
                     <!-- Latest blog posts block -->
                     <div class="block">
-                        <h6>Lates blog posts</h6>
+                        <h6>Basic Information </h6>
                         <ul class="simple-link-list">
-                            <table>
-								<tr>
-									<th>UserName: </th>
-									<td><?php echo $user->getUserName() ?></td>
-								</tr>
-								<tr>
-									<th>FirstName: </th>
-									<td><?php echo $user->getFirstName() ?></td>
-								</tr>
-								<tr>
-									<th>MiddleName: </th>
-									<td><?php echo $user->getMiddleName() ?></td>
-								</tr>
-								<tr>
-									<th>LastName: </th>
-									<td><?php echo $user->getLastName() ?></td>
-								</tr>
-								<tr>
-									<th>e-mail: </th>
-									<td><?php echo $user->getEmail() ?></td>
-								</tr>
-							</table>
+                            <li>
+                                <?php echo $subscriber->getFirstName() ?> <?php echo $subscriber->getMiddleName() ?> <?php echo $subscriber->getLastName() ?>
+                            </li>
+                            <li>
+                               <?php echo $subscriber->getNationality() ?>
+                            </li>
+                            <li>
+                                <?php //echo $subscriber->getPlaceOfResidence() ?>
+                            </li>
+                            <li>
+                                <?php echo $subscriber->getEmail() ?>
+                            </li>
+                            <li><?php echo link_to('EDIT', 'user/edit') ?></li>
+                        </ul>
                     </div>
                     
                     <!-- Tags -->
-                    <div class="block">
-                        <h6>Other Topics</h6>
-                        <nav class="submenu">
-                            <ul>
-                                <li>
-                                    <a href="./blog.html" class="active">All</a>
-                                </li>
-                                <li>
-                                    <a href="./blog.html">Traditionl Food</a>
-                                </li>
-                                <li>
-                                    <a href="./blog.html">Club Activeities</a>
-                                </li>
-                                <li>
-                                    <a href="./blog.html">Traditional Festival</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="./blog.html">Photography</a>
-                                </li>
-                                <li>
-                                    <a href="./blog.html">Other</a>
-                                </li> -->
-                            </ul>
-                        </nav>
-                    </div>
+                    
                     
                     <!-- Twitter -->
                     <div class="block">

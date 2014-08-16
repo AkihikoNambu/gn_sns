@@ -3,10 +3,31 @@
 	/*height: 200px;*/
 }
 #add_infomation {
-	float: right;
+	float: left;
+	vertical-align: middle;
 	/*height: 200px;
 	width: 200px;*/
 }
 #add_infomation .form-row{
-	padding-left: 9em;
+	/*padding-left: 9em;*/
+	text-align: left;
+	
+}
+#add_infomation .form-row0{
+	/*padding-left: 9em;*/
+	text-align: left;
+	background-color: gray;
+	border: 2px  solid;
+}
+#add_infomation .form-row1{
+	/*padding-left: 9em;*/
+	text-align: left;
+	background-color: #F0F0F6;
+	border: 2px  solid;
+}
+#add_infomation .form-row2{
+	/*padding-left: 9em;*/
+	text-align: left;
+	background-color: #FCFCFC;
+	border: 2px  solid;
 }
