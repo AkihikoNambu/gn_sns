@@ -65,16 +65,28 @@ propel:
    host_country: varchar(100)
    body: longvarchar
    reportfile: longvarchar
-#appricant情報
- # applicant:
- #   app_user_name: varchar(50)
- #   app_first_name: varchar(100)
- #   app_middle_name: varchar(100)
- #   app_last_name: varchar(100)
- #   app_email: varchar(100)
- #   app_facebook_url: longvarchar
- #   app_participation_year: integer
- #   created_at:
- #   updated_at:
-　
 
+#gn_postに関する情報
+ post:
+   user_id:
+   title: varchar(50)
+   image: longvarchar
+   body: longvarchar
+   category: integer
+   created_at:
+   updated_at:
+
+#postに対するcommentに関する情報
+ post_comment:
+   post_id:
+   user_id:
+   body: longvarchar
+   created_at:
+   updated_at:
+
+#postに対するlikeに関する情報
+ post_like:
+   post_id:
+   user_id:
+   created_at:
+   updated_at:

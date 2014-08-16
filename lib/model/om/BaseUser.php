@@ -108,6 +108,24 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 	protected $lastFriendCommentCriteria = null;
 
 	
+	protected $collPosts;
+
+	
+	protected $lastPostCriteria = null;
+
+	
+	protected $collPostComments;
+
+	
+	protected $lastPostCommentCriteria = null;
+
+	
+	protected $collPostLikes;
+
+	
+	protected $lastPostLikeCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -705,6 +723,30 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collPosts !== null) {
+				foreach($this->collPosts as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
+			if ($this->collPostComments !== null) {
+				foreach($this->collPostComments as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
+			if ($this->collPostLikes !== null) {
+				foreach($this->collPostLikes as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -772,6 +814,30 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 				if ($this->collFriendComments !== null) {
 					foreach($this->collFriendComments as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collPosts !== null) {
+					foreach($this->collPosts as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collPostComments !== null) {
+					foreach($this->collPostComments as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collPostLikes !== null) {
+					foreach($this->collPostLikes as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -1090,6 +1156,18 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 
 			foreach($this->getFriendComments() as $relObj) {
 				$copyObj->addFriendComment($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getPosts() as $relObj) {
+				$copyObj->addPost($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getPostComments() as $relObj) {
+				$copyObj->addPostComment($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getPostLikes() as $relObj) {
+				$copyObj->addPostLike($relObj->copy($deepCopy));
 			}
 
 		} 
@@ -1465,6 +1543,286 @@ abstract class BaseUser extends BaseObject  implements Persistent {
 		$this->lastFriendCommentCriteria = $criteria;
 
 		return $this->collFriendComments;
+	}
+
+	
+	public function initPosts()
+	{
+		if ($this->collPosts === null) {
+			$this->collPosts = array();
+		}
+	}
+
+	
+	public function getPosts($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BasePostPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collPosts === null) {
+			if ($this->isNew()) {
+			   $this->collPosts = array();
+			} else {
+
+				$criteria->add(PostPeer::USER_ID, $this->getId());
+
+				PostPeer::addSelectColumns($criteria);
+				$this->collPosts = PostPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(PostPeer::USER_ID, $this->getId());
+
+				PostPeer::addSelectColumns($criteria);
+				if (!isset($this->lastPostCriteria) || !$this->lastPostCriteria->equals($criteria)) {
+					$this->collPosts = PostPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastPostCriteria = $criteria;
+		return $this->collPosts;
+	}
+
+	
+	public function countPosts($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BasePostPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(PostPeer::USER_ID, $this->getId());
+
+		return PostPeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addPost(Post $l)
+	{
+		$this->collPosts[] = $l;
+		$l->setUser($this);
+	}
+
+	
+	public function initPostComments()
+	{
+		if ($this->collPostComments === null) {
+			$this->collPostComments = array();
+		}
+	}
+
+	
+	public function getPostComments($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BasePostCommentPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collPostComments === null) {
+			if ($this->isNew()) {
+			   $this->collPostComments = array();
+			} else {
+
+				$criteria->add(PostCommentPeer::USER_ID, $this->getId());
+
+				PostCommentPeer::addSelectColumns($criteria);
+				$this->collPostComments = PostCommentPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(PostCommentPeer::USER_ID, $this->getId());
+
+				PostCommentPeer::addSelectColumns($criteria);
+				if (!isset($this->lastPostCommentCriteria) || !$this->lastPostCommentCriteria->equals($criteria)) {
+					$this->collPostComments = PostCommentPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastPostCommentCriteria = $criteria;
+		return $this->collPostComments;
+	}
+
+	
+	public function countPostComments($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BasePostCommentPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(PostCommentPeer::USER_ID, $this->getId());
+
+		return PostCommentPeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addPostComment(PostComment $l)
+	{
+		$this->collPostComments[] = $l;
+		$l->setUser($this);
+	}
+
+
+	
+	public function getPostCommentsJoinPost($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BasePostCommentPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collPostComments === null) {
+			if ($this->isNew()) {
+				$this->collPostComments = array();
+			} else {
+
+				$criteria->add(PostCommentPeer::USER_ID, $this->getId());
+
+				$this->collPostComments = PostCommentPeer::doSelectJoinPost($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(PostCommentPeer::USER_ID, $this->getId());
+
+			if (!isset($this->lastPostCommentCriteria) || !$this->lastPostCommentCriteria->equals($criteria)) {
+				$this->collPostComments = PostCommentPeer::doSelectJoinPost($criteria, $con);
+			}
+		}
+		$this->lastPostCommentCriteria = $criteria;
+
+		return $this->collPostComments;
+	}
+
+	
+	public function initPostLikes()
+	{
+		if ($this->collPostLikes === null) {
+			$this->collPostLikes = array();
+		}
+	}
+
+	
+	public function getPostLikes($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BasePostLikePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collPostLikes === null) {
+			if ($this->isNew()) {
+			   $this->collPostLikes = array();
+			} else {
+
+				$criteria->add(PostLikePeer::USER_ID, $this->getId());
+
+				PostLikePeer::addSelectColumns($criteria);
+				$this->collPostLikes = PostLikePeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(PostLikePeer::USER_ID, $this->getId());
+
+				PostLikePeer::addSelectColumns($criteria);
+				if (!isset($this->lastPostLikeCriteria) || !$this->lastPostLikeCriteria->equals($criteria)) {
+					$this->collPostLikes = PostLikePeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastPostLikeCriteria = $criteria;
+		return $this->collPostLikes;
+	}
+
+	
+	public function countPostLikes($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BasePostLikePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(PostLikePeer::USER_ID, $this->getId());
+
+		return PostLikePeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addPostLike(PostLike $l)
+	{
+		$this->collPostLikes[] = $l;
+		$l->setUser($this);
+	}
+
+
+	
+	public function getPostLikesJoinPost($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BasePostLikePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collPostLikes === null) {
+			if ($this->isNew()) {
+				$this->collPostLikes = array();
+			} else {
+
+				$criteria->add(PostLikePeer::USER_ID, $this->getId());
+
+				$this->collPostLikes = PostLikePeer::doSelectJoinPost($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(PostLikePeer::USER_ID, $this->getId());
+
+			if (!isset($this->lastPostLikeCriteria) || !$this->lastPostLikeCriteria->equals($criteria)) {
+				$this->collPostLikes = PostLikePeer::doSelectJoinPost($criteria, $con);
+			}
+		}
+		$this->lastPostLikeCriteria = $criteria;
+
+		return $this->collPostLikes;
 	}
 
 } 
