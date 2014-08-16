@@ -5,7 +5,7 @@
             <!-- Header -->
             <header>
 
-                <h4 class="line-divider"><?php echo $user->getUserName()?> Infomation</h4>
+                <h4 class="line-divider"><?php echo $user->getUserName()?></h4>
 
                 <!-- <h1>Leaders Relay Diary</h1> -->
                 <!-- <h1><?php //echo $user->getUserName() ?></h1> -->
@@ -28,13 +28,15 @@
                         <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$user->getImage(),'alt=foo size=200x100') ?>
                         
                         <!-- Blog title -->
-                        <h6>
-                            <u>self introduction</u>
-                                    
-                        </h6>
+                        <div id ="edit">
+                                <!-- sf_userはsession情報にいるuser情報を引張ってくる時の。 -->
+                                <?php if($user->getUserName() == $sf_user->getSubscriber()->getUserName()): ?>
+                                    <?php echo link_to('EDIT', 'user/edit') ?>
+                                <?php endif ?>
+                            </div>
                         
                         <!-- Blog post description -->
-                        <?php echo $user->getSelfIntroduction() ?>
+                        <?php echo $user->getFirstName() ?> <?php echo $user->getMiddleName() ?> <?php echo $user->getLastName() ?>
                         <hr />
 						<?php //echo link_to('edit', 'blog/edit?id='.$blog->getId()) ?>
 						&nbsp;<?php //echo link_to('list', 'blog/list') ?>
@@ -58,18 +60,18 @@
                         <h6>Basic Information</h6>
                         <ul class="simple-link-list">
                             <li>
-                                <?php echo $subscriber->getFirstName() ?> <?php echo $subscriber->getMiddleName() ?> <?php echo $subscriber->getLastName() ?>
+                                <?php echo $user->getFirstName() ?> <?php echo $subscriber->getMiddleName() ?> <?php echo $subscriber->getLastName() ?>
                             </li>
                             <li>
-                               <?php echo $subscriber->getNationality() ?>
+                               <?php echo $user->getNationality() ?>
                             </li>
                             <li>
                                 <?php //echo $subscriber->getPlaceOfResidence() ?>
                             </li>
                             <li>
-                                <?php echo $subscriber->getEmail() ?>
+                                <?php echo $user->getEmail() ?>
                             </li>
-                            <li><?php echo link_to('EDIT', 'user/edit') ?></li>
+                            
                         </ul>
                     </div>
                     
@@ -87,24 +89,9 @@
                         <h6>SELF INTRODUCTION</h6>
                         <ul class="simple-link-list">
                             <li>
-                                <?php echo $user->getFirstName() ?> <?php echo $user->getMiddleName() ?> <?php echo $user->getLastName() ?>
+                                <?php echo $user->getSelfIntroduction() ?>
+                                
                             </li>
-                            <li>
-                               <?php echo $user->getNationality() ?>
-                            </li>
-                            <li>
-                                <?php //echo $user->getPlaceOfResidence() ?>
-                            </li>
-                            <li>
-                                <?php echo $user->getEmail() ?>
-                            </li>
-                            <div id ="edit">
-                                <!-- sf_userはsession情報にいるuser情報を引張ってくる時の。 -->
-                                <?php if($user->getUserName() == $sf_user->getSubscriber()->getUserName()): ?>
-                                    <?php echo link_to('EDIT', 'user/edit') ?>
-                                <?php endif ?>
-                            </div>
-                            
                         </ul>
                     </div>
                     
