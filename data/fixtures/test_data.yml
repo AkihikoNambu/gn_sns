@@ -1,13 +1,14 @@
 User:
-  anonymous:
-    user_name:   anonymous
-    first_name: Anonymous
-    last_name:  Coward
-  fabien:
-    user_name:   fabpot
-    first_name: Fabien
-    last_name:  Potencier
-    password:   symfony
-    email:      fp@example.com
+  arimura_kasumi:
+    user_name:  arimura_kasumi
+    first_name: Kasumi
+    last_name:  Arimura
+    image: arimura.jpeg
+    password: arimurasukiyo
+    email: arimurasukiyo@gmail.com
+    nationality: Japan
+    certification: 1
+    self_introduction: I am Arimura Kasumi.  I'm very popular in Japan. I love Akihiko Nambu.
+
 
 

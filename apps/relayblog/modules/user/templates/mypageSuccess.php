@@ -36,8 +36,9 @@
                             </div>
                         
                         <!-- Blog post description -->
-                        <?php echo $user->getFirstName() ?> <?php echo $user->getMiddleName() ?> <?php echo $user->getLastName() ?>
+                        
                         <hr />
+                        <h6 class= "under-line-h6"><?php echo $user->getFirstName() ?> <?php echo $user->getMiddleName() ?> <?php echo $user->getLastName() ?></h6>
 						<?php //echo link_to('edit', 'blog/edit?id='.$blog->getId()) ?>
 						&nbsp;<?php //echo link_to('list', 'blog/list') ?>
                         
