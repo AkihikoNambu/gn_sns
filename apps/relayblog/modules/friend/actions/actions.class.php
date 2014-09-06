@@ -91,6 +91,7 @@ class friendActions extends sfActions
     $subscriber_id = $this->getUser()->getSubscriberId();
     $friend_id = $this->getRequestParameter('id');
 
+    // FriendCommentオブジェクトのインスタンスを生成
     $friend_comment = new FriendComment();
     //useridを取得しfriend_commentのパラメーターに持たせる。
     //(今は省略)

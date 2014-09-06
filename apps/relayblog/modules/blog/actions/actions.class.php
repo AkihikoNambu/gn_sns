@@ -120,22 +120,18 @@ class blogActions extends sfActions
     $subscriber_id = $this->getUser()->getSubscriberId();
     $blog_id = $this->getRequestParameter('id');
 
+    // BlogCommentオブジェクトのインスタンスを生成
     $blog_comment = new BlogComment();
-    $user = new User();
-    //useidは本来セッションから取得できるので、こんな書き方をする必要はない
-    // $blog_comment->setUserId($this->getRequestParameter('user_id') ? $this->getRequestParameter('user_id') : null);
-    // $this->subscriber = UserPeer::retrieveByPk($this->getRequestParameter('id', $this->getUser()->getSubscriberId()));
-    $user = $this->getUser()->getAttribute('user_name', $user->getUserName(), 'subscriber');
 
     //idをblogidにセット
     $blog_comment->setBlogId($blog_id);
+    $blog_comment->setUserId($subscriber_id);
     $blog_comment->setBody($this->getRequestParameter('body'));
     
     $blog_comment->save();
 
     //投稿後のリダイレクト
     return $this->redirect('blog/show?id='.$blog_id);
-    // return $this->redirect('blog/list');
   }
 
 

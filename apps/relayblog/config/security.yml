@@ -1,7 +1,7 @@
 #loginしていないuserのアクションを制限
 all:
  # is_secure: on
- is_secure: off
+ is_secure: on
  #credentials: subscriber
 # update:
 #  is_secure: on
