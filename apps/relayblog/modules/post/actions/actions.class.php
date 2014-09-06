@@ -50,21 +50,21 @@ class postActions extends sfActions
       $post = PostPeer::retrieveByPk($this->getRequestParameter('id'));
       $this->forward404Unless($post);
     }
-    $subscriber_id = $this->getUser()->getSubscriberId();
-    $post->setUserId($subscriber_id);
-    $post->setTitle($this->getRequestParameter('title'));
-    //ファイルアップローd
-    $fileName = $this->getRequest()->getFileName('file');
-    $this->getRequest()->moveFile('file', sfConfig::get('sf_upload_dir').'/'.$fileName); 
+      $subscriber_id = $this->getUser()->getSubscriberId();
+      $post->setUserId($subscriber_id);
+      $post->setTitle($this->getRequestParameter('title'));
+      //ファイルアップローd
+      $fileName = $this->getRequest()->getFileName('file');
+      $this->getRequest()->moveFile('file', sfConfig::get('sf_upload_dir').'/'.$fileName); 
 
-    $post->setImage($fileName);
-    $post->setBody($this->getRequestParameter('body'));
-    $post->setCategory($this->getRequestParameter('category'));
-    $post->setId($this->getRequestParameter('id'));
+      $post->setImage($fileName);
+      $post->setBody($this->getRequestParameter('body'));
+      $post->setCategory($this->getRequestParameter('category'));
+      $post->setId($this->getRequestParameter('id'));
 
-    $post->save();
+      $post->save();
 
-    return $this->redirect('post/show?id='.$post->getId());
+      return $this->redirect('post/show?id='.$post->getId());
   }
 
   public function executeDelete()

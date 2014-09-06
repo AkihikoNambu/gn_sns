@@ -31,10 +31,13 @@
                             <a href="#" class="plugin-filter" data-filter="2013">ECONOMICS</a>
                         </li>
                         <li>
-                            <a href="#" class="plugin-filter" data-filter="2012">BUSINESS</a>
+                            <a href="#" class="plugin-filter" data-filter="2012">INTERNATIONAL</a>
                         </li>
                         <li>
-                            <a href="#" class="plugin-filter" data-filter="2011">CULTURE</a>
+                            <a href="#" class="plugin-filter" data-filter="2011">BUSINESS</a>
+                        </li>
+                        <li>
+                            <a href="#" class="plugin-filter" data-filter="2011">ENTERTAINMENT</a>
                         </li>
                         <br/>
                     </ul>
@@ -49,15 +52,19 @@
                         plugin-filter-elements: Defines items for filtering, each item has class which defines filter value.
                         portfolio-items: Customise portfolio items for hover effect.
                 -->
-            
+
                 <ul class="thumbnails plugin-filter-elements portfolio-items">
                     <li class="span4 mix 2013">
+                        <!-- 各個別のshowページに飛ばす -->
+                        <!-- カテゴリー用のフィルターもかける -->
                         <a href="#report/show/id/1" data-destination="portfolio-items" data-insert="before">
                             <!-- Portfolio image -->
+                            <!-- get imageをする -->
                             <?php echo image_tag('pages/conference/2011.jpg', array('class'=>'conference_thumnail')) ?>
                             
                             <!-- Portfolio name, activated on hover -->
                             <div class="portfolio-overlay">
+                            <!-- get title, get bodyの一部を表示 -->
                                 <h4>2013 JAPAN</h4>
                             </div>
                         </a>

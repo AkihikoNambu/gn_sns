@@ -5,7 +5,7 @@
 <?php use_helper('Object') ?>
 
 
-<?php echo form_tag('post/update') ?>
+<?php echo form_tag('post/update', 'multipart=true') ?>
 
 <?php echo object_input_hidden_tag($post, 'getId') ?>
 
@@ -27,10 +27,8 @@
 <tr>
   <!-- ファイルアップロード -->
 
-</form>
   <th>Image:</th>
   <td>
-  <?php echo form_tag('post/update', 'multipart=true') ?>
   <?php echo input_file_tag('file') ?>
 </td>
 </tr>
@@ -47,7 +45,7 @@
 <?php echo select_tag('category', options_for_select(array(
   '1'  => 'POLITICS',
   '2'    => 'ECONOMICS',
-  '3' => 'WORLD',
+  '3' => 'INTERNATIONAL',
   '4'    => 'BUSSINESS',
   '5'   => 'ENTERTAINMENT'))) ?>
 </td>
