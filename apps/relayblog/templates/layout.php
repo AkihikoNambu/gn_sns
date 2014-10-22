@@ -29,7 +29,7 @@
                     <!-- LOGO -->
 
                     <a class="brand pull-left" href="./">
-                        <?php echo image_tag('gnlf003.jpg', array("width"=>"78", "height"=>"26")) ?>
+                        <?php echo image_tag('gnlf_png.png', array("width"=>"78", "height"=>"26")) ?>
                     </a>
                     <!-- END LOGO -->
 

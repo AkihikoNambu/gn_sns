@@ -52,15 +52,16 @@
                         plugin-filter-elements: Defines items for filtering, each item has class which defines filter value.
                         portfolio-items: Customise portfolio items for hover effect.
                 -->
-
+               
                 <ul class="thumbnails plugin-filter-elements portfolio-items">
+                     <?php foreach ($posts as $post): ?>
                     <li class="span4 mix 2013">
                         <!-- 各個別のshowページに飛ばす -->
                         <!-- カテゴリー用のフィルターもかける -->
                         <a href="#report/show/id/1" data-destination="portfolio-items" data-insert="before">
                             <!-- Portfolio image -->
                             <!-- get imageをする -->
-                            <?php echo image_tag('pages/conference/2011.jpg', array('class'=>'conference_thumnail')) ?>
+                            <?php echo image_tag('/'.sfConfig::get('sf_upload_dir_name').'/'.$post->getImage(), array('class'=>'post_images')) ?>
                             
                             <!-- Portfolio name, activated on hover -->
                             <div class="portfolio-overlay">
@@ -69,17 +70,18 @@
                             </div>
                         </a>
                     </li>
-                    <li class="span4 mix 2012">
-                            <a href="#report/show/id/2" data-destination="portfolio-items" data-insert="before">
+                <?php endforeach; ?>
+                    <!-- <li class="span4 mix 2012">
+                            <a href="#report/show/id/2" data-destination="portfolio-items" data-insert="before"> -->
                             <!-- Portfolio image -->
-                            <?php echo image_tag('pages/conference/2011.jpg') ?>
-                            <div class="portfolio-overlay">
+                            <?php //echo image_tag('pages/conference/2011.jpg') ?>
+                           <!--  <div class="portfolio-overlay">
                                 <h4>2012 TUNISIA</h4>
                             </div>
                         </a>
                     </li>
                     <li class="span4 mix 2011">
-                        <a href="#pages/portfolio/project_3.html" data-destination="portfolio-items" data-insert="before">
+                        <a href="#pages/portfolio/project_3.html" data-destination="portfolio-items" data-insert="before"> -->
                             <?php echo image_tag('pages/conference/2011.jpg') ?>
                             <div class="portfolio-overlay">
                                 <h4>2011 JAPAN</h4>

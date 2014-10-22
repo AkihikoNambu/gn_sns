@@ -106,6 +106,8 @@
         </div>
     </div>
 
+    <div><iframe src="http://show.placeit.net/?id=4047" width="800px" scrolling="no" height="600px" frameborder="0"></iframe></div>
+
     <!-- ページャ -->
     <div class="pagination center">
         <ul>
